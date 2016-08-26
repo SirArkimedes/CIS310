@@ -69,11 +69,13 @@ Partial Class CarLoanForm
         Me.LoanAmountTextBox.Name = "LoanAmountTextBox"
         Me.LoanAmountTextBox.Size = New System.Drawing.Size(100, 20)
         Me.LoanAmountTextBox.TabIndex = 2
+        Me.LoanAmountTextBox.Text = "10,000"
         '
         'InterestRateComboBox
         '
         Me.InterestRateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.InterestRateComboBox.FormattingEnabled = True
+        Me.InterestRateComboBox.Items.AddRange(New Object() {"0.00%", "0.25%", "0.50%", "0.75%", "1.00%", "1.25%", "1.50%", "1.75%", "2.00%", "2.25%", "2.50%", "2.75%", "3.00%", "3.25%", "3.50%", "3.75%", "4.00%", "4.25%", "4.50%", "4.75%", "5.00%", "5.25%", "5.50%", "5.75%", "6.00%", "6.25%", "6.50%", "6.75%", "7.00%", "8.25%", "8.50%", "8.75%"})
         Me.InterestRateComboBox.Location = New System.Drawing.Point(200, 115)
         Me.InterestRateComboBox.Name = "InterestRateComboBox"
         Me.InterestRateComboBox.Size = New System.Drawing.Size(100, 21)
@@ -101,6 +103,7 @@ Partial Class CarLoanForm
         '
         Me.TermComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.TermComboBox.FormattingEnabled = True
+        Me.TermComboBox.Items.AddRange(New Object() {"24", "30", "36", "42", "48", "54", "60", "66", "72", "78", "84", "90", "96", "102", "108", "114", "120"})
         Me.TermComboBox.Location = New System.Drawing.Point(200, 151)
         Me.TermComboBox.Name = "TermComboBox"
         Me.TermComboBox.Size = New System.Drawing.Size(100, 21)
@@ -135,6 +138,7 @@ Partial Class CarLoanForm
         '
         'MonthlyPaymentTextBox
         '
+        Me.MonthlyPaymentTextBox.Enabled = False
         Me.MonthlyPaymentTextBox.Location = New System.Drawing.Point(200, 267)
         Me.MonthlyPaymentTextBox.Name = "MonthlyPaymentTextBox"
         Me.MonthlyPaymentTextBox.ReadOnly = True

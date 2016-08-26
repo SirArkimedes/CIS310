@@ -1,4 +1,8 @@
-﻿Public Class CarLoanForm
+﻿'=========================================='
+'= CIS 310, Andrew Robinson, Assignment 1 ='
+'=========================================='
+
+Public Class CarLoanForm
 
     '== Wake Events
     Private Sub Form1_Load(sender As Object, e As System.EventArgs) Handles MyBase.Load

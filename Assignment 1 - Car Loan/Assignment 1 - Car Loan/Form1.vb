@@ -2,7 +2,7 @@
 
     '== Wake Events
     Private Sub Form1_Load(sender As Object, e As System.EventArgs) Handles MyBase.Load
-        Me.ResetForm()
+        ResetForm()
     End Sub
 
     '== Click Events
@@ -23,23 +23,20 @@
                 MonthlyPaymentTextBox.Text = FormatCurrency(MonthlyPayment, 2, TriState.False, TriState.False, TriState.False)
             Else
                 '== Outside interval bounds.
-                StatusStripLabel.Text = "Out of bounds. Loan amount needs to be within $1,000 and $200,000."
-                StatusTimer.Enabled = True
+                ErrorInComputation("Out of bounds. Loan amount needs to be within $1,000 and $200,000.")
             End If
         ElseIf LoanAmountTextBox.Text = "" Then
             '== Empty input.
-            StatusStripLabel.Text = "Empty input. Loan amount needs to be numeric."
-            StatusTimer.Enabled = True
+            ErrorInComputation("Empty input. Loan amount needs to be numeric.")
         Else
             '== Invalid input.
-            StatusStripLabel.Text = "Invalid input. Loan amount needs to be numeric."
-            StatusTimer.Enabled = True
+            ErrorInComputation("Invalid input. Loan amount needs to be numeric.")
         End If
 
     End Sub
 
     Private Sub ResetButton_Click(sender As Object, e As EventArgs) Handles ResetButton.Click
-        Me.ResetForm()
+        ResetForm()
     End Sub
 
     Private Sub ExitButton_Click(sender As Object, e As EventArgs) Handles ExitButton.Click
@@ -57,6 +54,12 @@
         InterestRateComboBox.SelectedIndex = 24
         TermComboBox.SelectedIndex = 2
         MonthlyPaymentTextBox.Text = ""
+    End Sub
+
+    Private Sub ErrorInComputation(text As String)
+        MonthlyPaymentTextBox.Text = ""
+        StatusStripLabel.Text = text
+        StatusTimer.Enabled = True
     End Sub
 
     '== Closing handler

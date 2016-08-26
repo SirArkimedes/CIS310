@@ -165,6 +165,7 @@ Partial Class CarLoanForm
         Me.StatusStrip.Location = New System.Drawing.Point(0, 310)
         Me.StatusStrip.Name = "StatusStrip"
         Me.StatusStrip.Size = New System.Drawing.Size(425, 22)
+        Me.StatusStrip.SizingGrip = False
         Me.StatusStrip.TabIndex = 12
         Me.StatusStrip.Text = "?"
         '

@@ -12,11 +12,24 @@
             Dim LoanAmount As Double = Convert.ToDouble(LoanAmountTextBox.Text)
             If LoanAmount >= 1000.0 And LoanAmount <= 200000 Then
                 '== Calculate.
+                Dim RateString As String = Replace(InterestRateComboBox.SelectedItem.ToString(), "%", "")
+                Dim Rate As Double = Convert.ToDouble(RateString) / 100
+                Dim Months As Double = Convert.ToDouble(TermComboBox.SelectedItem.ToString())
+                Dim MonthlyPayment As Double
+
+                MonthlyPayment = Pmt(Rate / 12, Months, -LoanAmount)
+
+                '== Force these to 2 and false because we don't support multiple currency formats. $0.00
+                MonthlyPaymentTextBox.Text = FormatCurrency(MonthlyPayment, 2, TriState.False, TriState.False, TriState.False)
             Else
                 '== Outside interval bounds.
-                StatusStripLabel.Text = "Out of bounds. Loan amount needs to be within $10,000 and $200,000."
+                StatusStripLabel.Text = "Out of bounds. Loan amount needs to be within $1,000 and $200,000."
                 StatusTimer.Enabled = True
             End If
+        ElseIf LoanAmountTextBox.Text = "" Then
+            '== Empty input.
+            StatusStripLabel.Text = "Empty input. Loan amount needs to be numeric."
+            StatusTimer.Enabled = True
         Else
             '== Invalid input.
             StatusStripLabel.Text = "Invalid input. Loan amount needs to be numeric."

@@ -113,7 +113,7 @@ Partial Class CarLoanForm
         '
         'CalculateButton
         '
-        Me.CalculateButton.Location = New System.Drawing.Point(54, 212)
+        Me.CalculateButton.Location = New System.Drawing.Point(48, 213)
         Me.CalculateButton.Name = "CalculateButton"
         Me.CalculateButton.Size = New System.Drawing.Size(75, 23)
         Me.CalculateButton.TabIndex = 7
@@ -122,7 +122,7 @@ Partial Class CarLoanForm
         '
         'ResetButton
         '
-        Me.ResetButton.Location = New System.Drawing.Point(186, 212)
+        Me.ResetButton.Location = New System.Drawing.Point(180, 213)
         Me.ResetButton.Name = "ResetButton"
         Me.ResetButton.Size = New System.Drawing.Size(75, 23)
         Me.ResetButton.TabIndex = 8
@@ -131,7 +131,7 @@ Partial Class CarLoanForm
         '
         'ExitButton
         '
-        Me.ExitButton.Location = New System.Drawing.Point(309, 212)
+        Me.ExitButton.Location = New System.Drawing.Point(303, 213)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(75, 23)
         Me.ExitButton.TabIndex = 9
@@ -140,7 +140,8 @@ Partial Class CarLoanForm
         '
         'MonthlyPaymentTextBox
         '
-        Me.MonthlyPaymentTextBox.Enabled = False
+        Me.MonthlyPaymentTextBox.BackColor = System.Drawing.SystemColors.Control
+        Me.MonthlyPaymentTextBox.ForeColor = System.Drawing.SystemColors.WindowText
         Me.MonthlyPaymentTextBox.Location = New System.Drawing.Point(200, 267)
         Me.MonthlyPaymentTextBox.Name = "MonthlyPaymentTextBox"
         Me.MonthlyPaymentTextBox.ReadOnly = True
@@ -195,6 +196,7 @@ Partial Class CarLoanForm
         Me.Controls.Add(Me.LoanAmountTextBox)
         Me.Controls.Add(Me.LoanAmountLabel)
         Me.Controls.Add(Me.TitleLabel)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "CarLoanForm"
         Me.ShowIcon = False

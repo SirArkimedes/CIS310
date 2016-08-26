@@ -22,6 +22,7 @@ Partial Class CarLoanForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.TitleLabel = New System.Windows.Forms.Label()
         Me.LoanAmountLabel = New System.Windows.Forms.Label()
         Me.LoanAmountTextBox = New System.Windows.Forms.TextBox()
@@ -35,7 +36,8 @@ Partial Class CarLoanForm
         Me.MonthlyPaymentTextBox = New System.Windows.Forms.TextBox()
         Me.PaymentLabel = New System.Windows.Forms.Label()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.StatusStripLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.StatusTimer = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -158,18 +160,22 @@ Partial Class CarLoanForm
         '
         'StatusStrip
         '
-        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusStripLabel})
         Me.StatusStrip.Location = New System.Drawing.Point(0, 310)
         Me.StatusStrip.Name = "StatusStrip"
         Me.StatusStrip.Size = New System.Drawing.Size(425, 22)
         Me.StatusStrip.TabIndex = 12
         Me.StatusStrip.Text = "?"
         '
-        'ToolStripStatusLabel1
+        'StatusStripLabel
         '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(204, 17)
-        Me.ToolStripStatusLabel1.Text = "CIS 310 Project 1: Car Loan Calculator"
+        Me.StatusStripLabel.Name = "StatusStripLabel"
+        Me.StatusStripLabel.Size = New System.Drawing.Size(204, 17)
+        Me.StatusStripLabel.Text = "CIS 310 Project 1: Car Loan Calculator"
+        '
+        'StatusTimer
+        '
+        Me.StatusTimer.Interval = 5000
         '
         'CarLoanForm
         '
@@ -189,6 +195,7 @@ Partial Class CarLoanForm
         Me.Controls.Add(Me.LoanAmountTextBox)
         Me.Controls.Add(Me.LoanAmountLabel)
         Me.Controls.Add(Me.TitleLabel)
+        Me.MaximizeBox = False
         Me.Name = "CarLoanForm"
         Me.ShowIcon = False
         Me.Text = "Car Loan Calculator - Andrew Robinson"
@@ -212,5 +219,6 @@ Partial Class CarLoanForm
     Friend WithEvents MonthlyPaymentTextBox As TextBox
     Friend WithEvents PaymentLabel As Label
     Friend WithEvents StatusStrip As StatusStrip
-    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents StatusStripLabel As ToolStripStatusLabel
+    Friend WithEvents StatusTimer As Timer
 End Class

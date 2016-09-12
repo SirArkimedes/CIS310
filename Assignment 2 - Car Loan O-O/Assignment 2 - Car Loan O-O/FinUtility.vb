@@ -15,7 +15,7 @@ Public Class FinUtility
             If TestValue(value, 0, 0.0875, True) Then
                 Rate = value
             Else
-                '== Process some sort of error.
+                Throw New ArgumentException("Value needs to be between 0 and 0.0875 or between 0% and 8.75%.")
             End If
         End Set
     End Property
@@ -25,7 +25,7 @@ Public Class FinUtility
             If TestValue(value, 24, 120, False) Then
                 Term = value
             Else
-                '== Process some sort of error.
+                Throw New ArgumentException("Value needs to be between 24 and 120.")
             End If
         End Set
     End Property
@@ -35,7 +35,7 @@ Public Class FinUtility
             If TestValue(value, 1000, 200000, False) Then
                 Amount = value
             Else
-                '== Process some sort of error.
+                Throw New ArgumentException("Value needs to be between $1,000 and $200,000.")
             End If
         End Set
     End Property

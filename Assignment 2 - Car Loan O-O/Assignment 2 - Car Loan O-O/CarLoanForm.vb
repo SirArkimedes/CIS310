@@ -4,6 +4,8 @@
 
 Public Class CarLoanForm
 
+    Private financialUtility As New FinUtility
+
     '== Wake Events
     Private Sub Form1_Load(sender As Object, e As System.EventArgs) Handles MyBase.Load
         ResetForm()
@@ -21,7 +23,10 @@ Public Class CarLoanForm
                 Dim Months As Double = Convert.ToDouble(TermComboBox.SelectedItem.ToString())
                 Dim MonthlyPayment As Double
 
-                MonthlyPayment = Pmt(Rate / 12, Months, -LoanAmount)
+                financialUtility.AnnualRate = Rate
+                financialUtility.TermInMonths = Months
+                financialUtility.LoanAmount = LoanAmount
+                MonthlyPayment = financialUtility.MonthlyPayment
 
                 '== Force these to 2 and false because we don't support multiple currency formats. $0.00
                 MonthlyPaymentTextBox.Text = FormatCurrency(MonthlyPayment, 2, TriState.False, TriState.False, TriState.False)

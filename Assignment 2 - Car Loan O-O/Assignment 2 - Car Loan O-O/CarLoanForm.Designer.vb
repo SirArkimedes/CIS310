@@ -172,8 +172,8 @@ Partial Class CarLoanForm
         'StatusStripLabel
         '
         Me.StatusStripLabel.Name = "StatusStripLabel"
-        Me.StatusStripLabel.Size = New System.Drawing.Size(204, 17)
-        Me.StatusStripLabel.Text = "CIS 310 Project 1: Car Loan Calculator"
+        Me.StatusStripLabel.Size = New System.Drawing.Size(230, 17)
+        Me.StatusStripLabel.Text = "CIS 310 Project 2: Car Loan Calculator O-O"
         '
         'StatusTimer
         '

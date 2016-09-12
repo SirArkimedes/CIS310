@@ -16,7 +16,11 @@ Public Class FinUtility
                 Rate = value
             ElseIf InStr(value, "%") > 0 Then
                 value = value.ToString().Replace("%", "") / 100
-                Rate = value
+                If TestValue(value, 0, 0.0875) Then
+                    Rate = value
+                Else
+                    Throw New ArgumentException("Value needs to be between 0 and 0.0875 or between 0% and 8.75%.")
+                End If
             Else
                 Throw New ArgumentException("Value needs to be between 0 and 0.0875 or between 0% and 8.75%.")
             End If

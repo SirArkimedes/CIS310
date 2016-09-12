@@ -38,6 +38,7 @@ Partial Class CarLoanForm
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.StatusStripLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.StatusTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.ToolTipLayer = New System.Windows.Forms.ToolTip(Me.components)
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -72,6 +73,7 @@ Partial Class CarLoanForm
         Me.LoanAmountTextBox.Size = New System.Drawing.Size(100, 20)
         Me.LoanAmountTextBox.TabIndex = 2
         Me.LoanAmountTextBox.Text = "10,000"
+        Me.ToolTipLayer.SetToolTip(Me.LoanAmountTextBox, "Loan Amount between $1,000 and $200,000")
         '
         'InterestRateComboBox
         '
@@ -82,6 +84,7 @@ Partial Class CarLoanForm
         Me.InterestRateComboBox.Name = "InterestRateComboBox"
         Me.InterestRateComboBox.Size = New System.Drawing.Size(100, 21)
         Me.InterestRateComboBox.TabIndex = 3
+        Me.ToolTipLayer.SetToolTip(Me.InterestRateComboBox, "Annual Percentage Rating")
         '
         'InterestRateLabel
         '
@@ -110,6 +113,7 @@ Partial Class CarLoanForm
         Me.TermComboBox.Name = "TermComboBox"
         Me.TermComboBox.Size = New System.Drawing.Size(100, 21)
         Me.TermComboBox.TabIndex = 5
+        Me.ToolTipLayer.SetToolTip(Me.TermComboBox, "How many months the loan with last")
         '
         'CalculateButton
         '
@@ -118,6 +122,7 @@ Partial Class CarLoanForm
         Me.CalculateButton.Size = New System.Drawing.Size(75, 23)
         Me.CalculateButton.TabIndex = 7
         Me.CalculateButton.Text = "Calculate"
+        Me.ToolTipLayer.SetToolTip(Me.CalculateButton, "Calculate Montly Payment")
         Me.CalculateButton.UseVisualStyleBackColor = True
         '
         'ResetButton
@@ -127,15 +132,17 @@ Partial Class CarLoanForm
         Me.ResetButton.Size = New System.Drawing.Size(75, 23)
         Me.ResetButton.TabIndex = 8
         Me.ResetButton.Text = "Reset"
+        Me.ToolTipLayer.SetToolTip(Me.ResetButton, "Reset to $10,000, 6.00%, and 36 months")
         Me.ResetButton.UseVisualStyleBackColor = True
         '
         'ExitButton
         '
-        Me.ExitButton.Location = New System.Drawing.Point(303, 213)
+        Me.ExitButton.Location = New System.Drawing.Point(301, 213)
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.Size = New System.Drawing.Size(75, 23)
         Me.ExitButton.TabIndex = 9
         Me.ExitButton.Text = "Exit"
+        Me.ToolTipLayer.SetToolTip(Me.ExitButton, "Quit this application")
         Me.ExitButton.UseVisualStyleBackColor = True
         '
         'MonthlyPaymentTextBox
@@ -149,6 +156,7 @@ Partial Class CarLoanForm
         Me.MonthlyPaymentTextBox.TabIndex = 11
         Me.MonthlyPaymentTextBox.TabStop = False
         Me.MonthlyPaymentTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.ToolTipLayer.SetToolTip(Me.MonthlyPaymentTextBox, "Amount needed to be paid monthly on loan")
         '
         'PaymentLabel
         '
@@ -224,4 +232,5 @@ Partial Class CarLoanForm
     Friend WithEvents StatusStrip As StatusStrip
     Friend WithEvents StatusStripLabel As ToolStripStatusLabel
     Friend WithEvents StatusTimer As Timer
+    Friend WithEvents ToolTipLayer As ToolTip
 End Class

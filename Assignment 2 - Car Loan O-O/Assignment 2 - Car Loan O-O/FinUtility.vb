@@ -12,7 +12,10 @@ Public Class FinUtility
     '== Properties
     WriteOnly Property AnnualRate()
         Set(value)
-            If TestValue(value, 0, 0.0875, True) Then
+            If TestValue(value, 0, 0.0875) Then
+                Rate = value
+            ElseIf InStr(value, "%") > 0 Then
+                value = value.ToString().Replace("%", "") / 100
                 Rate = value
             Else
                 Throw New ArgumentException("Value needs to be between 0 and 0.0875 or between 0% and 8.75%.")
@@ -22,7 +25,7 @@ Public Class FinUtility
 
     WriteOnly Property TermInMonths()
         Set(value)
-            If TestValue(value, 24, 120, False) Then
+            If TestValue(value, 24, 120) Then
                 Term = value
             Else
                 Throw New ArgumentException("Value needs to be between 24 and 120.")
@@ -32,7 +35,7 @@ Public Class FinUtility
 
     WriteOnly Property LoanAmount()
         Set(value)
-            If TestValue(value, 1000, 200000, False) Then
+            If TestValue(value, 1000, 200000) Then
                 Amount = value
             Else
                 Throw New ArgumentException("Value needs to be between $1,000 and $200,000.")
@@ -47,20 +50,12 @@ Public Class FinUtility
     End Property
 
     '== Helper methods
-    Private Function TestValue(value As Object, startRange As Double, endRange As Double, checkPercent As Boolean) As Boolean
+    Private Function TestValue(value As Object, startRange As Double, endRange As Double) As Boolean
         Dim job = False
 
         If IsNumeric(value) Then
             If value >= startRange AndAlso value <= endRange Then
                 job = True
-            End If
-        ElseIf checkPercent Then
-            '== Isn't numeric, but could have %.
-            If InStr(value, "%") > 0 Then
-                value = value.ToString().Replace("%", "")
-                If value >= startRange AndAlso value <= endRange Then
-                    job = True
-                End If
             End If
         End If
 

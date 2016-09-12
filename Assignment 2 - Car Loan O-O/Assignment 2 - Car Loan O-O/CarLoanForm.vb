@@ -1,5 +1,5 @@
 ﻿'=========================================='
-'= CIS 310, Andrew Robinson, Assignment 1 ='
+'= CIS 310, Andrew Robinson, Assignment 2 ='
 '=========================================='
 
 Public Class CarLoanForm
@@ -49,7 +49,7 @@ Public Class CarLoanForm
 
     '== Timer tick
     Private Sub TimerTicked(sender As Object, e As EventArgs) Handles StatusTimer.Tick
-        StatusStripLabel.Text = "CIS 310 Project 1: Car Loan Calculator"
+        StatusStripLabel.Text = "CIS 310 Project 2: Car Loan Calculator O-O"
     End Sub
 
     '== Helper methods

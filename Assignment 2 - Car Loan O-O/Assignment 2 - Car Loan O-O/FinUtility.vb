@@ -49,6 +49,7 @@ Public Class FinUtility
 
     ReadOnly Property MonthlyPayment()
         Get
+            '== Are any of the values unset?
             If Rate = -1 Then
                 Throw New InvalidOperationException("Rate has not been set.")
             ElseIf Term = -1 Then
@@ -63,15 +64,15 @@ Public Class FinUtility
 
     '== Helper methods
     Private Function TestValue(value As Object, startRange As Double, endRange As Double) As Boolean
-        Dim job = False
+        Dim isValueOkay = False
 
         If IsNumeric(value) Then
             If value >= startRange AndAlso value <= endRange Then
-                job = True
+                isValueOkay = True
             End If
         End If
 
-        Return job
+        Return isValueOkay
     End Function
 
 End Class

@@ -49,7 +49,15 @@ Public Class FinUtility
 
     ReadOnly Property MonthlyPayment()
         Get
-            Return Pmt(Rate / 12, Term, -Amount)
+            If Rate = -1 Then
+                Throw New InvalidOperationException("Rate has not been set.")
+            ElseIf Term = -1 Then
+                Throw New InvalidOperationException("Term has not been set.")
+            ElseIf Amount = -1 Then
+                Throw New InvalidOperationException("Amount has not been set.")
+            Else
+                Return Pmt(Rate / 12, Term, -Amount)
+            End If
         End Get
     End Property
 

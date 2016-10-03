@@ -55,6 +55,8 @@ Public Class CarLoanForm
     '== Timer tick
     Private Sub TimerTicked(sender As Object, e As EventArgs) Handles StatusTimer.Tick
         StatusStripLabel.Text = "CIS 310 Project 2: Car Loan Calculator O-O"
+        StatusStrip.BackColor = SystemColors.Control
+        StatusStripLabel.ForeColor = SystemColors.ControlText
     End Sub
 
     '== Helper methods
@@ -68,6 +70,8 @@ Public Class CarLoanForm
     Private Sub ErrorInComputation(text As String)
         MonthlyPaymentTextBox.Text = ""
         StatusStripLabel.Text = text
+        StatusStripLabel.ForeColor = Color.White
+        StatusStrip.BackColor = Color.Red
         StatusTimer.Enabled = True
     End Sub
 

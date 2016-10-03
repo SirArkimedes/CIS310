@@ -62,9 +62,9 @@ Partial Class CarLoanForm
         Me.LoanAmountLabel.AutoSize = True
         Me.LoanAmountLabel.Location = New System.Drawing.Point(93, 83)
         Me.LoanAmountLabel.Name = "LoanAmountLabel"
-        Me.LoanAmountLabel.Size = New System.Drawing.Size(101, 13)
+        Me.LoanAmountLabel.Size = New System.Drawing.Size(73, 13)
         Me.LoanAmountLabel.TabIndex = 1
-        Me.LoanAmountLabel.Text = "Enter Loan Amount:"
+        Me.LoanAmountLabel.Text = "Loan Amount:"
         '
         'LoanAmountTextBox
         '

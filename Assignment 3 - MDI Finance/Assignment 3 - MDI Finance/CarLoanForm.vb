@@ -18,28 +18,24 @@ Public Class CarLoanForm
             Dim LoanAmount As Double = Convert.ToDouble(LoanAmountTextBox.Text)
             If LoanAmount >= 1000.0 And LoanAmount <= 200000 Then
                 '== Calculate.
-                Dim RateString As String = Replace(InterestRateComboBox.SelectedItem.ToString(), "%", "")
-                Dim Rate As Double = Convert.ToDouble(RateString) / 100
-                Dim Months As Double = Convert.ToDouble(TermComboBox.SelectedItem.ToString())
-                Dim MonthlyPayment As Double
+                Dim RateString = Replace(InterestRateComboBox.SelectedItem.ToString(), "%", "")
 
-                financialUtility.AnnualRate = Rate
-                financialUtility.TermInMonths = Months
+                financialUtility.AnnualRate = RateString / 100
+                financialUtility.TermInMonths = TermComboBox.SelectedItem.ToString()
                 financialUtility.LoanAmount = LoanAmount
-                MonthlyPayment = financialUtility.MonthlyPayment
 
                 '== Force these to 2 and false because we don't support multiple currency formats. $0.00
-                MonthlyPaymentTextBox.Text = FormatCurrency(MonthlyPayment, 2, TriState.False, TriState.False, TriState.False)
+                MonthlyPaymentTextBox.Text = FormatCurrency(financialUtility.MonthlyPayment, 2, TriState.False, TriState.False, TriState.False)
             Else
                 '== Outside interval bounds.
                 ErrorInComputation("Out of bounds. Loan amount needs to be within $1,000 and $200,000.")
             End If
         ElseIf LoanAmountTextBox.Text = "" Then
             '== Empty input.
-            ErrorInComputation("Empty input. Loan amount needs to be numeric.")
+            ErrorInComputation("Empty input. Loan amount needs to be within $1,000 and $200,000.")
         Else
             '== Invalid input.
-            ErrorInComputation("Invalid input. Loan amount needs to be numeric.")
+            ErrorInComputation("Invalid input. Loan amount needs to be within $1,000 and $200,000.")
         End If
 
     End Sub

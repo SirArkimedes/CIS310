@@ -1,5 +1,5 @@
 ﻿'=========================================='
-'= CIS 310, Andrew Robinson, Assignment 2 ='
+'= CIS 310, Andrew Robinson, Assignment 3 ='
 '=========================================='
 
 Public Class FinUtility
@@ -14,15 +14,17 @@ Public Class FinUtility
         Set(value)
             If TestValue(value, 0, 0.0875) Then
                 Rate = value
+            ElseIf TestValue(value, 0, 6.0) Then
+                Rate = value / 100
             ElseIf InStr(value, "%") > 0 Then
                 value = value.ToString().Replace("%", "") / 100
                 If TestValue(value, 0, 0.0875) Then
                     Rate = value
                 Else
-                    Throw New ArgumentException("Value needs to be between 0 and 0.0875 or between 0% and 8.75%.")
+                    Rate = -1
                 End If
             Else
-                Throw New ArgumentException("Value needs to be between 0 and 0.0875 or between 0% and 8.75%.")
+                Rate = -1
             End If
         End Set
     End Property
@@ -32,7 +34,7 @@ Public Class FinUtility
             If TestValue(value, 24, 120) Then
                 Term = value
             Else
-                Throw New ArgumentException("Value needs to be between 24 and 120.")
+                Term = -1
             End If
         End Set
     End Property
@@ -42,7 +44,7 @@ Public Class FinUtility
             If TestValue(value, 1000, 200000) Then
                 Amount = value
             Else
-                Throw New ArgumentException("Value needs to be between $1,000 and $200,000.")
+                Amount = -1
             End If
         End Set
     End Property

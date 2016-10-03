@@ -24,11 +24,14 @@ Partial Class MDIFinanceMainMenu
     Private Sub InitializeComponent()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QueryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusStrip = New System.Windows.Forms.StatusStrip()
+        Me.StatusStripLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MenuStrip1.SuspendLayout()
+        Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -46,6 +49,13 @@ Partial Class MDIFinanceMainMenu
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(133, 22)
+        Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'QueryToolStripMenuItem
         '
@@ -65,24 +75,36 @@ Partial Class MDIFinanceMainMenu
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "&Help"
         '
-        'ExitToolStripMenuItem
+        'StatusStrip
         '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ExitToolStripMenuItem.Text = "E&xit"
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusStripLabel})
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 586)
+        Me.StatusStrip.Name = "StatusStrip"
+        Me.StatusStrip.Size = New System.Drawing.Size(824, 22)
+        Me.StatusStrip.SizingGrip = False
+        Me.StatusStrip.TabIndex = 13
+        Me.StatusStrip.Text = "?"
+        '
+        'StatusStripLabel
+        '
+        Me.StatusStripLabel.Name = "StatusStripLabel"
+        Me.StatusStripLabel.Size = New System.Drawing.Size(271, 17)
+        Me.StatusStripLabel.Text = "CIS 310 Project 3: MDI Finance - Andrew Robinson"
         '
         'MDIFinanceMainMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(824, 608)
+        Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "MDIFinanceMainMenu"
-        Me.Text = "MDIFinanceMainMenu"
+        Me.Text = "MDI Finance Exercise"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.StatusStrip.ResumeLayout(False)
+        Me.StatusStrip.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -94,4 +116,6 @@ Partial Class MDIFinanceMainMenu
     Friend WithEvents WindowsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StatusStrip As StatusStrip
+    Friend WithEvents StatusStripLabel As ToolStripStatusLabel
 End Class

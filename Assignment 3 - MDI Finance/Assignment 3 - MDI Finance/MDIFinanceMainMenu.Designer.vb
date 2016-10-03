@@ -27,17 +27,24 @@ Partial Class MDIFinanceMainMenu
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.QueryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WindowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.StatusStripLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.PresentValueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FutureValueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LoanPaymentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SavingsPaymentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CascadeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TileVerticalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.QueryToolStripMenuItem, Me.WindowsToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.QueryToolStripMenuItem, Me.WindowsToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.MdiWindowListItem = Me.WindowsToolStripMenuItem
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(824, 24)
         Me.MenuStrip1.TabIndex = 0
@@ -59,21 +66,17 @@ Partial Class MDIFinanceMainMenu
         '
         'QueryToolStripMenuItem
         '
+        Me.QueryToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PresentValueToolStripMenuItem, Me.FutureValueToolStripMenuItem, Me.LoanPaymentToolStripMenuItem, Me.SavingsPaymentToolStripMenuItem})
         Me.QueryToolStripMenuItem.Name = "QueryToolStripMenuItem"
         Me.QueryToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
         Me.QueryToolStripMenuItem.Text = "&Query"
         '
         'WindowsToolStripMenuItem
         '
+        Me.WindowsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CascadeToolStripMenuItem, Me.TileVerticalToolStripMenuItem, Me.CloseToolStripMenuItem})
         Me.WindowsToolStripMenuItem.Name = "WindowsToolStripMenuItem"
         Me.WindowsToolStripMenuItem.Size = New System.Drawing.Size(68, 20)
         Me.WindowsToolStripMenuItem.Text = "&Windows"
-        '
-        'HelpToolStripMenuItem
-        '
-        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.HelpToolStripMenuItem.Text = "&Help"
         '
         'StatusStrip
         '
@@ -91,6 +94,48 @@ Partial Class MDIFinanceMainMenu
         Me.StatusStripLabel.Size = New System.Drawing.Size(271, 17)
         Me.StatusStripLabel.Text = "CIS 310 Project 3: MDI Finance - Andrew Robinson"
         '
+        'PresentValueToolStripMenuItem
+        '
+        Me.PresentValueToolStripMenuItem.Name = "PresentValueToolStripMenuItem"
+        Me.PresentValueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.PresentValueToolStripMenuItem.Text = "Pr&esent Value..."
+        '
+        'FutureValueToolStripMenuItem
+        '
+        Me.FutureValueToolStripMenuItem.Name = "FutureValueToolStripMenuItem"
+        Me.FutureValueToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.FutureValueToolStripMenuItem.Text = "F&uture Value..."
+        '
+        'LoanPaymentToolStripMenuItem
+        '
+        Me.LoanPaymentToolStripMenuItem.Name = "LoanPaymentToolStripMenuItem"
+        Me.LoanPaymentToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.LoanPaymentToolStripMenuItem.Text = "Loan Pa&yment..."
+        '
+        'SavingsPaymentToolStripMenuItem
+        '
+        Me.SavingsPaymentToolStripMenuItem.Name = "SavingsPaymentToolStripMenuItem"
+        Me.SavingsPaymentToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.SavingsPaymentToolStripMenuItem.Text = "Sa&vings Payment..."
+        '
+        'CascadeToolStripMenuItem
+        '
+        Me.CascadeToolStripMenuItem.Name = "CascadeToolStripMenuItem"
+        Me.CascadeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CascadeToolStripMenuItem.Text = "&Cascade"
+        '
+        'TileVerticalToolStripMenuItem
+        '
+        Me.TileVerticalToolStripMenuItem.Name = "TileVerticalToolStripMenuItem"
+        Me.TileVerticalToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.TileVerticalToolStripMenuItem.Text = "Tile &Vertical"
+        '
+        'CloseToolStripMenuItem
+        '
+        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.CloseToolStripMenuItem.Text = "&Close"
+        '
         'MDIFinanceMainMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -98,6 +143,7 @@ Partial Class MDIFinanceMainMenu
         Me.ClientSize = New System.Drawing.Size(824, 608)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "MDIFinanceMainMenu"
         Me.Text = "MDI Finance Exercise"
@@ -114,8 +160,14 @@ Partial Class MDIFinanceMainMenu
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents QueryToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WindowsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents StatusStrip As StatusStrip
     Friend WithEvents StatusStripLabel As ToolStripStatusLabel
+    Friend WithEvents PresentValueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FutureValueToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LoanPaymentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SavingsPaymentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CascadeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TileVerticalToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CloseToolStripMenuItem As ToolStripMenuItem
 End Class

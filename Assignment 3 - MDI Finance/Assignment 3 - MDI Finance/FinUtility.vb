@@ -14,17 +14,13 @@ Public Class FinUtility
         Set(value)
             If TestValue(value, 0, 0.0875) Then
                 Rate = value
-            ElseIf TestValue(value, 0, 6.0) Then
-                Rate = value / 100
-            ElseIf InStr(value, "%") > 0 Then
-                value = value.ToString().Replace("%", "") / 100
-                If TestValue(value, 0, 0.0875) Then
-                    Rate = value
+            Else
+                value = value.ToString().Replace("%", "")
+                If TestValue(value, 0, 6.0) Then
+                    Rate = value / 100
                 Else
                     Rate = -1
                 End If
-            Else
-                Rate = -1
             End If
         End Set
     End Property

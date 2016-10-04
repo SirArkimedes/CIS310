@@ -46,25 +46,24 @@ Partial Class CarLoanForm
         '
         Me.TitleLabel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TitleLabel.AutoSize = True
         Me.TitleLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TitleLabel.Location = New System.Drawing.Point(14, 9)
         Me.TitleLabel.MaximumSize = New System.Drawing.Size(430, 50)
         Me.TitleLabel.Name = "TitleLabel"
-        Me.TitleLabel.Size = New System.Drawing.Size(401, 48)
+        Me.TitleLabel.Size = New System.Drawing.Size(394, 48)
         Me.TitleLabel.TabIndex = 0
-        Me.TitleLabel.Text = "What payments will retire a given loan at a given intrest reate over a given term" &
-    "?"
+        Me.TitleLabel.Text = "What are the montly payments on a given loan?"
         Me.TitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'LoanAmountLabel
         '
-        Me.LoanAmountLabel.AutoSize = True
-        Me.LoanAmountLabel.Location = New System.Drawing.Point(93, 83)
+        Me.LoanAmountLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LoanAmountLabel.Location = New System.Drawing.Point(59, 80)
         Me.LoanAmountLabel.Name = "LoanAmountLabel"
-        Me.LoanAmountLabel.Size = New System.Drawing.Size(73, 13)
+        Me.LoanAmountLabel.Size = New System.Drawing.Size(135, 16)
         Me.LoanAmountLabel.TabIndex = 1
         Me.LoanAmountLabel.Text = "Loan Amount:"
+        Me.LoanAmountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'LoanAmountTextBox
         '
@@ -94,6 +93,7 @@ Partial Class CarLoanForm
         Me.InterestRateLabel.Size = New System.Drawing.Size(102, 13)
         Me.InterestRateLabel.TabIndex = 4
         Me.InterestRateLabel.Text = "Select Annual Rate:"
+        Me.InterestRateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TermLabel
         '
@@ -103,6 +103,7 @@ Partial Class CarLoanForm
         Me.TermLabel.Size = New System.Drawing.Size(121, 13)
         Me.TermLabel.TabIndex = 6
         Me.TermLabel.Text = "Select Term (in months):"
+        Me.TermLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TermComboBox
         '
@@ -127,6 +128,7 @@ Partial Class CarLoanForm
         '
         'ResetButton
         '
+        Me.ResetButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.ResetButton.Location = New System.Drawing.Point(180, 213)
         Me.ResetButton.Name = "ResetButton"
         Me.ResetButton.Size = New System.Drawing.Size(75, 23)
@@ -191,6 +193,7 @@ Partial Class CarLoanForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.ResetButton
         Me.ClientSize = New System.Drawing.Size(425, 332)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.MonthlyPaymentTextBox)
@@ -209,7 +212,7 @@ Partial Class CarLoanForm
         Me.MaximizeBox = False
         Me.Name = "CarLoanForm"
         Me.ShowIcon = False
-        Me.Text = "Car Loan Calculator - Andrew Robinson"
+        Me.Text = "Monthly Payment, Given Loan Amount"
         Me.StatusStrip.ResumeLayout(False)
         Me.StatusStrip.PerformLayout()
         Me.ResumeLayout(False)

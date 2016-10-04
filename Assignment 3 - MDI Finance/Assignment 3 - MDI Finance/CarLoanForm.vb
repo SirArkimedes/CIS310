@@ -2,12 +2,38 @@
 '= CIS 310, Andrew Robinson, Assignment 3 ='
 '=========================================='
 
+Public Enum LoanFormType
+    PresentValue
+    FutureValue
+    LoanPayment
+    SavingsPayment
+End Enum
+
 Public Class CarLoanForm
 
+    '== Publics
+    Public myType As LoanFormType = LoanFormType.LoanPayment
+
+    '== Privatea
     Private financialUtility As New FinUtility
 
     '== Wake Events
     Private Sub Form1_Load(sender As Object, e As System.EventArgs) Handles MyBase.Load
+
+        If myType = LoanFormType.PresentValue Then
+            TitleLabel.Text = "How much can I borrow?"
+            LoanAmountLabel.Text = "Monthly Payment:"
+            Text = "Loan Amount, Given Montly Payment"
+        ElseIf myType = LoanFormType.FutureValue Then
+            TitleLabel.Text = "How much will I acumulate?"
+            LoanAmountLabel.Text = "Monthly Savings:"
+            Text = "Total Savings, Given Monthly Savings"
+        ElseIf myType = LoanFormType.SavingsPayment Then
+            TitleLabel.Text = "How much should I save each month?"
+            LoanAmountLabel.Text = "Target Savings:"
+            Text = "Montly Savings, Given Savings Target"
+        End If
+
         ResetForm()
     End Sub
 
@@ -57,7 +83,15 @@ Public Class CarLoanForm
 
     '== Helper methods
     Private Sub ResetForm()
-        LoanAmountTextBox.Text = "10,000"
+
+        If myType = LoanFormType.PresentValue Then
+            LoanAmountTextBox.Text = "304.22"
+        ElseIf myType = LoanFormType.FutureValue Then
+            LoanAmountTextBox.Text = "254.22"
+        Else
+            LoanAmountTextBox.Text = "10,000"
+        End If
+
         InterestRateComboBox.SelectedIndex = 24
         TermComboBox.SelectedIndex = 2
         MonthlyPaymentTextBox.Text = ""
@@ -69,13 +103,6 @@ Public Class CarLoanForm
         StatusStripLabel.ForeColor = Color.White
         StatusStrip.BackColor = Color.Red
         StatusTimer.Enabled = True
-    End Sub
-
-    '== Closing handler
-    Private Sub CarLoanForm_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
-        If MessageBox.Show("Are you sure you wish to close?", "Exiting", MessageBoxButtons.YesNo, MessageBoxIcon.Error) = DialogResult.No Then
-            e.Cancel = True
-        End If
     End Sub
 
 End Class

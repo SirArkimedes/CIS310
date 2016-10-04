@@ -36,6 +36,7 @@ Partial Class MDIFinanceMainMenu
         Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.StatusStripLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.TileHorizontalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.SuspendLayout()
@@ -97,7 +98,7 @@ Partial Class MDIFinanceMainMenu
         '
         'WindowsToolStripMenuItem
         '
-        Me.WindowsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CascadeToolStripMenuItem, Me.TileVerticalToolStripMenuItem, Me.CloseToolStripMenuItem})
+        Me.WindowsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CascadeToolStripMenuItem, Me.TileVerticalToolStripMenuItem, Me.TileHorizontalToolStripMenuItem, Me.CloseToolStripMenuItem})
         Me.WindowsToolStripMenuItem.Name = "WindowsToolStripMenuItem"
         Me.WindowsToolStripMenuItem.Size = New System.Drawing.Size(68, 20)
         Me.WindowsToolStripMenuItem.Text = "&Windows"
@@ -105,19 +106,19 @@ Partial Class MDIFinanceMainMenu
         'CascadeToolStripMenuItem
         '
         Me.CascadeToolStripMenuItem.Name = "CascadeToolStripMenuItem"
-        Me.CascadeToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.CascadeToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.CascadeToolStripMenuItem.Text = "&Cascade"
         '
         'TileVerticalToolStripMenuItem
         '
         Me.TileVerticalToolStripMenuItem.Name = "TileVerticalToolStripMenuItem"
-        Me.TileVerticalToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.TileVerticalToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.TileVerticalToolStripMenuItem.Text = "Tile &Vertical"
         '
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.CloseToolStripMenuItem.Text = "&Close"
         '
         'StatusStrip
@@ -135,6 +136,12 @@ Partial Class MDIFinanceMainMenu
         Me.StatusStripLabel.Name = "StatusStripLabel"
         Me.StatusStripLabel.Size = New System.Drawing.Size(271, 17)
         Me.StatusStripLabel.Text = "CIS 310 Project 3: MDI Finance - Andrew Robinson"
+        '
+        'TileHorizontalToolStripMenuItem
+        '
+        Me.TileHorizontalToolStripMenuItem.Name = "TileHorizontalToolStripMenuItem"
+        Me.TileHorizontalToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.TileHorizontalToolStripMenuItem.Text = "Tile &Horizontal"
         '
         'MDIFinanceMainMenu
         '
@@ -170,4 +177,5 @@ Partial Class MDIFinanceMainMenu
     Friend WithEvents CascadeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TileVerticalToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CloseToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TileHorizontalToolStripMenuItem As ToolStripMenuItem
 End Class

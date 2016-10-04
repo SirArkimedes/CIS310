@@ -7,16 +7,18 @@ Public Class FinUtility
     '== Privates
     Private Rate = -1
     Private Term = -1
-    Private Amount = -1
+    Private Am = -1
+    Private Pay = -1
 
-    '== Properties
+    '== Set Properties
     WriteOnly Property AnnualRate()
         Set(value)
-            If TestValue(value, 0, 0.0875) Then
+            value = value.ToString().Replace("%", "")
+            If TestValue(value, 0, 0.33) Then
                 Rate = value
             Else
-                value = value.ToString().Replace("%", "")
-                If TestValue(value, 0, 6.0) Then
+                '== Check for between 0% and 33%
+                If TestValue(value, 0, 33) Then
                     Rate = value / 100
                 Else
                     Rate = -1
@@ -27,7 +29,7 @@ Public Class FinUtility
 
     WriteOnly Property TermInMonths()
         Set(value)
-            If TestValue(value, 24, 120) Then
+            If TestValue(value, 1, 600) Then
                 Term = value
             Else
                 Term = -1
@@ -35,27 +37,79 @@ Public Class FinUtility
         End Set
     End Property
 
-    WriteOnly Property LoanAmount()
+    WriteOnly Property Amount()
         Set(value)
-            If TestValue(value, 1000, 200000) Then
-                Amount = value
+            If TestValue(value, 1000, 10000000) Then
+                Am = value
             Else
-                Amount = -1
+                Am = -1
             End If
         End Set
     End Property
 
-    ReadOnly Property MonthlyPayment()
+    WriteOnly Property Payment()
+        Set(value)
+            If TestValue(value, 1, 10000) Then
+                Pay = value
+            Else
+                Pay = -1
+            End If
+        End Set
+    End Property
+
+    '== Result Properties
+    ReadOnly Property PresentValue()
         Get
-            '== Are any of the values unset?
             If Rate = -1 Then
                 Throw New InvalidOperationException("Rate has not been set.")
             ElseIf Term = -1 Then
                 Throw New InvalidOperationException("Term has not been set.")
-            ElseIf Amount = -1 Then
+            ElseIf Pay = -1 Then
+                Throw New InvalidOperationException("Payment has not been set.")
+            Else
+                Return PV(Rate / 12, Term, -Pay)
+            End If
+        End Get
+    End Property
+
+    ReadOnly Property FutureValue()
+        Get
+            If Rate = -1 Then
+                Throw New InvalidOperationException("Rate has not been set.")
+            ElseIf Term = -1 Then
+                Throw New InvalidOperationException("Term has not been set.")
+            ElseIf Pay = -1 Then
+                Throw New InvalidOperationException("Payment has not been set.")
+            Else
+                Return FV(Rate / 12, Term, -Pay)
+            End If
+        End Get
+    End Property
+
+    ReadOnly Property MonthlyPayment()
+        Get
+            If Rate = -1 Then
+                Throw New InvalidOperationException("Rate has not been set.")
+            ElseIf Term = -1 Then
+                Throw New InvalidOperationException("Term has not been set.")
+            ElseIf Am = -1 Then
                 Throw New InvalidOperationException("Amount has not been set.")
             Else
-                Return Pmt(Rate / 12, Term, -Amount)
+                Return Pmt(Rate / 12, Term, -Am)
+            End If
+        End Get
+    End Property
+
+    ReadOnly Property SavingsPayment()
+        Get
+            If Rate = -1 Then
+                Throw New InvalidOperationException("Rate has not been set.")
+            ElseIf Term = -1 Then
+                Throw New InvalidOperationException("Term has not been set.")
+            ElseIf Am = -1 Then
+                Throw New InvalidOperationException("Amount has not been set.")
+            Else
+                Return Pmt(Rate / 12, Term, 0, -Am)
             End If
         End Get
     End Property

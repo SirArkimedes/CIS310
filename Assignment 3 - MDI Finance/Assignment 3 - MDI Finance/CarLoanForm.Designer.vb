@@ -34,7 +34,7 @@ Partial Class CarLoanForm
         Me.ResetButton = New System.Windows.Forms.Button()
         Me.ExitButton = New System.Windows.Forms.Button()
         Me.MonthlyPaymentTextBox = New System.Windows.Forms.TextBox()
-        Me.PaymentLabel = New System.Windows.Forms.Label()
+        Me.ResultLabel = New System.Windows.Forms.Label()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.StatusStripLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.StatusTimer = New System.Windows.Forms.Timer(Me.components)
@@ -158,14 +158,14 @@ Partial Class CarLoanForm
         Me.MonthlyPaymentTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ToolTipLayer.SetToolTip(Me.MonthlyPaymentTextBox, "Amount needed to be paid monthly on loan")
         '
-        'PaymentLabel
+        'ResultLabel
         '
-        Me.PaymentLabel.AutoSize = True
-        Me.PaymentLabel.Location = New System.Drawing.Point(103, 270)
-        Me.PaymentLabel.Name = "PaymentLabel"
-        Me.PaymentLabel.Size = New System.Drawing.Size(91, 13)
-        Me.PaymentLabel.TabIndex = 10
-        Me.PaymentLabel.Text = "Monthly Payment:"
+        Me.ResultLabel.AutoSize = True
+        Me.ResultLabel.Location = New System.Drawing.Point(103, 270)
+        Me.ResultLabel.Name = "ResultLabel"
+        Me.ResultLabel.Size = New System.Drawing.Size(91, 13)
+        Me.ResultLabel.TabIndex = 10
+        Me.ResultLabel.Text = "Monthly Payment:"
         '
         'StatusStrip
         '
@@ -195,7 +195,7 @@ Partial Class CarLoanForm
         Me.ClientSize = New System.Drawing.Size(425, 332)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.MonthlyPaymentTextBox)
-        Me.Controls.Add(Me.PaymentLabel)
+        Me.Controls.Add(Me.ResultLabel)
         Me.Controls.Add(Me.ExitButton)
         Me.Controls.Add(Me.ResetButton)
         Me.Controls.Add(Me.CalculateButton)
@@ -229,7 +229,7 @@ Partial Class CarLoanForm
     Friend WithEvents ResetButton As Button
     Friend WithEvents ExitButton As Button
     Friend WithEvents MonthlyPaymentTextBox As TextBox
-    Friend WithEvents PaymentLabel As Label
+    Friend WithEvents ResultLabel As Label
     Friend WithEvents StatusStrip As StatusStrip
     Friend WithEvents StatusStripLabel As ToolStripStatusLabel
     Friend WithEvents StatusTimer As Timer

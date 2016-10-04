@@ -32,14 +32,17 @@ Public Class CarLoanForm
             Text = "Loan Amount, Given Montly Payment"
             TitleLabel.Text = "How much can I borrow?"
             LoanAmountLabel.Text = "Monthly Payment:"
+            ResultLabel.Text = "Loan Available:"
         ElseIf myType = LoanFormType.FutureValue Then
             Text = "Total Savings, Given Monthly Savings"
             TitleLabel.Text = "How much will I acumulate?"
             LoanAmountLabel.Text = "Monthly Savings:"
+            ResultLabel.Text = "Accumulated Value:"
         ElseIf myType = LoanFormType.SavingsPayment Then
-            Text = "Montly Savings, Given Savings Target"
+            Text = "Monthly Savings, Given Savings Target"
             TitleLabel.Text = "How much should I save each month?"
             LoanAmountLabel.Text = "Target Savings:"
+            ResultLabel.Text = "Monthly Savings:"
         End If
 
         ResetForm()
@@ -61,13 +64,21 @@ Public Class CarLoanForm
                     financialUtility.Amount = Amount
 
                     If myType = LoanFormType.SavingsPayment Then
-                        result = financialUtility.SavingsPayment
+                        Try
+                            result = financialUtility.SavingsPayment
+                        Catch exception As Exception
+                            ErrorInComputation(exception.Message)
+                        End Try
                     Else
-                        result = financialUtility.MonthlyPayment
+                        Try
+                            result = financialUtility.MonthlyPayment
+                        Catch exception As Exception
+                            ErrorInComputation(exception.Message)
+                        End Try
                     End If
 
                     '== Force these to 2 and false because we don't support multiple currency formats. $0.00
-                    MonthlyPaymentTextBox.Text = FormatCurrency(result, 2, TriState.False, TriState.False, TriState.False)
+                    MonthlyPaymentTextBox.Text = FormatCurrency(result, , TriState.False)
                 Else
                     '== Outside interval bounds.
                     ErrorInComputation("Out of bounds. Loan amount needs to be within $1,000 and $10,000,000.")
@@ -83,13 +94,21 @@ Public Class CarLoanForm
                     financialUtility.Payment = Amount
 
                     If myType = LoanFormType.PresentValue Then
-                        result = financialUtility.PresentValue
+                        Try
+                            result = financialUtility.PresentValue
+                        Catch exception As Exception
+                            ErrorInComputation(Exception.Message)
+                        End Try
                     Else
-                        result = financialUtility.FutureValue
+                        Try
+                            result = financialUtility.FutureValue
+                        Catch exception As Exception
+                            ErrorInComputation(exception.Message)
+                        End Try
                     End If
 
                     '== Force these to 2 and false because we don't support multiple currency formats. $0.00
-                    MonthlyPaymentTextBox.Text = FormatCurrency(result, 2, TriState.False, TriState.False, TriState.False)
+                    MonthlyPaymentTextBox.Text = FormatCurrency(result, , TriState.False)
                 Else
                     '== Outside interval bounds.
                     ErrorInComputation("Out of bounds. Loan amount needs to be within $1 and $10,000.")

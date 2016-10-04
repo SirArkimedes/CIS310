@@ -57,7 +57,7 @@ Public Class CarLoanForm
                 If Amount >= 1000.0 And Amount <= 10000000 Then
                     '== Calculate.
                     Dim RateString = Replace(InterestRateComboBox.SelectedItem.ToString(), "%", "")
-                    Dim result
+                    Dim result = -1
 
                     financialUtility.AnnualRate = RateString / 100
                     financialUtility.TermInMonths = TermComboBox.SelectedItem.ToString()
@@ -77,7 +77,6 @@ Public Class CarLoanForm
                         End Try
                     End If
 
-                    '== Force these to 2 and false because we don't support multiple currency formats. $0.00
                     MonthlyPaymentTextBox.Text = FormatCurrency(result, , TriState.False)
                 Else
                     '== Outside interval bounds.
@@ -87,7 +86,7 @@ Public Class CarLoanForm
                 If Amount >= 1 And Amount <= 10000 Then
                     '== Calculate.
                     Dim RateString = Replace(InterestRateComboBox.SelectedItem.ToString(), "%", "")
-                    Dim result
+                    Dim result = -1
 
                     financialUtility.AnnualRate = RateString / 100
                     financialUtility.TermInMonths = TermComboBox.SelectedItem.ToString()
@@ -107,7 +106,6 @@ Public Class CarLoanForm
                         End Try
                     End If
 
-                    '== Force these to 2 and false because we don't support multiple currency formats. $0.00
                     MonthlyPaymentTextBox.Text = FormatCurrency(result, , TriState.False)
                 Else
                     '== Outside interval bounds.

@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class SynchedGrid
     Private Sub CustomersBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs)
         Me.Validate()
         Me.CustomersBindingSource.EndEdit()

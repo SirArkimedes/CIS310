@@ -35,6 +35,11 @@ Partial Class SynchedGrid
         Dim PhoneLabel As System.Windows.Forms.Label
         Dim FaxLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SynchedGrid))
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Ds = New Synched_Grid.ds()
         Me.CustomersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.CustomersTableAdapter = New Synched_Grid.dsTableAdapters.CustomersTableAdapter()
@@ -65,13 +70,37 @@ Partial Class SynchedGrid
         Me.Order_DetailsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Order_DetailsTableAdapter = New Synched_Grid.dsTableAdapters.Order_DetailsTableAdapter()
         Me.OrdersDataGridView = New System.Windows.Forms.DataGridView()
+        Me.EmployeesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ShippersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Order_DetailsDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.ProductsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ShippersTableAdapter = New Synched_Grid.dsTableAdapters.ShippersTableAdapter()
+        Me.ProductsTableAdapter = New Synched_Grid.dsTableAdapters.ProductsTableAdapter()
+        Me.EmployeesTableAdapter = New Synched_Grid.dsTableAdapters.EmployeesTableAdapter()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripNameLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.itemsPriceLabel = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.itemsFreightLabel = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.totalItemsPriceLabel = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -80,14 +109,6 @@ Partial Class SynchedGrid
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Order_DetailsDataGridView = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn21 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CustomerIDLabel = New System.Windows.Forms.Label()
         CompanyNameLabel = New System.Windows.Forms.Label()
         ContactNameLabel = New System.Windows.Forms.Label()
@@ -106,7 +127,12 @@ Partial Class SynchedGrid
         CType(Me.OrdersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Order_DetailsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OrdersDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmployeesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ShippersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Order_DetailsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ProductsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'CustomerIDLabel
@@ -328,6 +354,7 @@ Partial Class SynchedGrid
         Me.CustomerIDTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "CustomerID", True))
         Me.CustomerIDTextBox.Location = New System.Drawing.Point(103, 37)
         Me.CustomerIDTextBox.Name = "CustomerIDTextBox"
+        Me.CustomerIDTextBox.ReadOnly = True
         Me.CustomerIDTextBox.Size = New System.Drawing.Size(148, 20)
         Me.CustomerIDTextBox.TabIndex = 2
         '
@@ -344,6 +371,7 @@ Partial Class SynchedGrid
         Me.ContactNameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "ContactName", True))
         Me.ContactNameTextBox.Location = New System.Drawing.Point(103, 89)
         Me.ContactNameTextBox.Name = "ContactNameTextBox"
+        Me.ContactNameTextBox.ReadOnly = True
         Me.ContactNameTextBox.Size = New System.Drawing.Size(148, 20)
         Me.ContactNameTextBox.TabIndex = 6
         '
@@ -352,6 +380,7 @@ Partial Class SynchedGrid
         Me.ContactTitleTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "ContactTitle", True))
         Me.ContactTitleTextBox.Location = New System.Drawing.Point(103, 115)
         Me.ContactTitleTextBox.Name = "ContactTitleTextBox"
+        Me.ContactTitleTextBox.ReadOnly = True
         Me.ContactTitleTextBox.Size = New System.Drawing.Size(148, 20)
         Me.ContactTitleTextBox.TabIndex = 8
         '
@@ -360,6 +389,7 @@ Partial Class SynchedGrid
         Me.AddressTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "Address", True))
         Me.AddressTextBox.Location = New System.Drawing.Point(393, 37)
         Me.AddressTextBox.Name = "AddressTextBox"
+        Me.AddressTextBox.ReadOnly = True
         Me.AddressTextBox.Size = New System.Drawing.Size(148, 20)
         Me.AddressTextBox.TabIndex = 10
         '
@@ -368,6 +398,7 @@ Partial Class SynchedGrid
         Me.CityTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "City", True))
         Me.CityTextBox.Location = New System.Drawing.Point(393, 63)
         Me.CityTextBox.Name = "CityTextBox"
+        Me.CityTextBox.ReadOnly = True
         Me.CityTextBox.Size = New System.Drawing.Size(148, 20)
         Me.CityTextBox.TabIndex = 12
         '
@@ -376,6 +407,7 @@ Partial Class SynchedGrid
         Me.RegionTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "Region", True))
         Me.RegionTextBox.Location = New System.Drawing.Point(393, 89)
         Me.RegionTextBox.Name = "RegionTextBox"
+        Me.RegionTextBox.ReadOnly = True
         Me.RegionTextBox.Size = New System.Drawing.Size(148, 20)
         Me.RegionTextBox.TabIndex = 14
         '
@@ -384,6 +416,7 @@ Partial Class SynchedGrid
         Me.PostalCodeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "PostalCode", True))
         Me.PostalCodeTextBox.Location = New System.Drawing.Point(393, 115)
         Me.PostalCodeTextBox.Name = "PostalCodeTextBox"
+        Me.PostalCodeTextBox.ReadOnly = True
         Me.PostalCodeTextBox.Size = New System.Drawing.Size(148, 20)
         Me.PostalCodeTextBox.TabIndex = 16
         '
@@ -392,6 +425,7 @@ Partial Class SynchedGrid
         Me.CountryTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "Country", True))
         Me.CountryTextBox.Location = New System.Drawing.Point(653, 37)
         Me.CountryTextBox.Name = "CountryTextBox"
+        Me.CountryTextBox.ReadOnly = True
         Me.CountryTextBox.Size = New System.Drawing.Size(148, 20)
         Me.CountryTextBox.TabIndex = 18
         '
@@ -400,6 +434,7 @@ Partial Class SynchedGrid
         Me.PhoneTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "Phone", True))
         Me.PhoneTextBox.Location = New System.Drawing.Point(653, 63)
         Me.PhoneTextBox.Name = "PhoneTextBox"
+        Me.PhoneTextBox.ReadOnly = True
         Me.PhoneTextBox.Size = New System.Drawing.Size(148, 20)
         Me.PhoneTextBox.TabIndex = 20
         '
@@ -408,6 +443,7 @@ Partial Class SynchedGrid
         Me.FaxTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "Fax", True))
         Me.FaxTextBox.Location = New System.Drawing.Point(653, 89)
         Me.FaxTextBox.Name = "FaxTextBox"
+        Me.FaxTextBox.ReadOnly = True
         Me.FaxTextBox.Size = New System.Drawing.Size(148, 20)
         Me.FaxTextBox.TabIndex = 22
         '
@@ -433,11 +469,224 @@ Partial Class SynchedGrid
         Me.OrdersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.OrdersDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15})
         Me.OrdersDataGridView.DataSource = Me.OrdersBindingSource
-        Me.OrdersDataGridView.Location = New System.Drawing.Point(0, 150)
+        Me.OrdersDataGridView.Location = New System.Drawing.Point(1, 144)
         Me.OrdersDataGridView.Name = "OrdersDataGridView"
         Me.OrdersDataGridView.ReadOnly = True
         Me.OrdersDataGridView.Size = New System.Drawing.Size(813, 220)
         Me.OrdersDataGridView.TabIndex = 23
+        '
+        'EmployeesBindingSource
+        '
+        Me.EmployeesBindingSource.DataMember = "Employees"
+        Me.EmployeesBindingSource.DataSource = Me.Ds
+        '
+        'ShippersBindingSource
+        '
+        Me.ShippersBindingSource.DataMember = "Shippers"
+        Me.ShippersBindingSource.DataSource = Me.Ds
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.DataSource = Me.CustomersBindingSource
+        Me.ComboBox1.DisplayMember = "CompanyName"
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(103, 62)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(148, 21)
+        Me.ComboBox1.TabIndex = 25
+        '
+        'Order_DetailsDataGridView
+        '
+        Me.Order_DetailsDataGridView.AllowUserToAddRows = False
+        Me.Order_DetailsDataGridView.AllowUserToDeleteRows = False
+        Me.Order_DetailsDataGridView.AutoGenerateColumns = False
+        Me.Order_DetailsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.Order_DetailsDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn21})
+        Me.Order_DetailsDataGridView.DataSource = Me.Order_DetailsBindingSource
+        Me.Order_DetailsDataGridView.Location = New System.Drawing.Point(0, 364)
+        Me.Order_DetailsDataGridView.Name = "Order_DetailsDataGridView"
+        Me.Order_DetailsDataGridView.ReadOnly = True
+        Me.Order_DetailsDataGridView.Size = New System.Drawing.Size(541, 176)
+        Me.Order_DetailsDataGridView.TabIndex = 25
+        '
+        'DataGridViewTextBoxColumn16
+        '
+        Me.DataGridViewTextBoxColumn16.DataPropertyName = "OrderID"
+        Me.DataGridViewTextBoxColumn16.HeaderText = "OrderID"
+        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
+        Me.DataGridViewTextBoxColumn16.ReadOnly = True
+        Me.DataGridViewTextBoxColumn16.Width = 50
+        '
+        'DataGridViewTextBoxColumn17
+        '
+        Me.DataGridViewTextBoxColumn17.DataPropertyName = "ProductID"
+        Me.DataGridViewTextBoxColumn17.DataSource = Me.ProductsBindingSource
+        Me.DataGridViewTextBoxColumn17.DisplayMember = "ProductName"
+        Me.DataGridViewTextBoxColumn17.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.DataGridViewTextBoxColumn17.HeaderText = "Product Name"
+        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
+        Me.DataGridViewTextBoxColumn17.ReadOnly = True
+        Me.DataGridViewTextBoxColumn17.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.DataGridViewTextBoxColumn17.ValueMember = "ProductID"
+        Me.DataGridViewTextBoxColumn17.Width = 125
+        '
+        'ProductsBindingSource
+        '
+        Me.ProductsBindingSource.DataMember = "Products"
+        Me.ProductsBindingSource.DataSource = Me.Ds
+        '
+        'DataGridViewTextBoxColumn18
+        '
+        Me.DataGridViewTextBoxColumn18.DataPropertyName = "UnitPrice"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle2.Format = "C2"
+        Me.DataGridViewTextBoxColumn18.DefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridViewTextBoxColumn18.HeaderText = "UnitPrice"
+        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
+        Me.DataGridViewTextBoxColumn18.ReadOnly = True
+        Me.DataGridViewTextBoxColumn18.Width = 75
+        '
+        'DataGridViewTextBoxColumn19
+        '
+        Me.DataGridViewTextBoxColumn19.DataPropertyName = "Quantity"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.DataGridViewTextBoxColumn19.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DataGridViewTextBoxColumn19.HeaderText = "Quantity"
+        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
+        Me.DataGridViewTextBoxColumn19.ReadOnly = True
+        Me.DataGridViewTextBoxColumn19.Width = 75
+        '
+        'DataGridViewTextBoxColumn20
+        '
+        Me.DataGridViewTextBoxColumn20.DataPropertyName = "Discount"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn20.DefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridViewTextBoxColumn20.HeaderText = "Discount"
+        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
+        Me.DataGridViewTextBoxColumn20.ReadOnly = True
+        Me.DataGridViewTextBoxColumn20.Width = 75
+        '
+        'DataGridViewTextBoxColumn21
+        '
+        Me.DataGridViewTextBoxColumn21.DataPropertyName = "Ext Price"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "C2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn21.DefaultCellStyle = DataGridViewCellStyle5
+        Me.DataGridViewTextBoxColumn21.HeaderText = "Ext Price"
+        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
+        Me.DataGridViewTextBoxColumn21.ReadOnly = True
+        Me.DataGridViewTextBoxColumn21.Width = 75
+        '
+        'ShippersTableAdapter
+        '
+        Me.ShippersTableAdapter.ClearBeforeFill = True
+        '
+        'ProductsTableAdapter
+        '
+        Me.ProductsTableAdapter.ClearBeforeFill = True
+        '
+        'EmployeesTableAdapter
+        '
+        Me.EmployeesTableAdapter.ClearBeforeFill = True
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripNameLabel})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 540)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(814, 22)
+        Me.StatusStrip1.SizingGrip = False
+        Me.StatusStrip1.TabIndex = 26
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripNameLabel
+        '
+        Me.ToolStripNameLabel.Name = "ToolStripNameLabel"
+        Me.ToolStripNameLabel.Size = New System.Drawing.Size(329, 17)
+        Me.ToolStripNameLabel.Text = "CIS310 Assignment 5 - Synchronized Grid - Andrew Robinson"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label2)
+        Me.GroupBox1.Controls.Add(Me.totalItemsPriceLabel)
+        Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Controls.Add(Me.itemsFreightLabel)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.itemsPriceLabel)
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Location = New System.Drawing.Point(547, 392)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(255, 128)
+        Me.GroupBox1.TabIndex = 27
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Current Order && Detail:"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 31)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(62, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Total Items:"
+        '
+        'itemsPriceLabel
+        '
+        Me.itemsPriceLabel.Location = New System.Drawing.Point(80, 26)
+        Me.itemsPriceLabel.Name = "itemsPriceLabel"
+        Me.itemsPriceLabel.Size = New System.Drawing.Size(166, 23)
+        Me.itemsPriceLabel.TabIndex = 1
+        Me.itemsPriceLabel.Text = "somePrice"
+        Me.itemsPriceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(6, 57)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(42, 13)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "Freight:"
+        '
+        'itemsFreightLabel
+        '
+        Me.itemsFreightLabel.Location = New System.Drawing.Point(77, 52)
+        Me.itemsFreightLabel.Name = "itemsFreightLabel"
+        Me.itemsFreightLabel.Size = New System.Drawing.Size(169, 23)
+        Me.itemsFreightLabel.TabIndex = 3
+        Me.itemsFreightLabel.Text = "someFreight"
+        Me.itemsFreightLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(6, 101)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(63, 13)
+        Me.Label5.TabIndex = 4
+        Me.Label5.Text = "Total Order:"
+        '
+        'totalItemsPriceLabel
+        '
+        Me.totalItemsPriceLabel.Location = New System.Drawing.Point(83, 96)
+        Me.totalItemsPriceLabel.Name = "totalItemsPriceLabel"
+        Me.totalItemsPriceLabel.Size = New System.Drawing.Size(163, 23)
+        Me.totalItemsPriceLabel.TabIndex = 5
+        Me.totalItemsPriceLabel.Text = "someTotal"
+        Me.totalItemsPriceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label2
+        '
+        Me.Label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label2.Location = New System.Drawing.Point(9, 85)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(237, 2)
+        Me.Label2.TabIndex = 6
+        Me.Label2.Text = "Label2"
         '
         'DataGridViewTextBoxColumn1
         '
@@ -445,6 +694,7 @@ Partial Class SynchedGrid
         Me.DataGridViewTextBoxColumn1.HeaderText = "OrderID"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.Width = 50
         '
         'DataGridViewTextBoxColumn2
         '
@@ -452,13 +702,21 @@ Partial Class SynchedGrid
         Me.DataGridViewTextBoxColumn2.HeaderText = "CustomerID"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.DataGridViewTextBoxColumn2.Width = 75
         '
         'DataGridViewTextBoxColumn3
         '
         Me.DataGridViewTextBoxColumn3.DataPropertyName = "EmployeeID"
-        Me.DataGridViewTextBoxColumn3.HeaderText = "EmployeeID"
+        Me.DataGridViewTextBoxColumn3.DataSource = Me.EmployeesBindingSource
+        Me.DataGridViewTextBoxColumn3.DisplayMember = "FullName"
+        Me.DataGridViewTextBoxColumn3.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Employee Name"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        Me.DataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.DataGridViewTextBoxColumn3.ValueMember = "EmployeeID"
+        Me.DataGridViewTextBoxColumn3.Width = 150
         '
         'DataGridViewTextBoxColumn4
         '
@@ -466,6 +724,7 @@ Partial Class SynchedGrid
         Me.DataGridViewTextBoxColumn4.HeaderText = "OrderDate"
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
         Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        Me.DataGridViewTextBoxColumn4.Width = 75
         '
         'DataGridViewTextBoxColumn5
         '
@@ -473,6 +732,7 @@ Partial Class SynchedGrid
         Me.DataGridViewTextBoxColumn5.HeaderText = "RequiredDate"
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         Me.DataGridViewTextBoxColumn5.ReadOnly = True
+        Me.DataGridViewTextBoxColumn5.Width = 75
         '
         'DataGridViewTextBoxColumn6
         '
@@ -480,13 +740,21 @@ Partial Class SynchedGrid
         Me.DataGridViewTextBoxColumn6.HeaderText = "ShippedDate"
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
         Me.DataGridViewTextBoxColumn6.ReadOnly = True
+        Me.DataGridViewTextBoxColumn6.Width = 75
         '
         'DataGridViewTextBoxColumn7
         '
         Me.DataGridViewTextBoxColumn7.DataPropertyName = "ShipVia"
-        Me.DataGridViewTextBoxColumn7.HeaderText = "ShipVia"
+        Me.DataGridViewTextBoxColumn7.DataSource = Me.ShippersBindingSource
+        Me.DataGridViewTextBoxColumn7.DisplayMember = "CompanyName"
+        Me.DataGridViewTextBoxColumn7.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Shipper Name"
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
         Me.DataGridViewTextBoxColumn7.ReadOnly = True
+        Me.DataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.DataGridViewTextBoxColumn7.ValueMember = "ShipperID"
+        Me.DataGridViewTextBoxColumn7.Width = 115
         '
         'DataGridViewTextBoxColumn8
         '
@@ -494,6 +762,7 @@ Partial Class SynchedGrid
         Me.DataGridViewTextBoxColumn8.HeaderText = "Freight"
         Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
         Me.DataGridViewTextBoxColumn8.ReadOnly = True
+        Me.DataGridViewTextBoxColumn8.Width = 50
         '
         'DataGridViewTextBoxColumn9
         '
@@ -501,6 +770,7 @@ Partial Class SynchedGrid
         Me.DataGridViewTextBoxColumn9.HeaderText = "ShipName"
         Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
         Me.DataGridViewTextBoxColumn9.ReadOnly = True
+        Me.DataGridViewTextBoxColumn9.Width = 125
         '
         'DataGridViewTextBoxColumn10
         '
@@ -508,6 +778,7 @@ Partial Class SynchedGrid
         Me.DataGridViewTextBoxColumn10.HeaderText = "ShipAddress"
         Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
         Me.DataGridViewTextBoxColumn10.ReadOnly = True
+        Me.DataGridViewTextBoxColumn10.Width = 150
         '
         'DataGridViewTextBoxColumn11
         '
@@ -529,6 +800,7 @@ Partial Class SynchedGrid
         Me.DataGridViewTextBoxColumn13.HeaderText = "ShipPostalCode"
         Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
         Me.DataGridViewTextBoxColumn13.ReadOnly = True
+        Me.DataGridViewTextBoxColumn13.Width = 75
         '
         'DataGridViewTextBoxColumn14
         '
@@ -540,77 +812,23 @@ Partial Class SynchedGrid
         'DataGridViewTextBoxColumn15
         '
         Me.DataGridViewTextBoxColumn15.DataPropertyName = "Balance"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle1.Format = "C2"
+        Me.DataGridViewTextBoxColumn15.DefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridViewTextBoxColumn15.HeaderText = "Balance"
         Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
         Me.DataGridViewTextBoxColumn15.ReadOnly = True
         '
-        'ComboBox1
-        '
-        Me.ComboBox1.DataSource = Me.CustomersBindingSource
-        Me.ComboBox1.DisplayMember = "CompanyName"
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(103, 62)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(148, 21)
-        Me.ComboBox1.TabIndex = 25
-        '
-        'Order_DetailsDataGridView
-        '
-        Me.Order_DetailsDataGridView.AutoGenerateColumns = False
-        Me.Order_DetailsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Order_DetailsDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewTextBoxColumn20, Me.DataGridViewTextBoxColumn21})
-        Me.Order_DetailsDataGridView.DataSource = Me.Order_DetailsBindingSource
-        Me.Order_DetailsDataGridView.Location = New System.Drawing.Point(0, 370)
-        Me.Order_DetailsDataGridView.Name = "Order_DetailsDataGridView"
-        Me.Order_DetailsDataGridView.Size = New System.Drawing.Size(813, 220)
-        Me.Order_DetailsDataGridView.TabIndex = 25
-        '
-        'DataGridViewTextBoxColumn16
-        '
-        Me.DataGridViewTextBoxColumn16.DataPropertyName = "OrderID"
-        Me.DataGridViewTextBoxColumn16.HeaderText = "OrderID"
-        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
-        '
-        'DataGridViewTextBoxColumn17
-        '
-        Me.DataGridViewTextBoxColumn17.DataPropertyName = "ProductID"
-        Me.DataGridViewTextBoxColumn17.HeaderText = "ProductID"
-        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
-        '
-        'DataGridViewTextBoxColumn18
-        '
-        Me.DataGridViewTextBoxColumn18.DataPropertyName = "UnitPrice"
-        Me.DataGridViewTextBoxColumn18.HeaderText = "UnitPrice"
-        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
-        '
-        'DataGridViewTextBoxColumn19
-        '
-        Me.DataGridViewTextBoxColumn19.DataPropertyName = "Quantity"
-        Me.DataGridViewTextBoxColumn19.HeaderText = "Quantity"
-        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
-        '
-        'DataGridViewTextBoxColumn20
-        '
-        Me.DataGridViewTextBoxColumn20.DataPropertyName = "Discount"
-        Me.DataGridViewTextBoxColumn20.HeaderText = "Discount"
-        Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
-        '
-        'DataGridViewTextBoxColumn21
-        '
-        Me.DataGridViewTextBoxColumn21.DataPropertyName = "Ext Price"
-        Me.DataGridViewTextBoxColumn21.HeaderText = "Ext Price"
-        Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
-        Me.DataGridViewTextBoxColumn21.ReadOnly = True
-        '
-        'Form1
+        'SynchedGrid
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(814, 590)
+        Me.ClientSize = New System.Drawing.Size(814, 562)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.StatusStrip1)
+        Me.Controls.Add(Me.OrdersDataGridView)
         Me.Controls.Add(Me.Order_DetailsDataGridView)
         Me.Controls.Add(Me.ComboBox1)
-        Me.Controls.Add(Me.OrdersDataGridView)
         Me.Controls.Add(CustomerIDLabel)
         Me.Controls.Add(Me.CustomerIDTextBox)
         Me.Controls.Add(CompanyNameLabel)
@@ -636,7 +854,7 @@ Partial Class SynchedGrid
         Me.Controls.Add(Me.CustomersBindingNavigator)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
-        Me.Name = "Form1"
+        Me.Name = "SynchedGrid"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.Text = "Northwind Synched Grid - Andrew Robinson"
         CType(Me.Ds, System.ComponentModel.ISupportInitialize).EndInit()
@@ -647,7 +865,14 @@ Partial Class SynchedGrid
         CType(Me.OrdersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Order_DetailsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OrdersDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmployeesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ShippersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Order_DetailsDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ProductsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -683,13 +908,37 @@ Partial Class SynchedGrid
     Friend WithEvents Order_DetailsTableAdapter As dsTableAdapters.Order_DetailsTableAdapter
     Friend WithEvents Order_DetailsBindingSource As BindingSource
     Friend WithEvents OrdersDataGridView As DataGridView
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Order_DetailsDataGridView As DataGridView
+    Friend WithEvents ShippersBindingSource As BindingSource
+    Friend WithEvents ShippersTableAdapter As dsTableAdapters.ShippersTableAdapter
+    Friend WithEvents ProductsBindingSource As BindingSource
+    Friend WithEvents ProductsTableAdapter As dsTableAdapters.ProductsTableAdapter
+    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewComboBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn19 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn21 As DataGridViewTextBoxColumn
+    Friend WithEvents EmployeesBindingSource As BindingSource
+    Friend WithEvents EmployeesTableAdapter As dsTableAdapters.EmployeesTableAdapter
+    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents ToolStripNameLabel As ToolStripStatusLabel
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents totalItemsPriceLabel As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents itemsFreightLabel As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents itemsPriceLabel As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewComboBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewComboBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
@@ -698,12 +947,4 @@ Partial Class SynchedGrid
     Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents Order_DetailsDataGridView As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn19 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn20 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn21 As DataGridViewTextBoxColumn
 End Class

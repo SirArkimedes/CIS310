@@ -1305,6 +1305,8 @@ Partial Public Class ds
         
         Private columnReportsTo As Global.System.Data.DataColumn
         
+        Private columnFullName As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -1469,6 +1471,14 @@ Partial Public Class ds
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FullNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFullName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1505,9 +1515,25 @@ Partial Public Class ds
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddEmployeesRow(ByVal LastName As String, ByVal FirstName As String, ByVal Title As String, ByVal TitleOfCourtesy As String, ByVal BirthDate As Date, ByVal HireDate As Date, ByVal Address As String, ByVal City As String, ByVal _Region As String, ByVal PostalCode As String, ByVal Country As String, ByVal HomePhone As String, ByVal Extension As String, ByVal Notes As String, ByVal ReportsTo As Integer) As EmployeesRow
+        Public Overloads Function AddEmployeesRow( _
+                    ByVal LastName As String,  _
+                    ByVal FirstName As String,  _
+                    ByVal Title As String,  _
+                    ByVal TitleOfCourtesy As String,  _
+                    ByVal BirthDate As Date,  _
+                    ByVal HireDate As Date,  _
+                    ByVal Address As String,  _
+                    ByVal City As String,  _
+                    ByVal _Region As String,  _
+                    ByVal PostalCode As String,  _
+                    ByVal Country As String,  _
+                    ByVal HomePhone As String,  _
+                    ByVal Extension As String,  _
+                    ByVal Notes As String,  _
+                    ByVal ReportsTo As Integer,  _
+                    ByVal FullName As String) As EmployeesRow
             Dim rowEmployeesRow As EmployeesRow = CType(Me.NewRow,EmployeesRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, _Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo}
+            Dim columnValuesArray() As Object = New Object() {Nothing, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireDate, Address, City, _Region, PostalCode, Country, HomePhone, Extension, Notes, ReportsTo, FullName}
             rowEmployeesRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowEmployeesRow)
             Return rowEmployeesRow
@@ -1552,6 +1578,7 @@ Partial Public Class ds
             Me.columnExtension = MyBase.Columns("Extension")
             Me.columnNotes = MyBase.Columns("Notes")
             Me.columnReportsTo = MyBase.Columns("ReportsTo")
+            Me.columnFullName = MyBase.Columns("FullName")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1592,6 +1619,8 @@ Partial Public Class ds
             MyBase.Columns.Add(Me.columnNotes)
             Me.columnReportsTo = New Global.System.Data.DataColumn("ReportsTo", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnReportsTo)
+            Me.columnFullName = New Global.System.Data.DataColumn("FullName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFullName)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnEmployeeID}, true))
             Me.columnEmployeeID.AutoIncrement = true
             Me.columnEmployeeID.AutoIncrementSeed = -1
@@ -1610,6 +1639,8 @@ Partial Public Class ds
             Me.columnHomePhone.MaxLength = 24
             Me.columnExtension.MaxLength = 4
             Me.columnNotes.MaxLength = 536870910
+            Me.columnFullName.ReadOnly = true
+            Me.columnFullName.MaxLength = 255
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1879,7 +1910,7 @@ Partial Public Class ds
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOrder_DetailsRow(ByVal parentOrdersRowByOrdersOrder_Details As OrdersRow, ByVal parentProductsRowByProductsOrder_Details As ProductsRow, ByVal UnitPrice As Decimal, ByVal Quantity As Short, ByVal Discount As Single, ByVal Ext_Price As Decimal) As Order_DetailsRow
+        Public Overloads Function AddOrder_DetailsRow(ByVal parentOrdersRowByOrdersOrder_Details As OrdersRow, ByVal parentProductsRowByProductsOrder_Details As ProductsRow, ByVal UnitPrice As Decimal, ByVal Quantity As Short, ByVal Discount As Single, ByVal Ext_Price As Double) As Order_DetailsRow
             Dim rowOrder_DetailsRow As Order_DetailsRow = CType(Me.NewRow,Order_DetailsRow)
             Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, UnitPrice, Quantity, Discount, Ext_Price}
             If (Not (parentOrdersRowByOrdersOrder_Details) Is Nothing) Then
@@ -1937,7 +1968,7 @@ Partial Public Class ds
             MyBase.Columns.Add(Me.columnQuantity)
             Me.columnDiscount = New Global.System.Data.DataColumn("Discount", GetType(Single), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDiscount)
-            Me.columnExt_Price = New Global.System.Data.DataColumn("Ext Price", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnExt_Price = New Global.System.Data.DataColumn("Ext Price", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnExt_Price)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnOrderID, Me.columnProductID}, true))
             Me.columnOrderID.AllowDBNull = false
@@ -4354,6 +4385,21 @@ Partial Public Class ds
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property FullName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableEmployees.FullNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'FullName' in table 'Employees' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableEmployees.FullNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsLastNameNull() As Boolean
             Return Me.IsNull(Me.tableEmployees.LastNameColumn)
         End Function
@@ -4534,6 +4580,18 @@ Partial Public Class ds
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFullNameNull() As Boolean
+            Return Me.IsNull(Me.tableEmployees.FullNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFullNameNull()
+            Me(Me.tableEmployees.FullNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function GetOrdersRows() As OrdersRow()
             If (Me.Table.ChildRelations("EmployeesOrders") Is Nothing) Then
                 Return New OrdersRow(-1) {}
@@ -4627,10 +4685,10 @@ Partial Public Class ds
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Ext_Price() As Decimal
+        Public Property Ext_Price() As Double
             Get
                 Try 
-                    Return CType(Me(Me.tableOrder_Details.Ext_PriceColumn),Decimal)
+                    Return CType(Me(Me.tableOrder_Details.Ext_PriceColumn),Double)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("The value for column 'Ext Price' in table 'Order Details' is DBNull.", e)
                 End Try
@@ -7412,6 +7470,7 @@ Namespace dsTableAdapters
             tableMapping.ColumnMappings.Add("Extension", "Extension")
             tableMapping.ColumnMappings.Add("Notes", "Notes")
             tableMapping.ColumnMappings.Add("ReportsTo", "ReportsTo")
+            tableMapping.ColumnMappings.Add("FullName", "FullName")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -7556,7 +7615,7 @@ Namespace dsTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT EmployeeID, LastName, FirstName, Title, TitleOfCourtesy, BirthDate, HireDa"& _ 
                 "te, Address, City, Region, PostalCode, Country, HomePhone, Extension, Notes, Rep"& _ 
-                "ortsTo FROM Employees"
+                "ortsTo, LastName + "", "" + FirstName as FullName FROM Employees"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -8196,8 +8255,8 @@ Namespace dsTableAdapters
             Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT OrderID, ProductID, UnitPrice, Quantity, Discount, UnitPrice * Quantity - "& _ 
-                "Discount As [Ext Price] FROM [Order Details]"
+            Me._commandCollection(0).CommandText = "SELECT OrderID, ProductID, UnitPrice, Quantity, Discount, UnitPrice * Quantity * "& _ 
+                "(1 - Discount) As [Ext Price] FROM [Order Details]"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

@@ -25,17 +25,16 @@ Public Class MasterUpdate
     End Sub
 
     Private Sub saveCustomerButton_Click(sender As Object, e As EventArgs) Handles saveCustomerButton.Click
-        SetReadOnlyCustomerInformation(False)
 
         If wantsNewCustomer Then
-            CreateNewUser()
-            wantsNewCustomer = False
+            If SuccessfullyCreatedNewUser() Then
+                wantsNewCustomer = False
+                SetReadOnlyCustomerInformation(False)
+            End If
         Else
             'Update Customer
         End If
 
-        PullData()
-        CustomersBindingSource.Position = CustomersBindingSource.Count - 1
     End Sub
 
     Private Sub undoCustomerButton_Click(sender As Object, e As EventArgs) Handles undoCustomerButton.Click
@@ -80,7 +79,9 @@ Public Class MasterUpdate
     End Sub
 
     '== Database calls
-    Private Sub CreateNewUser()
+    Private Function SuccessfullyCreatedNewUser() As Boolean
+        Dim success = False
+
         Dim newCustomer = Ds.Customers.NewCustomersRow()
 
         If Not ContactNameTextBox.Text = "" Then
@@ -123,12 +124,19 @@ Public Class MasterUpdate
                 Try
                     Ds.Customers.Rows.Add(newCustomer)
                     CustomersTableAdapter.Update(Ds.Customers)
+
+                    PullData()
+                    CustomersBindingSource.Position = CustomersBindingSource.Count - 1
+
+                    success = True
                 Catch ex As Exception
                     ThrowError("Error creating new customer", ex.Message)
                 End Try
             End If
         End If
-    End Sub
+
+        Return success
+    End Function
 
     '== Helper Methods
     Private Sub SetReadOnlyCustomerInformation(state As Boolean)

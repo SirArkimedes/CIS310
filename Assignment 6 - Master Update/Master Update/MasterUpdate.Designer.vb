@@ -35,11 +35,11 @@ Partial Class MasterUpdate
         Dim PhoneLabel As System.Windows.Forms.Label
         Dim FaxLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MasterUpdate))
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Ds = New Synched_Grid.ds()
         Me.CustomersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.CustomersTableAdapter = New Synched_Grid.dsTableAdapters.CustomersTableAdapter()
@@ -408,6 +408,7 @@ Partial Class MasterUpdate
         '
         Me.CustomerIDTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "CustomerID", True))
         Me.CustomerIDTextBox.Location = New System.Drawing.Point(103, 37)
+        Me.CustomerIDTextBox.MaxLength = 5
         Me.CustomerIDTextBox.Name = "CustomerIDTextBox"
         Me.CustomerIDTextBox.ReadOnly = True
         Me.CustomerIDTextBox.Size = New System.Drawing.Size(148, 20)
@@ -662,9 +663,9 @@ Partial Class MasterUpdate
         'DataGridViewTextBoxColumn15
         '
         Me.DataGridViewTextBoxColumn15.DataPropertyName = "Balance"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "C2"
-        Me.DataGridViewTextBoxColumn15.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle11.Format = "C2"
+        Me.DataGridViewTextBoxColumn15.DefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridViewTextBoxColumn15.HeaderText = "Balance"
         Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
         '
@@ -720,9 +721,9 @@ Partial Class MasterUpdate
         'DataGridViewTextBoxColumn18
         '
         Me.DataGridViewTextBoxColumn18.DataPropertyName = "UnitPrice"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle7.Format = "C2"
-        Me.DataGridViewTextBoxColumn18.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle12.Format = "C2"
+        Me.DataGridViewTextBoxColumn18.DefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridViewTextBoxColumn18.HeaderText = "UnitPrice"
         Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
         Me.DataGridViewTextBoxColumn18.Width = 75
@@ -730,8 +731,8 @@ Partial Class MasterUpdate
         'DataGridViewTextBoxColumn19
         '
         Me.DataGridViewTextBoxColumn19.DataPropertyName = "Quantity"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.DataGridViewTextBoxColumn19.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.DataGridViewTextBoxColumn19.DefaultCellStyle = DataGridViewCellStyle13
         Me.DataGridViewTextBoxColumn19.HeaderText = "Quantity"
         Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
         Me.DataGridViewTextBoxColumn19.Width = 75
@@ -739,9 +740,9 @@ Partial Class MasterUpdate
         'DataGridViewTextBoxColumn20
         '
         Me.DataGridViewTextBoxColumn20.DataPropertyName = "Discount"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle9.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn20.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle14.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn20.DefaultCellStyle = DataGridViewCellStyle14
         Me.DataGridViewTextBoxColumn20.HeaderText = "Discount"
         Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
         Me.DataGridViewTextBoxColumn20.Width = 75
@@ -749,10 +750,10 @@ Partial Class MasterUpdate
         'DataGridViewTextBoxColumn21
         '
         Me.DataGridViewTextBoxColumn21.DataPropertyName = "Ext Price"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle10.Format = "C2"
-        DataGridViewCellStyle10.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn21.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle15.Format = "C2"
+        DataGridViewCellStyle15.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn21.DefaultCellStyle = DataGridViewCellStyle15
         Me.DataGridViewTextBoxColumn21.HeaderText = "Ext Price"
         Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
         Me.DataGridViewTextBoxColumn21.ReadOnly = True

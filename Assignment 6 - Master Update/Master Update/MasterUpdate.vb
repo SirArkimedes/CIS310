@@ -20,6 +20,12 @@
     '== Button Press Actions
     Private Sub addCustomerButton_Click(sender As Object, e As EventArgs) Handles addCustomerButton.Click
         SetReadOnlyCustomerInformation(True)
+
+        ' This won't work.
+        CustomerIDTextBox.Text = "" : CompanyNameTextBox.Text = "" : ContactNameTextBox.Text = ""
+        ContactTitleTextBox.Text = "" : AddressTextBox.Text = "" : CityTextBox.Text = ""
+        RegionTextBox.Text = "" : PostalCodeTextBox.Text = "" : CountryTextBox.Text = ""
+        PhoneTextBox.Text = "" : FaxTextBox.Text = ""
     End Sub
 
     Private Sub deleteCustomerButton_Click(sender As Object, e As EventArgs) Handles deleteCustomerButton.Click
@@ -69,6 +75,9 @@
         saveCustomerButton.Enabled = state
         undoCustomerButton.Enabled = state
 
+        OrdersDataGridView.ReadOnly = state
+        Order_DetailsDataGridView.ReadOnly = state
+
         state = Not (state)
 
         addCustomerButton.Enabled = state
@@ -96,6 +105,11 @@
         AddressTextBox.ReadOnly = state : CityTextBox.ReadOnly = state : RegionTextBox.ReadOnly = state
         PostalCodeTextBox.ReadOnly = state : CountryTextBox.ReadOnly = state : PhoneTextBox.ReadOnly = state
         FaxTextBox.ReadOnly = state
+
+        OrdersDataGridView.AllowUserToAddRows = state
+        Order_DetailsDataGridView.AllowUserToAddRows = state
+        OrdersDataGridView.AllowUserToDeleteRows = state
+        Order_DetailsDataGridView.AllowUserToDeleteRows = state
     End Sub
 
 End Class

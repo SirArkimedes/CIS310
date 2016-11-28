@@ -12,6 +12,9 @@
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
+
+        saveCustomerButton.Enabled = False
+        undoCustomerButton.Enabled = False
     End Sub
 
     '== Button Press Actions
@@ -64,7 +67,14 @@
 
     '== Helper Methods
     Private Sub SetReadOnlyCustomerInformation(state As Boolean)
+        saveCustomerButton.Enabled = state
+        undoCustomerButton.Enabled = state
+
         state = Not (state)
+
+        addCustomerButton.Enabled = state
+        deleteCustomerButton.Enabled = state
+        editCustomerButton.Enabled = state
 
         If state Then
             CompanyNameDropDown.BringToFront()

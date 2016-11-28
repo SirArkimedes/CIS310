@@ -1,4 +1,10 @@
-﻿Public Class MasterUpdate
+﻿'=========================================='
+'= CIS 310, Andrew Robinson, Assignment 6 ='
+'=========================================='
+
+Public Class MasterUpdate
+
+    Private wantsNewCustomer = False
 
     '== Load
     Private Sub SynchedGrid_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -11,6 +17,7 @@
     '== Button Press Actions
     Private Sub addCustomerButton_Click(sender As Object, e As EventArgs) Handles addCustomerButton.Click
         SetReadOnlyCustomerInformation(True)
+        wantsNewCustomer = True
     End Sub
 
     Private Sub deleteCustomerButton_Click(sender As Object, e As EventArgs) Handles deleteCustomerButton.Click
@@ -20,7 +27,15 @@
     Private Sub saveCustomerButton_Click(sender As Object, e As EventArgs) Handles saveCustomerButton.Click
         SetReadOnlyCustomerInformation(False)
 
+        If wantsNewCustomer Then
+            CreateNewUser()
+            wantsNewCustomer = False
+        Else
+            'Update Customer
+        End If
+
         PullData()
+        CustomersBindingSource.Position = CustomersBindingSource.Count - 1
     End Sub
 
     Private Sub undoCustomerButton_Click(sender As Object, e As EventArgs) Handles undoCustomerButton.Click
@@ -61,6 +76,57 @@
             itemsPriceLabel.Text = "$0.00"
             itemsFreightLabel.Text = "0"
             totalItemsPriceLabel.Text = "$0.00"
+        End If
+    End Sub
+
+    '== Database calls
+    Private Sub CreateNewUser()
+        Dim newCustomer = Ds.Customers.NewCustomersRow()
+
+        If Not ContactNameTextBox.Text = "" Then
+            newCustomer.ContactName = ContactNameTextBox.Text
+        End If
+        If Not ContactTitleTextBox.Text = "" Then
+            newCustomer.ContactTitle = ContactTitleTextBox.Text
+        End If
+        If Not AddressTextBox.Text = "" Then
+            newCustomer.Address = AddressTextBox.Text
+        End If
+        If Not CityTextBox.Text = "" Then
+            newCustomer.City = CityTextBox.Text
+        End If
+        If Not RegionTextBox.Text = "" Then
+            newCustomer._Region = RegionTextBox.Text
+        End If
+        If Not PostalCodeTextBox.Text = "" Then
+            newCustomer.PostalCode = PostalCodeTextBox.Text
+        End If
+        If Not CountryTextBox.Text = "" Then
+            newCustomer.Country = CountryTextBox.Text
+        End If
+        If Not PhoneTextBox.Text = "" Then
+            newCustomer.Phone = PhoneTextBox.Text
+        End If
+        If Not FaxTextBox.Text = "" Then
+            newCustomer.Fax = FaxTextBox.Text
+        End If
+
+        If CustomerIDTextBox.Text = "" Then
+            ThrowError("Empty field", "Must provide a value for CustomerID")
+        Else
+            If CompanyNameTextBox.Text = "" Then
+                ThrowError("Empty field", "Must provide a value for CompanyName")
+            Else
+                newCustomer.CustomerID = CustomerIDTextBox.Text
+                newCustomer.CompanyName = CompanyNameTextBox.Text
+
+                Try
+                    Ds.Customers.Rows.Add(newCustomer)
+                    CustomersTableAdapter.Update(Ds.Customers)
+                Catch ex As Exception
+                    ThrowError("Error creating new customer", ex.Message)
+                End Try
+            End If
         End If
     End Sub
 
@@ -117,6 +183,10 @@
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
+    End Sub
+
+    Private Sub ThrowError(title As String, message As String)
+        MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Sub
 
 End Class

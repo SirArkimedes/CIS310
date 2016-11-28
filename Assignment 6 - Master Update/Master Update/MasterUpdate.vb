@@ -2,16 +2,7 @@
 
     '== Load
     Private Sub SynchedGrid_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            Me.EmployeesTableAdapter.Fill(Me.Ds.Employees)
-            Me.ProductsTableAdapter.Fill(Me.Ds.Products)
-            Me.ShippersTableAdapter.Fill(Me.Ds.Shippers)
-            Me.Order_DetailsTableAdapter.Fill(Me.Ds.Order_Details)
-            Me.OrdersTableAdapter.Fill(Me.Ds.Orders)
-            Me.CustomersTableAdapter.Fill(Me.Ds.Customers)
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
+        PullData()
 
         saveCustomerButton.Enabled = False
         undoCustomerButton.Enabled = False
@@ -20,12 +11,6 @@
     '== Button Press Actions
     Private Sub addCustomerButton_Click(sender As Object, e As EventArgs) Handles addCustomerButton.Click
         SetReadOnlyCustomerInformation(True)
-
-        ' This won't work.
-        'CustomerIDTextBox.Text = "" : CompanyNameTextBox.Text = "" : ContactNameTextBox.Text = ""
-        'ContactTitleTextBox.Text = "" : AddressTextBox.Text = "" : CityTextBox.Text = ""
-        'RegionTextBox.Text = "" : PostalCodeTextBox.Text = "" : CountryTextBox.Text = ""
-        'PhoneTextBox.Text = "" : FaxTextBox.Text = ""
     End Sub
 
     Private Sub deleteCustomerButton_Click(sender As Object, e As EventArgs) Handles deleteCustomerButton.Click
@@ -34,6 +19,8 @@
 
     Private Sub saveCustomerButton_Click(sender As Object, e As EventArgs) Handles saveCustomerButton.Click
         SetReadOnlyCustomerInformation(False)
+
+        PullData()
     End Sub
 
     Private Sub undoCustomerButton_Click(sender As Object, e As EventArgs) Handles undoCustomerButton.Click
@@ -49,6 +36,7 @@
 
         Dim currentRow = OrdersBindingSource.Current
 
+        '== Do we have a selected row?
         If TypeOf currentRow Is Object Then
             '== Grab total item price
             Dim fltr() = Nothing
@@ -116,6 +104,19 @@
         Order_DetailsDataGridView.AllowUserToAddRows = state
         OrdersDataGridView.AllowUserToDeleteRows = state
         Order_DetailsDataGridView.AllowUserToDeleteRows = state
+    End Sub
+
+    Private Sub PullData()
+        Try
+            Me.EmployeesTableAdapter.Fill(Me.Ds.Employees)
+            Me.ProductsTableAdapter.Fill(Me.Ds.Products)
+            Me.ShippersTableAdapter.Fill(Me.Ds.Shippers)
+            Me.Order_DetailsTableAdapter.Fill(Me.Ds.Order_Details)
+            Me.OrdersTableAdapter.Fill(Me.Ds.Orders)
+            Me.CustomersTableAdapter.Fill(Me.Ds.Customers)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
     End Sub
 
 End Class

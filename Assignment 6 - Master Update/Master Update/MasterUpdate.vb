@@ -62,7 +62,6 @@
 
         '== Display total amount of order
         totalItemsPriceLabel.Text = FormatCurrency(total + currentRow.Item("Freight"))
-
     End Sub
 
     '== Helper Methods
@@ -76,12 +75,23 @@
         deleteCustomerButton.Enabled = state
         editCustomerButton.Enabled = state
 
+        '== Guard against enabling when they would not change position
+        If Not CustomersBindingSource.Position = 0 Then
+            BindingNavigatorMoveFirstItem.Enabled = state
+            BindingNavigatorMovePreviousItem.Enabled = state
+        End If
+        If Not CustomersBindingSource.Position = CustomersBindingSource.Count - 1 Then
+            BindingNavigatorMoveNextItem.Enabled = state
+            BindingNavigatorMoveLastItem.Enabled = state
+        End If
+
         If state Then
             CompanyNameDropDown.BringToFront()
         Else
             CompanyNameTextBox.BringToFront()
         End If
 
+        '== Change customer text boxes
         CustomerIDTextBox.ReadOnly = state : ContactNameTextBox.ReadOnly = state : ContactTitleTextBox.ReadOnly = state
         AddressTextBox.ReadOnly = state : CityTextBox.ReadOnly = state : RegionTextBox.ReadOnly = state
         PostalCodeTextBox.ReadOnly = state : CountryTextBox.ReadOnly = state : PhoneTextBox.ReadOnly = state

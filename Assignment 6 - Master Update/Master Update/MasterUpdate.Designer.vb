@@ -46,7 +46,9 @@ Partial Class MasterUpdate
         Me.TableAdapterManager = New Synched_Grid.dsTableAdapters.TableAdapterManager()
         Me.OrdersTableAdapter = New Synched_Grid.dsTableAdapters.OrdersTableAdapter()
         Me.CustomersBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.addCustomerButton = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
+        Me.deleteCustomerButton = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator()
@@ -55,8 +57,6 @@ Partial Class MasterUpdate
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.addCustomerButton = New System.Windows.Forms.ToolStripButton()
-        Me.deleteCustomerButton = New System.Windows.Forms.ToolStripButton()
         Me.saveCustomerButton = New System.Windows.Forms.ToolStripButton()
         Me.undoCustomerButton = New System.Windows.Forms.ToolStripButton()
         Me.editCustomerButton = New System.Windows.Forms.ToolStripButton()
@@ -274,7 +274,7 @@ Partial Class MasterUpdate
         Me.CustomersBindingNavigator.AddNewItem = Me.addCustomerButton
         Me.CustomersBindingNavigator.BindingSource = Me.CustomersBindingSource
         Me.CustomersBindingNavigator.CountItem = Me.BindingNavigatorCountItem
-        Me.CustomersBindingNavigator.DeleteItem = Me.deleteCustomerButton
+        Me.CustomersBindingNavigator.DeleteItem = Nothing
         Me.CustomersBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.addCustomerButton, Me.deleteCustomerButton, Me.saveCustomerButton, Me.undoCustomerButton, Me.editCustomerButton})
         Me.CustomersBindingNavigator.Location = New System.Drawing.Point(0, 0)
         Me.CustomersBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
@@ -287,12 +287,32 @@ Partial Class MasterUpdate
         Me.CustomersBindingNavigator.TabIndex = 0
         Me.CustomersBindingNavigator.Text = "BindingNavigator1"
         '
+        'addCustomerButton
+        '
+        Me.addCustomerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.addCustomerButton.Image = CType(resources.GetObject("addCustomerButton.Image"), System.Drawing.Image)
+        Me.addCustomerButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.addCustomerButton.Name = "addCustomerButton"
+        Me.addCustomerButton.Size = New System.Drawing.Size(23, 22)
+        Me.addCustomerButton.Text = "addCustomerButton"
+        Me.addCustomerButton.ToolTipText = "Add a new customer"
+        '
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
         Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
         Me.BindingNavigatorCountItem.Text = "of {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
+        '
+        'deleteCustomerButton
+        '
+        Me.deleteCustomerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.deleteCustomerButton.Image = CType(resources.GetObject("deleteCustomerButton.Image"), System.Drawing.Image)
+        Me.deleteCustomerButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.deleteCustomerButton.Name = "deleteCustomerButton"
+        Me.deleteCustomerButton.Size = New System.Drawing.Size(23, 22)
+        Me.deleteCustomerButton.Text = "deleteCustomerButton"
+        Me.deleteCustomerButton.ToolTipText = "Delete current customer"
         '
         'BindingNavigatorMoveFirstItem
         '
@@ -353,26 +373,6 @@ Partial Class MasterUpdate
         '
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
-        '
-        'addCustomerButton
-        '
-        Me.addCustomerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.addCustomerButton.Image = CType(resources.GetObject("addCustomerButton.Image"), System.Drawing.Image)
-        Me.addCustomerButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.addCustomerButton.Name = "addCustomerButton"
-        Me.addCustomerButton.Size = New System.Drawing.Size(23, 22)
-        Me.addCustomerButton.Text = "addCustomerButton"
-        Me.addCustomerButton.ToolTipText = "Add a new customer"
-        '
-        'deleteCustomerButton
-        '
-        Me.deleteCustomerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.deleteCustomerButton.Image = CType(resources.GetObject("deleteCustomerButton.Image"), System.Drawing.Image)
-        Me.deleteCustomerButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.deleteCustomerButton.Name = "deleteCustomerButton"
-        Me.deleteCustomerButton.Size = New System.Drawing.Size(23, 22)
-        Me.deleteCustomerButton.Text = "deleteCustomerButton"
-        Me.deleteCustomerButton.ToolTipText = "Delete current customer"
         '
         'saveCustomerButton
         '

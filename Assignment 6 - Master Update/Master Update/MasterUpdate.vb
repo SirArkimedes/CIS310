@@ -18,10 +18,18 @@ Public Class MasterUpdate
     Private Sub addCustomerButton_Click(sender As Object, e As EventArgs) Handles addCustomerButton.Click
         SetReadOnlyCustomerInformation(True)
         wantsNewCustomer = True
+        undoCustomerButton.Enabled = False
+        deleteCustomerButton.Enabled = True
     End Sub
 
     Private Sub deleteCustomerButton_Click(sender As Object, e As EventArgs) Handles deleteCustomerButton.Click
-
+        If wantsNewCustomer Then
+            SetReadOnlyCustomerInformation(False)
+            CustomersBindingSource.CancelEdit()
+            wantsNewCustomer = False
+        Else
+            CustomersBindingSource.RemoveCurrent()
+        End If
     End Sub
 
     Private Sub saveCustomerButton_Click(sender As Object, e As EventArgs) Handles saveCustomerButton.Click
@@ -33,6 +41,7 @@ Public Class MasterUpdate
             End If
         Else
             'Update Customer
+            SetReadOnlyCustomerInformation(False)
         End If
 
     End Sub
@@ -141,7 +150,6 @@ Public Class MasterUpdate
     '== Helper Methods
     Private Sub SetReadOnlyCustomerInformation(state As Boolean)
         saveCustomerButton.Enabled = state
-        undoCustomerButton.Enabled = state
 
         OrdersDataGridView.ReadOnly = state
         Order_DetailsDataGridView.ReadOnly = state

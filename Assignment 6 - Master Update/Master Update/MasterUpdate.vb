@@ -22,10 +22,10 @@
         SetReadOnlyCustomerInformation(True)
 
         ' This won't work.
-        CustomerIDTextBox.Text = "" : CompanyNameTextBox.Text = "" : ContactNameTextBox.Text = ""
-        ContactTitleTextBox.Text = "" : AddressTextBox.Text = "" : CityTextBox.Text = ""
-        RegionTextBox.Text = "" : PostalCodeTextBox.Text = "" : CountryTextBox.Text = ""
-        PhoneTextBox.Text = "" : FaxTextBox.Text = ""
+        'CustomerIDTextBox.Text = "" : CompanyNameTextBox.Text = "" : ContactNameTextBox.Text = ""
+        'ContactTitleTextBox.Text = "" : AddressTextBox.Text = "" : CityTextBox.Text = ""
+        'RegionTextBox.Text = "" : PostalCodeTextBox.Text = "" : CountryTextBox.Text = ""
+        'PhoneTextBox.Text = "" : FaxTextBox.Text = ""
     End Sub
 
     Private Sub deleteCustomerButton_Click(sender As Object, e As EventArgs) Handles deleteCustomerButton.Click
@@ -49,25 +49,31 @@
 
         Dim currentRow = OrdersBindingSource.Current
 
-        '== Grab total item price
-        Dim fltr() = Nothing
-        Try
-            fltr = Ds.Order_Details.Select("OrderID =" & currentRow.Item("OrderID"))
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
+        If TypeOf currentRow Is Object Then
+            '== Grab total item price
+            Dim fltr() = Nothing
+            Try
+                fltr = Ds.Order_Details.Select("OrderID =" & currentRow.Item("OrderID"))
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
 
-        Dim total = 0.0
-        For Each dr In fltr
-            total += dr.Item("Ext Price")
-        Next
-        itemsPriceLabel.Text = FormatCurrency(total)
+            Dim total = 0.0
+            For Each dr In fltr
+                total += dr.Item("Ext Price")
+            Next
+            itemsPriceLabel.Text = FormatCurrency(total)
 
-        '== Grab freight
-        itemsFreightLabel.Text = currentRow.Item("Freight")
+            '== Grab freight
+            itemsFreightLabel.Text = currentRow.Item("Freight")
 
-        '== Display total amount of order
-        totalItemsPriceLabel.Text = FormatCurrency(total + currentRow.Item("Freight"))
+            '== Display total amount of order
+            totalItemsPriceLabel.Text = FormatCurrency(total + currentRow.Item("Freight"))
+        Else
+            itemsPriceLabel.Text = "$0.00"
+            itemsFreightLabel.Text = "0"
+            totalItemsPriceLabel.Text = "$0.00"
+        End If
     End Sub
 
     '== Helper Methods

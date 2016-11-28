@@ -14,6 +14,27 @@
         End Try
     End Sub
 
+    '== Button Press Actions
+    Private Sub addCustomerButton_Click(sender As Object, e As EventArgs) Handles addCustomerButton.Click
+        SetReadOnlyCustomerInformation(True)
+    End Sub
+
+    Private Sub deleteCustomerButton_Click(sender As Object, e As EventArgs) Handles deleteCustomerButton.Click
+
+    End Sub
+
+    Private Sub saveCustomerButton_Click(sender As Object, e As EventArgs) Handles saveCustomerButton.Click
+        SetReadOnlyCustomerInformation(False)
+    End Sub
+
+    Private Sub undoCustomerButton_Click(sender As Object, e As EventArgs) Handles undoCustomerButton.Click
+        SetReadOnlyCustomerInformation(False)
+    End Sub
+
+    Private Sub editCustomerButton_Click(sender As Object, e As EventArgs) Handles editCustomerButton.Click
+        SetReadOnlyCustomerInformation(True)
+    End Sub
+
     '== Binding Source Changes
     Private Sub OrdersBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles OrdersBindingSource.CurrentChanged
 
@@ -39,6 +60,22 @@
         '== Display total amount of order
         totalItemsPriceLabel.Text = FormatCurrency(total + currentRow.Item("Freight"))
 
+    End Sub
+
+    '== Helper Methods
+    Private Sub SetReadOnlyCustomerInformation(state As Boolean)
+        state = Not (state)
+
+        If state Then
+            CompanyNameDropDown.BringToFront()
+        Else
+            CompanyNameTextBox.BringToFront()
+        End If
+
+        CustomerIDTextBox.ReadOnly = state : ContactNameTextBox.ReadOnly = state : ContactTitleTextBox.ReadOnly = state
+        AddressTextBox.ReadOnly = state : CityTextBox.ReadOnly = state : RegionTextBox.ReadOnly = state
+        PostalCodeTextBox.ReadOnly = state : CountryTextBox.ReadOnly = state : PhoneTextBox.ReadOnly = state
+        FaxTextBox.ReadOnly = state
     End Sub
 
 End Class

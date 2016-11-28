@@ -35,11 +35,11 @@ Partial Class MasterUpdate
         Dim PhoneLabel As System.Windows.Forms.Label
         Dim FaxLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MasterUpdate))
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Ds = New Synched_Grid.ds()
         Me.CustomersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.CustomersTableAdapter = New Synched_Grid.dsTableAdapters.CustomersTableAdapter()
@@ -55,6 +55,11 @@ Partial Class MasterUpdate
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.addCustomerButton = New System.Windows.Forms.ToolStripButton()
+        Me.deleteCustomerButton = New System.Windows.Forms.ToolStripButton()
+        Me.saveCustomerButton = New System.Windows.Forms.ToolStripButton()
+        Me.undoCustomerButton = New System.Windows.Forms.ToolStripButton()
+        Me.editCustomerButton = New System.Windows.Forms.ToolStripButton()
         Me.CustomerIDTextBox = New System.Windows.Forms.TextBox()
         Me.CompanyNameTextBox = New System.Windows.Forms.TextBox()
         Me.ContactNameTextBox = New System.Windows.Forms.TextBox()
@@ -87,7 +92,7 @@ Partial Class MasterUpdate
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.CompanyNameDropDown = New System.Windows.Forms.ComboBox()
         Me.Order_DetailsDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewComboBoxColumn()
@@ -109,11 +114,6 @@ Partial Class MasterUpdate
         Me.Label3 = New System.Windows.Forms.Label()
         Me.itemsPriceLabel = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton5 = New System.Windows.Forms.ToolStripButton()
         CustomerIDLabel = New System.Windows.Forms.Label()
         CompanyNameLabel = New System.Windows.Forms.Label()
         ContactNameLabel = New System.Windows.Forms.Label()
@@ -275,7 +275,7 @@ Partial Class MasterUpdate
         Me.CustomersBindingNavigator.BindingSource = Me.CustomersBindingSource
         Me.CustomersBindingNavigator.CountItem = Me.BindingNavigatorCountItem
         Me.CustomersBindingNavigator.DeleteItem = Nothing
-        Me.CustomersBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.ToolStripButton1, Me.ToolStripButton2, Me.ToolStripButton3, Me.ToolStripButton4, Me.ToolStripButton5})
+        Me.CustomersBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.addCustomerButton, Me.deleteCustomerButton, Me.saveCustomerButton, Me.undoCustomerButton, Me.editCustomerButton})
         Me.CustomersBindingNavigator.Location = New System.Drawing.Point(0, 0)
         Me.CustomersBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.CustomersBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -354,6 +354,56 @@ Partial Class MasterUpdate
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
+        'addCustomerButton
+        '
+        Me.addCustomerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.addCustomerButton.Image = CType(resources.GetObject("addCustomerButton.Image"), System.Drawing.Image)
+        Me.addCustomerButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.addCustomerButton.Name = "addCustomerButton"
+        Me.addCustomerButton.Size = New System.Drawing.Size(23, 22)
+        Me.addCustomerButton.Text = "addCustomerButton"
+        Me.addCustomerButton.ToolTipText = "Add a new customer"
+        '
+        'deleteCustomerButton
+        '
+        Me.deleteCustomerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.deleteCustomerButton.Image = CType(resources.GetObject("deleteCustomerButton.Image"), System.Drawing.Image)
+        Me.deleteCustomerButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.deleteCustomerButton.Name = "deleteCustomerButton"
+        Me.deleteCustomerButton.Size = New System.Drawing.Size(23, 22)
+        Me.deleteCustomerButton.Text = "deleteCustomerButton"
+        Me.deleteCustomerButton.ToolTipText = "Delete current customer"
+        '
+        'saveCustomerButton
+        '
+        Me.saveCustomerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.saveCustomerButton.Image = CType(resources.GetObject("saveCustomerButton.Image"), System.Drawing.Image)
+        Me.saveCustomerButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.saveCustomerButton.Name = "saveCustomerButton"
+        Me.saveCustomerButton.Size = New System.Drawing.Size(23, 22)
+        Me.saveCustomerButton.Text = "saveCustomerButton"
+        Me.saveCustomerButton.ToolTipText = "Save current customer"
+        '
+        'undoCustomerButton
+        '
+        Me.undoCustomerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.undoCustomerButton.Image = CType(resources.GetObject("undoCustomerButton.Image"), System.Drawing.Image)
+        Me.undoCustomerButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.undoCustomerButton.Name = "undoCustomerButton"
+        Me.undoCustomerButton.Size = New System.Drawing.Size(23, 22)
+        Me.undoCustomerButton.Text = "undoCustomerButton"
+        Me.undoCustomerButton.ToolTipText = "Undo last change"
+        '
+        'editCustomerButton
+        '
+        Me.editCustomerButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.editCustomerButton.Image = CType(resources.GetObject("editCustomerButton.Image"), System.Drawing.Image)
+        Me.editCustomerButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.editCustomerButton.Name = "editCustomerButton"
+        Me.editCustomerButton.Size = New System.Drawing.Size(23, 22)
+        Me.editCustomerButton.Text = "editCustomerButton"
+        Me.editCustomerButton.ToolTipText = "Edit current customer"
+        '
         'CustomerIDTextBox
         '
         Me.CustomerIDTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "CustomerID", True))
@@ -367,8 +417,9 @@ Partial Class MasterUpdate
         '
         Me.CompanyNameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.CustomersBindingSource, "CompanyName", True))
         Me.CompanyNameTextBox.Location = New System.Drawing.Point(103, 63)
+        Me.CompanyNameTextBox.Multiline = True
         Me.CompanyNameTextBox.Name = "CompanyNameTextBox"
-        Me.CompanyNameTextBox.Size = New System.Drawing.Size(148, 20)
+        Me.CompanyNameTextBox.Size = New System.Drawing.Size(148, 21)
         Me.CompanyNameTextBox.TabIndex = 4
         '
         'ContactNameTextBox
@@ -614,23 +665,23 @@ Partial Class MasterUpdate
         'DataGridViewTextBoxColumn15
         '
         Me.DataGridViewTextBoxColumn15.DataPropertyName = "Balance"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "C2"
-        Me.DataGridViewTextBoxColumn15.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle16.Format = "C2"
+        Me.DataGridViewTextBoxColumn15.DefaultCellStyle = DataGridViewCellStyle16
         Me.DataGridViewTextBoxColumn15.HeaderText = "Balance"
         Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
         Me.DataGridViewTextBoxColumn15.ReadOnly = True
         '
-        'ComboBox1
+        'CompanyNameDropDown
         '
-        Me.ComboBox1.DataSource = Me.CustomersBindingSource
-        Me.ComboBox1.DisplayMember = "CompanyName"
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(103, 62)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(148, 21)
-        Me.ComboBox1.TabIndex = 25
+        Me.CompanyNameDropDown.DataSource = Me.CustomersBindingSource
+        Me.CompanyNameDropDown.DisplayMember = "CompanyName"
+        Me.CompanyNameDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CompanyNameDropDown.FormattingEnabled = True
+        Me.CompanyNameDropDown.Location = New System.Drawing.Point(103, 63)
+        Me.CompanyNameDropDown.Name = "CompanyNameDropDown"
+        Me.CompanyNameDropDown.Size = New System.Drawing.Size(148, 21)
+        Me.CompanyNameDropDown.TabIndex = 25
         '
         'Order_DetailsDataGridView
         '
@@ -676,9 +727,9 @@ Partial Class MasterUpdate
         'DataGridViewTextBoxColumn18
         '
         Me.DataGridViewTextBoxColumn18.DataPropertyName = "UnitPrice"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle7.Format = "C2"
-        Me.DataGridViewTextBoxColumn18.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle17.Format = "C2"
+        Me.DataGridViewTextBoxColumn18.DefaultCellStyle = DataGridViewCellStyle17
         Me.DataGridViewTextBoxColumn18.HeaderText = "UnitPrice"
         Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
         Me.DataGridViewTextBoxColumn18.ReadOnly = True
@@ -687,8 +738,8 @@ Partial Class MasterUpdate
         'DataGridViewTextBoxColumn19
         '
         Me.DataGridViewTextBoxColumn19.DataPropertyName = "Quantity"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.DataGridViewTextBoxColumn19.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.DataGridViewTextBoxColumn19.DefaultCellStyle = DataGridViewCellStyle18
         Me.DataGridViewTextBoxColumn19.HeaderText = "Quantity"
         Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
         Me.DataGridViewTextBoxColumn19.ReadOnly = True
@@ -697,9 +748,9 @@ Partial Class MasterUpdate
         'DataGridViewTextBoxColumn20
         '
         Me.DataGridViewTextBoxColumn20.DataPropertyName = "Discount"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle9.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn20.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle19.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn20.DefaultCellStyle = DataGridViewCellStyle19
         Me.DataGridViewTextBoxColumn20.HeaderText = "Discount"
         Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
         Me.DataGridViewTextBoxColumn20.ReadOnly = True
@@ -708,10 +759,10 @@ Partial Class MasterUpdate
         'DataGridViewTextBoxColumn21
         '
         Me.DataGridViewTextBoxColumn21.DataPropertyName = "Ext Price"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle10.Format = "C2"
-        DataGridViewCellStyle10.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn21.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle20.Format = "C2"
+        DataGridViewCellStyle20.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn21.DefaultCellStyle = DataGridViewCellStyle20
         Me.DataGridViewTextBoxColumn21.HeaderText = "Ext Price"
         Me.DataGridViewTextBoxColumn21.Name = "DataGridViewTextBoxColumn21"
         Me.DataGridViewTextBoxColumn21.ReadOnly = True
@@ -824,51 +875,6 @@ Partial Class MasterUpdate
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Total Items:"
         '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton1.Text = "ToolStripButton1"
-        '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton2.Text = "ToolStripButton2"
-        '
-        'ToolStripButton3
-        '
-        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
-        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton3.Name = "ToolStripButton3"
-        Me.ToolStripButton3.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton3.Text = "ToolStripButton3"
-        '
-        'ToolStripButton4
-        '
-        Me.ToolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
-        Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton4.Name = "ToolStripButton4"
-        Me.ToolStripButton4.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton4.Text = "ToolStripButton4"
-        '
-        'ToolStripButton5
-        '
-        Me.ToolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton5.Image = CType(resources.GetObject("ToolStripButton5.Image"), System.Drawing.Image)
-        Me.ToolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton5.Name = "ToolStripButton5"
-        Me.ToolStripButton5.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton5.Text = "ToolStripButton5"
-        '
         'MasterUpdate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -878,7 +884,7 @@ Partial Class MasterUpdate
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.OrdersDataGridView)
         Me.Controls.Add(Me.Order_DetailsDataGridView)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.CompanyNameDropDown)
         Me.Controls.Add(CustomerIDLabel)
         Me.Controls.Add(Me.CustomerIDTextBox)
         Me.Controls.Add(CompanyNameLabel)
@@ -958,7 +964,7 @@ Partial Class MasterUpdate
     Friend WithEvents Order_DetailsTableAdapter As dsTableAdapters.Order_DetailsTableAdapter
     Friend WithEvents Order_DetailsBindingSource As BindingSource
     Friend WithEvents OrdersDataGridView As DataGridView
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents CompanyNameDropDown As ComboBox
     Friend WithEvents Order_DetailsDataGridView As DataGridView
     Friend WithEvents ShippersBindingSource As BindingSource
     Friend WithEvents ShippersTableAdapter As dsTableAdapters.ShippersTableAdapter
@@ -997,9 +1003,9 @@ Partial Class MasterUpdate
     Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
-    Friend WithEvents ToolStripButton1 As ToolStripButton
-    Friend WithEvents ToolStripButton2 As ToolStripButton
-    Friend WithEvents ToolStripButton3 As ToolStripButton
-    Friend WithEvents ToolStripButton4 As ToolStripButton
-    Friend WithEvents ToolStripButton5 As ToolStripButton
+    Friend WithEvents addCustomerButton As ToolStripButton
+    Friend WithEvents deleteCustomerButton As ToolStripButton
+    Friend WithEvents saveCustomerButton As ToolStripButton
+    Friend WithEvents undoCustomerButton As ToolStripButton
+    Friend WithEvents editCustomerButton As ToolStripButton
 End Class

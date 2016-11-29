@@ -18,12 +18,16 @@ Public Class MasterUpdate
 
     '== Button Press Actions
     Private Sub addCustomerButton_Click(sender As Object, e As EventArgs) Handles addCustomerButton.Click
-        savedPosition = CustomersBindingSource.Position
-        SetReadOnlyCustomerInformation(True)
         GrabPreviousCustomer(CustomerChangeType.Created)
-        wantsNewCustomer = True
+
+        savedPosition = CustomersBindingSource.Position
+
+        SetReadOnlyCustomerInformation(True)
+        CustomerIDTextBox.ReadOnly = False
         undoCustomerButton.Enabled = False
         deleteCustomerButton.Enabled = True
+
+        wantsNewCustomer = True
     End Sub
 
     Private Sub deleteCustomerButton_Click(sender As Object, e As EventArgs) Handles deleteCustomerButton.Click
@@ -75,37 +79,7 @@ Public Class MasterUpdate
 
                 Dim newCustomer = Ds.Customers.NewCustomersRow()
 
-                newCustomer.CustomerID = previousCustomer.ID
-                newCustomer.CompanyName = previousCustomer.CompanyName
-
-                '== Verify that these are not empty because these cannot be stored in the new customer.
-                If Not previousCustomer.ContactName = "" Then
-                    newCustomer.ContactName = previousCustomer.ContactName
-                End If
-                If Not previousCustomer.ContactTitle = "" Then
-                    newCustomer.ContactTitle = previousCustomer.ContactTitle
-                End If
-                If Not previousCustomer.Address = "" Then
-                    newCustomer.Address = previousCustomer.Address
-                End If
-                If Not previousCustomer.City = "" Then
-                    newCustomer.City = previousCustomer.City
-                End If
-                If Not previousCustomer.Region = "" Then
-                    newCustomer._Region = previousCustomer.Region
-                End If
-                If Not previousCustomer.PostalCode = "" Then
-                    newCustomer.PostalCode = previousCustomer.PostalCode
-                End If
-                If Not previousCustomer.Country = "" Then
-                    newCustomer.Country = previousCustomer.Country
-                End If
-                If Not previousCustomer.Phone = "" Then
-                    newCustomer.Phone = previousCustomer.Phone
-                End If
-                If Not previousCustomer.Fax = "" Then
-                    newCustomer.Fax = previousCustomer.Fax
-                End If
+                InputPreviousCustomerDataForCustomer(newCustomer)
 
                 Try
                     Ds.Customers.Rows.Add(newCustomer)
@@ -123,20 +97,61 @@ Public Class MasterUpdate
                     CustomersBindingSource.Position = CustomersBindingSource.Count - 1
 
                 Catch ex As Exception
-                    ThrowError("Error creating new customer", ex.Message)
+                    ThrowError("Error undoing deleted customer", ex.Message)
                 End Try
 
             ElseIf previousCustomer.ChangeType = CustomerChangeType.Edited Then
                 '== Previous customer was edited - Rewrite the edits
 
+                Try
+                    Dim oldCustomer = Ds.Customers.FindByCustomerID(previousCustomer.ID)
+
+                    InputPreviousCustomerDataForCustomer(oldCustomer)
+
+                    CustomersBindingSource.EndEdit()
+                    CustomersTableAdapter.Update(Ds.Customers)
+
+                Catch ex As Exception
+                    ThrowError("Error undoing edited customer", ex.Message)
+                End Try
+
             ElseIf previousCustomer.ChangeType = CustomerChangeType.Created Then
                 '== Previous customer was Created - Delete it
 
+                Try
+                    Dim customer = Ds.Customers.FindByCustomerID(previousCustomer.ID)
+
+                    '== Check for already created dummy customer
+                    If Ds.Customers.Select("CustomerID = '_DEL'").Count = 0 Then
+                        '== Create dummy customer
+                        Dim newCustomer = Ds.Customers.NewCustomersRow()
+                        newCustomer.CustomerID = "_DEL"
+                        newCustomer.CompanyName = "** Removed **"
+                        Ds.Customers.Rows.Add(newCustomer)
+
+                        CustomersTableAdapter.Update(Ds.Customers)
+                    End If
+
+                    '== Delete the customer
+                    Dim orders() = Ds.Orders.Select("CustomerID = '" + previousCustomer.ID + "'")
+                    For Each order In orders
+                        order("CustomerID") = "_DEL"
+                    Next
+
+                    Ds.Customers.Rows(CustomersBindingSource.Position).Delete()
+
+                    OrdersTableAdapter.Update(Ds.Orders)
+                    CustomersTableAdapter.Update(Ds.Customers)
+                Catch ex As Exception
+                    ThrowError("Error undoing created customer", ex.Message)
+                End Try
+
             End If
 
-            previousCustomer = Nothing
-            undoCustomerButton.Enabled = False
         End If
+
+        previousCustomer = Nothing
+        undoCustomerButton.Enabled = False
 
     End Sub
 
@@ -185,7 +200,7 @@ Public Class MasterUpdate
     '== Database calls
     Private Function SuccessfullyCreatedNewCustomer() As Boolean
         Dim success = False
-
+        
         Dim newCustomer = Ds.Customers.NewCustomersRow()
 
         '== Verify that these are not empty because these cannot be stored in the new customer.
@@ -357,10 +372,6 @@ Public Class MasterUpdate
         End Try
     End Sub
 
-    Private Sub ThrowError(title As String, message As String)
-        MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error)
-    End Sub
-
     Private Sub GrabPreviousCustomer(action As CustomerChangeType)
         previousCustomer = New Customer()
         previousCustomer.ID = CustomerIDTextBox.Text
@@ -377,6 +388,44 @@ Public Class MasterUpdate
         previousCustomer.ChangeType = action
 
         undoCustomerButton.Enabled = True
+    End Sub
+
+    Private Sub InputPreviousCustomerDataForCustomer(customer As ds.CustomersRow)
+        customer.CustomerID = previousCustomer.ID
+        customer.CompanyName = previousCustomer.CompanyName
+
+        '== Verify that these are not empty because these cannot be stored in the new customer.
+        If Not previousCustomer.ContactName = "" Then
+            customer.ContactName = previousCustomer.ContactName
+        End If
+        If Not previousCustomer.ContactTitle = "" Then
+            customer.ContactTitle = previousCustomer.ContactTitle
+        End If
+        If Not previousCustomer.Address = "" Then
+            customer.Address = previousCustomer.Address
+        End If
+        If Not previousCustomer.City = "" Then
+            customer.City = previousCustomer.City
+        End If
+        If Not previousCustomer.Region = "" Then
+            customer._Region = previousCustomer.Region
+        End If
+        If Not previousCustomer.PostalCode = "" Then
+            customer.PostalCode = previousCustomer.PostalCode
+        End If
+        If Not previousCustomer.Country = "" Then
+            customer.Country = previousCustomer.Country
+        End If
+        If Not previousCustomer.Phone = "" Then
+            customer.Phone = previousCustomer.Phone
+        End If
+        If Not previousCustomer.Fax = "" Then
+            customer.Fax = previousCustomer.Fax
+        End If
+    End Sub
+
+    Private Sub ThrowError(title As String, message As String)
+        MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Sub
 
 End Class

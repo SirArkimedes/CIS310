@@ -18,8 +18,6 @@ Public Class MasterUpdate
 
     '== Button Press Actions
     Private Sub addCustomerButton_Click(sender As Object, e As EventArgs) Handles addCustomerButton.Click
-        GrabPreviousCustomer(CustomerChangeType.Created)
-
         savedPosition = CustomersBindingSource.Position
 
         SetReadOnlyCustomerInformation(True)
@@ -120,25 +118,28 @@ Public Class MasterUpdate
 
                 Try
                     Dim customer = Ds.Customers.FindByCustomerID(previousCustomer.ID)
+                    Dim orders() = Ds.Orders.Select("CustomerID = '" + previousCustomer.ID + "'")
 
                     '== Check for already created dummy customer
                     If Ds.Customers.Select("CustomerID = '_DEL'").Count = 0 Then
-                        '== Create dummy customer
-                        Dim newCustomer = Ds.Customers.NewCustomersRow()
-                        newCustomer.CustomerID = "_DEL"
-                        newCustomer.CompanyName = "** Removed **"
-                        Ds.Customers.Rows.Add(newCustomer)
+                        '== Verify that we actually have orders to move
+                        If Not orders.Count = 0 Then
+                            '== Create dummy customer
+                            Dim newCustomer = Ds.Customers.NewCustomersRow()
+                            newCustomer.CustomerID = "_DEL"
+                            newCustomer.CompanyName = "** Removed **"
+                            Ds.Customers.Rows.Add(newCustomer)
 
-                        CustomersTableAdapter.Update(Ds.Customers)
+                            CustomersTableAdapter.Update(Ds.Customers)
+                        End If
                     End If
 
                     '== Delete the customer
-                    Dim orders() = Ds.Orders.Select("CustomerID = '" + previousCustomer.ID + "'")
                     For Each order In orders
                         order("CustomerID") = "_DEL"
                     Next
 
-                    Ds.Customers.Rows(CustomersBindingSource.Position).Delete()
+                    Ds.Customers.FindByCustomerID(previousCustomer.ID).Delete()
 
                     OrdersTableAdapter.Update(Ds.Orders)
                     CustomersTableAdapter.Update(Ds.Customers)
@@ -243,8 +244,9 @@ Public Class MasterUpdate
                 newCustomer.CompanyName = CompanyNameTextBox.Text
 
                 Try
-                    Ds.Customers.Rows.Add(newCustomer)
+                    CustomersBindingSource.EndEdit()
                     CustomersTableAdapter.Update(Ds.Customers)
+                    GrabPreviousCustomer(CustomerChangeType.Created)
 
                     CustomersBindingSource.Position = savedPosition
 
@@ -264,13 +266,16 @@ Public Class MasterUpdate
         '== Check for already created dummy customer
         Try
             If Ds.Customers.Select("CustomerID = '_DEL'").Count = 0 Then
-                '== Create dummy customer
-                Dim newCustomer = Ds.Customers.NewCustomersRow()
-                newCustomer.CustomerID = "_DEL"
-                newCustomer.CompanyName = "** Removed **"
-                Ds.Customers.Rows.Add(newCustomer)
+                '== Verify that we actually have orders to move
+                If Not Ds.Orders.Select("CustomerID = '" + CustomerIDTextBox.Text + "'").Count = 0 Then
+                    '== Create dummy customer
+                    Dim newCustomer = Ds.Customers.NewCustomersRow()
+                    newCustomer.CustomerID = "_DEL"
+                    newCustomer.CompanyName = "** Removed **"
+                    Ds.Customers.Rows.Add(newCustomer)
 
-                CustomersTableAdapter.Update(Ds.Customers)
+                    CustomersTableAdapter.Update(Ds.Customers)
+                End If
             End If
         Catch ex As Exception
             ThrowError("Error deleting customer", ex.Message)

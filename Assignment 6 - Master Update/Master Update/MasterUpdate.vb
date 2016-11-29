@@ -69,7 +69,10 @@ Public Class MasterUpdate
             wantsNewCustomer = False
         Else
             '== Wants to undo at any other point.
+
             If previousCustomer.ChangeType = CustomerChangeType.Deleted Then
+                '== Previous customer was deleted - Add it back
+
                 Dim newCustomer = Ds.Customers.NewCustomersRow()
 
                 newCustomer.CustomerID = previousCustomer.ID
@@ -124,8 +127,10 @@ Public Class MasterUpdate
                 End Try
 
             ElseIf previousCustomer.ChangeType = CustomerChangeType.Edited Then
+                '== Previous customer was edited - Rewrite the edits
 
             ElseIf previousCustomer.ChangeType = CustomerChangeType.Created Then
+                '== Previous customer was Created - Delete it
 
             End If
 

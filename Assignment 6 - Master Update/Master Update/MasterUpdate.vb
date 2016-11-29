@@ -108,6 +108,7 @@ Public Class MasterUpdate
                     Ds.Customers.Rows.Add(newCustomer)
                     CustomersTableAdapter.Update(Ds.Customers)
 
+                    '== Reassign Orders to the customer
                     Dim orders() = Ds.Orders.Select("CustomerID = '" + previousCustomer.ID + "'")
                     For Each order In orders
                         order("CustomerID") = previousCustomer.ID
@@ -125,13 +126,20 @@ Public Class MasterUpdate
             ElseIf previousCustomer.ChangeType = CustomerChangeType.Created Then
 
             End If
+
+            previousCustomer = Nothing
+            undoCustomerButton.Enabled = False
         End If
 
     End Sub
 
     Private Sub editCustomerButton_Click(sender As Object, e As EventArgs) Handles editCustomerButton.Click
-        SetReadOnlyCustomerInformation(True)
-        GrabPreviousCustomer(CustomerChangeType.Edited)
+        If Not CustomerIDTextBox.Text = "_DEL" Then
+            SetReadOnlyCustomerInformation(True)
+            GrabPreviousCustomer(CustomerChangeType.Edited)
+        Else
+            ThrowError("Error editing customer", "Not allowed to edit this dummy customer")
+        End If
     End Sub
 
     '== Binding Source Changes

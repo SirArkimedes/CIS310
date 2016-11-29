@@ -248,7 +248,7 @@ Public Class MasterUpdate
                     CustomersTableAdapter.Update(Ds.Customers)
                     GrabPreviousCustomer(CustomerChangeType.Created)
 
-                    CustomersBindingSource.Position = savedPosition
+                    CustomersBindingSource.Position = CustomersBindingSource.Count - 1
 
                     success = True
                 Catch ex As Exception

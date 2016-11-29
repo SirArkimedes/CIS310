@@ -252,7 +252,7 @@ Public Class MasterUpdate
                 '== Create dummy customer
                 Dim newCustomer = Ds.Customers.NewCustomersRow()
                 newCustomer.CustomerID = "_DEL"
-                newCustomer.CompanyName = "Removed"
+                newCustomer.CompanyName = "** Removed **"
                 Ds.Customers.Rows.Add(newCustomer)
 
                 CustomersTableAdapter.Update(Ds.Customers)

@@ -42,13 +42,15 @@ Public Class MasterUpdate
     Private Sub saveCustomerButton_Click(sender As Object, e As EventArgs) Handles saveCustomerButton.Click
 
         If wantsNewCustomer Then
-            If SuccessfullyCreatedNewUser() Then
+            If SuccessfullyCreatedNewCustomer() Then
                 wantsNewCustomer = False
                 SetReadOnlyCustomerInformation(False)
             End If
         Else
-            'Update Customer
-            SetReadOnlyCustomerInformation(False)
+            '== Wants to update customer
+            If SuccessfullyUpdatedCustomer() Then
+                SetReadOnlyCustomerInformation(False)
+            End If
         End If
 
     End Sub
@@ -95,7 +97,7 @@ Public Class MasterUpdate
     End Sub
 
     '== Database calls
-    Private Function SuccessfullyCreatedNewUser() As Boolean
+    Private Function SuccessfullyCreatedNewCustomer() As Boolean
         Dim success = False
 
         Dim newCustomer = Ds.Customers.NewCustomersRow()
@@ -159,20 +161,20 @@ Public Class MasterUpdate
 
     Private Sub DeleteCustomer()
 
-        '== Check for already created removed customer
-        If Ds.Customers.Select("CustomerID = '_DEL'").Count = 0 Then
-            '== Delete dummy customer
-            Try
+        '== Check for already created dummy customer
+        Try
+            If Ds.Customers.Select("CustomerID = '_DEL'").Count = 0 Then
+                '== Create dummy customer
                 Dim newCustomer = Ds.Customers.NewCustomersRow()
                 newCustomer.CustomerID = "_DEL"
                 newCustomer.CompanyName = "Removed"
                 Ds.Customers.Rows.Add(newCustomer)
 
                 CustomersTableAdapter.Update(Ds.Customers)
-            Catch ex As Exception
-                ThrowError("Error deleting customer", ex.Message)
-            End Try
-        End If
+            End If
+        Catch ex As Exception
+            ThrowError("Error deleting customer", ex.Message)
+        End Try
 
         '== Are we selected on the deleted customer?
         If CustomerIDTextBox.Text = "_DEL" Then
@@ -198,6 +200,15 @@ Public Class MasterUpdate
 
     Private Function SuccessfullyUpdatedCustomer() As Boolean
         Dim success = False
+
+        Try
+            CustomersBindingSource.EndEdit()
+            CustomersTableAdapter.Update(Ds.Customers)
+
+            success = True
+        Catch ex As Exception
+            ThrowError("Error updating customer", ex.Message)
+        End Try
 
         Return success
     End Function
@@ -232,7 +243,7 @@ Public Class MasterUpdate
         End If
 
         '== Change customer text boxes
-        CustomerIDTextBox.ReadOnly = state : ContactNameTextBox.ReadOnly = state : ContactTitleTextBox.ReadOnly = state
+        ContactNameTextBox.ReadOnly = state : ContactTitleTextBox.ReadOnly = state
         AddressTextBox.ReadOnly = state : CityTextBox.ReadOnly = state : RegionTextBox.ReadOnly = state
         PostalCodeTextBox.ReadOnly = state : CountryTextBox.ReadOnly = state : PhoneTextBox.ReadOnly = state
         FaxTextBox.ReadOnly = state

@@ -75,11 +75,11 @@ Public Class MasterUpdate
             If previousCustomer.ChangeType = CustomerChangeType.Deleted Then
                 '== Previous customer was deleted - Add it back
 
-                Dim newCustomer = Ds.Customers.NewCustomersRow()
-
-                InputPreviousCustomerDataForCustomer(newCustomer)
-
                 Try
+                    Dim newCustomer = Ds.Customers.NewCustomersRow()
+
+                    InputPreviousCustomerDataForCustomer(newCustomer)
+
                     Ds.Customers.Rows.Add(newCustomer)
                     CustomersTableAdapter.Update(Ds.Customers)
 
@@ -90,6 +90,7 @@ Public Class MasterUpdate
                             order("CustomerID") = previousCustomer.ID
                         Next
                     Next
+
                     OrdersTableAdapter.Update(Ds.Orders)
 
                     CustomersBindingSource.Position = CustomersBindingSource.Count - 1

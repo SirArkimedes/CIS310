@@ -109,7 +109,7 @@
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT CustomerID, CompanyName, ContactName, ContactTitle, Address, City, Region, PostalCode, Country, Phone, Fax FROM Customers</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -393,7 +393,7 @@
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT OrderID, CustomerID, EmployeeID, OrderDate, RequiredDate, ShippedDate, ShipVia, Freight, ShipName, ShipAddress, ShipCity, ShipStProv, ShipPostalCode, ShipCountry, Balance FROM Orders</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -765,7 +765,7 @@
   <xs:element name="ds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ds" msprop:Generator_UserDSName="ds">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Categories" msprop:Generator_TableClassName="CategoriesDataTable" msprop:Generator_TableVarName="tableCategories" msprop:Generator_RowChangedName="CategoriesRowChanged" msprop:Generator_TablePropName="Categories" msprop:Generator_RowDeletingName="CategoriesRowDeleting" msprop:Generator_RowChangingName="CategoriesRowChanging" msprop:Generator_RowEvHandlerName="CategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="CategoriesRowDeleted" msprop:Generator_RowClassName="CategoriesRow" msprop:Generator_UserTableName="Categories" msprop:Generator_RowEvArgName="CategoriesRowChangeEvent">
+        <xs:element name="Categories" msprop:Generator_TableClassName="CategoriesDataTable" msprop:Generator_TableVarName="tableCategories" msprop:Generator_TablePropName="Categories" msprop:Generator_RowDeletingName="CategoriesRowDeleting" msprop:Generator_RowChangingName="CategoriesRowChanging" msprop:Generator_RowEvHandlerName="CategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="CategoriesRowDeleted" msprop:Generator_UserTableName="Categories" msprop:Generator_RowChangedName="CategoriesRowChanged" msprop:Generator_RowEvArgName="CategoriesRowChangeEvent" msprop:Generator_RowClassName="CategoriesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CategoryID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCategoryID" msprop:Generator_ColumnPropNameInRow="CategoryID" msprop:Generator_ColumnPropNameInTable="CategoryIDColumn" msprop:Generator_UserColumnName="CategoryID" type="xs:int" />
@@ -787,7 +787,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Customers" msprop:Generator_TableClassName="CustomersDataTable" msprop:Generator_TableVarName="tableCustomers" msprop:Generator_RowChangedName="CustomersRowChanged" msprop:Generator_TablePropName="Customers" msprop:Generator_RowDeletingName="CustomersRowDeleting" msprop:Generator_RowChangingName="CustomersRowChanging" msprop:Generator_RowEvHandlerName="CustomersRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomersRowDeleted" msprop:Generator_RowClassName="CustomersRow" msprop:Generator_UserTableName="Customers" msprop:Generator_RowEvArgName="CustomersRowChangeEvent">
+        <xs:element name="Customers" msprop:Generator_TableClassName="CustomersDataTable" msprop:Generator_TableVarName="tableCustomers" msprop:Generator_TablePropName="Customers" msprop:Generator_RowDeletingName="CustomersRowDeleting" msprop:Generator_RowChangingName="CustomersRowChanging" msprop:Generator_RowEvHandlerName="CustomersRowChangeEventHandler" msprop:Generator_RowDeletedName="CustomersRowDeleted" msprop:Generator_UserTableName="Customers" msprop:Generator_RowChangedName="CustomersRowChanged" msprop:Generator_RowEvArgName="CustomersRowChangeEvent" msprop:Generator_RowClassName="CustomersRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CustomerID" msprop:Generator_ColumnVarNameInTable="columnCustomerID" msprop:Generator_ColumnPropNameInRow="CustomerID" msprop:Generator_ColumnPropNameInTable="CustomerIDColumn" msprop:Generator_UserColumnName="CustomerID">
@@ -870,7 +870,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Employees" msprop:Generator_TableClassName="EmployeesDataTable" msprop:Generator_TableVarName="tableEmployees" msprop:Generator_RowChangedName="EmployeesRowChanged" msprop:Generator_TablePropName="Employees" msprop:Generator_RowDeletingName="EmployeesRowDeleting" msprop:Generator_RowChangingName="EmployeesRowChanging" msprop:Generator_RowEvHandlerName="EmployeesRowChangeEventHandler" msprop:Generator_RowDeletedName="EmployeesRowDeleted" msprop:Generator_RowClassName="EmployeesRow" msprop:Generator_UserTableName="Employees" msprop:Generator_RowEvArgName="EmployeesRowChangeEvent">
+        <xs:element name="Employees" msprop:Generator_TableClassName="EmployeesDataTable" msprop:Generator_TableVarName="tableEmployees" msprop:Generator_TablePropName="Employees" msprop:Generator_RowDeletingName="EmployeesRowDeleting" msprop:Generator_RowChangingName="EmployeesRowChanging" msprop:Generator_RowEvHandlerName="EmployeesRowChangeEventHandler" msprop:Generator_RowDeletedName="EmployeesRowDeleted" msprop:Generator_UserTableName="Employees" msprop:Generator_RowChangedName="EmployeesRowChanged" msprop:Generator_RowEvArgName="EmployeesRowChangeEvent" msprop:Generator_RowClassName="EmployeesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="EmployeeID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" type="xs:int" />
@@ -971,7 +971,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Order_x0020_Details" msprop:Generator_TableClassName="Order_DetailsDataTable" msprop:Generator_TableVarName="tableOrder_Details" msprop:Generator_RowChangedName="Order_DetailsRowChanged" msprop:Generator_TablePropName="Order_Details" msprop:Generator_RowDeletingName="Order_DetailsRowDeleting" msprop:Generator_RowChangingName="Order_DetailsRowChanging" msprop:Generator_RowEvHandlerName="Order_DetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="Order_DetailsRowDeleted" msprop:Generator_RowClassName="Order_DetailsRow" msprop:Generator_UserTableName="Order Details" msprop:Generator_RowEvArgName="Order_DetailsRowChangeEvent">
+        <xs:element name="Order_x0020_Details" msprop:Generator_TableClassName="Order_DetailsDataTable" msprop:Generator_TableVarName="tableOrder_Details" msprop:Generator_TablePropName="Order_Details" msprop:Generator_RowDeletingName="Order_DetailsRowDeleting" msprop:Generator_RowChangingName="Order_DetailsRowChanging" msprop:Generator_RowEvHandlerName="Order_DetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="Order_DetailsRowDeleted" msprop:Generator_UserTableName="Order Details" msprop:Generator_RowChangedName="Order_DetailsRowChanged" msprop:Generator_RowEvArgName="Order_DetailsRowChangeEvent" msprop:Generator_RowClassName="Order_DetailsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="OrderID" msprop:Generator_ColumnVarNameInTable="columnOrderID" msprop:Generator_ColumnPropNameInRow="OrderID" msprop:Generator_ColumnPropNameInTable="OrderIDColumn" msprop:Generator_UserColumnName="OrderID" type="xs:int" />
@@ -983,7 +983,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Orders" msprop:Generator_TableClassName="OrdersDataTable" msprop:Generator_TableVarName="tableOrders" msprop:Generator_RowChangedName="OrdersRowChanged" msprop:Generator_TablePropName="Orders" msprop:Generator_RowDeletingName="OrdersRowDeleting" msprop:Generator_RowChangingName="OrdersRowChanging" msprop:Generator_RowEvHandlerName="OrdersRowChangeEventHandler" msprop:Generator_RowDeletedName="OrdersRowDeleted" msprop:Generator_RowClassName="OrdersRow" msprop:Generator_UserTableName="Orders" msprop:Generator_RowEvArgName="OrdersRowChangeEvent">
+        <xs:element name="Orders" msprop:Generator_TableClassName="OrdersDataTable" msprop:Generator_TableVarName="tableOrders" msprop:Generator_TablePropName="Orders" msprop:Generator_RowDeletingName="OrdersRowDeleting" msprop:Generator_RowChangingName="OrdersRowChanging" msprop:Generator_RowEvHandlerName="OrdersRowChangeEventHandler" msprop:Generator_RowDeletedName="OrdersRowDeleted" msprop:Generator_UserTableName="Orders" msprop:Generator_RowChangedName="OrdersRowChanged" msprop:Generator_RowEvArgName="OrdersRowChangeEvent" msprop:Generator_RowClassName="OrdersRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="OrderID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnOrderID" msprop:Generator_ColumnPropNameInRow="OrderID" msprop:Generator_ColumnPropNameInTable="OrderIDColumn" msprop:Generator_UserColumnName="OrderID" type="xs:int" />
@@ -1046,7 +1046,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Products" msprop:Generator_TableClassName="ProductsDataTable" msprop:Generator_TableVarName="tableProducts" msprop:Generator_RowChangedName="ProductsRowChanged" msprop:Generator_TablePropName="Products" msprop:Generator_RowDeletingName="ProductsRowDeleting" msprop:Generator_RowChangingName="ProductsRowChanging" msprop:Generator_RowEvHandlerName="ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsRowDeleted" msprop:Generator_RowClassName="ProductsRow" msprop:Generator_UserTableName="Products" msprop:Generator_RowEvArgName="ProductsRowChangeEvent">
+        <xs:element name="Products" msprop:Generator_TableClassName="ProductsDataTable" msprop:Generator_TableVarName="tableProducts" msprop:Generator_TablePropName="Products" msprop:Generator_RowDeletingName="ProductsRowDeleting" msprop:Generator_RowChangingName="ProductsRowChanging" msprop:Generator_RowEvHandlerName="ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsRowDeleted" msprop:Generator_UserTableName="Products" msprop:Generator_RowChangedName="ProductsRowChanged" msprop:Generator_RowEvArgName="ProductsRowChangeEvent" msprop:Generator_RowClassName="ProductsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ProductID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
@@ -1076,7 +1076,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Shippers" msprop:Generator_TableClassName="ShippersDataTable" msprop:Generator_TableVarName="tableShippers" msprop:Generator_RowChangedName="ShippersRowChanged" msprop:Generator_TablePropName="Shippers" msprop:Generator_RowDeletingName="ShippersRowDeleting" msprop:Generator_RowChangingName="ShippersRowChanging" msprop:Generator_RowEvHandlerName="ShippersRowChangeEventHandler" msprop:Generator_RowDeletedName="ShippersRowDeleted" msprop:Generator_RowClassName="ShippersRow" msprop:Generator_UserTableName="Shippers" msprop:Generator_RowEvArgName="ShippersRowChangeEvent">
+        <xs:element name="Shippers" msprop:Generator_TableClassName="ShippersDataTable" msprop:Generator_TableVarName="tableShippers" msprop:Generator_TablePropName="Shippers" msprop:Generator_RowDeletingName="ShippersRowDeleting" msprop:Generator_RowChangingName="ShippersRowChanging" msprop:Generator_RowEvHandlerName="ShippersRowChangeEventHandler" msprop:Generator_RowDeletedName="ShippersRowDeleted" msprop:Generator_UserTableName="Shippers" msprop:Generator_RowChangedName="ShippersRowChanged" msprop:Generator_RowEvArgName="ShippersRowChangeEvent" msprop:Generator_RowClassName="ShippersRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ShipperID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnShipperID" msprop:Generator_ColumnPropNameInRow="ShipperID" msprop:Generator_ColumnPropNameInTable="ShipperIDColumn" msprop:Generator_UserColumnName="ShipperID" type="xs:int" />
@@ -1097,7 +1097,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Suppliers" msprop:Generator_TableClassName="SuppliersDataTable" msprop:Generator_TableVarName="tableSuppliers" msprop:Generator_RowChangedName="SuppliersRowChanged" msprop:Generator_TablePropName="Suppliers" msprop:Generator_RowDeletingName="SuppliersRowDeleting" msprop:Generator_RowChangingName="SuppliersRowChanging" msprop:Generator_RowEvHandlerName="SuppliersRowChangeEventHandler" msprop:Generator_RowDeletedName="SuppliersRowDeleted" msprop:Generator_RowClassName="SuppliersRow" msprop:Generator_UserTableName="Suppliers" msprop:Generator_RowEvArgName="SuppliersRowChangeEvent">
+        <xs:element name="Suppliers" msprop:Generator_TableClassName="SuppliersDataTable" msprop:Generator_TableVarName="tableSuppliers" msprop:Generator_TablePropName="Suppliers" msprop:Generator_RowDeletingName="SuppliersRowDeleting" msprop:Generator_RowChangingName="SuppliersRowChanging" msprop:Generator_RowEvHandlerName="SuppliersRowChangeEventHandler" msprop:Generator_RowDeletedName="SuppliersRowDeleted" msprop:Generator_UserTableName="Suppliers" msprop:Generator_RowChangedName="SuppliersRowChanged" msprop:Generator_RowEvArgName="SuppliersRowChangeEvent" msprop:Generator_RowClassName="SuppliersRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SupplierID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnSupplierID" msprop:Generator_ColumnPropNameInRow="SupplierID" msprop:Generator_ColumnPropNameInTable="SupplierIDColumn" msprop:Generator_UserColumnName="SupplierID" type="xs:int" />
@@ -1226,13 +1226,13 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="OrdersOrder_x0020_Details" msdata:parent="Orders" msdata:child="Order_x0020_Details" msdata:parentkey="OrderID" msdata:childkey="OrderID" msprop:Generator_UserChildTable="Order Details" msprop:Generator_ChildPropName="GetOrder_DetailsRows" msprop:Generator_UserRelationName="OrdersOrder Details" msprop:Generator_ParentPropName="OrdersRow" msprop:Generator_RelationVarName="relationOrdersOrder_Details" msprop:Generator_UserParentTable="Orders" />
-      <msdata:Relationship name="ProductsOrder_x0020_Details" msdata:parent="Products" msdata:child="Order_x0020_Details" msdata:parentkey="ProductID" msdata:childkey="ProductID" msprop:Generator_UserChildTable="Order Details" msprop:Generator_ChildPropName="GetOrder_DetailsRows" msprop:Generator_UserRelationName="ProductsOrder Details" msprop:Generator_ParentPropName="ProductsRow" msprop:Generator_RelationVarName="relationProductsOrder_Details" msprop:Generator_UserParentTable="Products" />
-      <msdata:Relationship name="CustomersOrders" msdata:parent="Customers" msdata:child="Orders" msdata:parentkey="CustomerID" msdata:childkey="CustomerID" msprop:Generator_UserChildTable="Orders" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="CustomersOrders" msprop:Generator_RelationVarName="relationCustomersOrders" msprop:Generator_UserParentTable="Customers" msprop:Generator_ParentPropName="CustomersRow" />
-      <msdata:Relationship name="EmployeesOrders" msdata:parent="Employees" msdata:child="Orders" msdata:parentkey="EmployeeID" msdata:childkey="EmployeeID" msprop:Generator_UserChildTable="Orders" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="EmployeesOrders" msprop:Generator_RelationVarName="relationEmployeesOrders" msprop:Generator_UserParentTable="Employees" msprop:Generator_ParentPropName="EmployeesRow" />
-      <msdata:Relationship name="ShippersOrders" msdata:parent="Shippers" msdata:child="Orders" msdata:parentkey="ShipperID" msdata:childkey="ShipVia" msprop:Generator_UserChildTable="Orders" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="ShippersOrders" msprop:Generator_ParentPropName="ShippersRow" msprop:Generator_RelationVarName="relationShippersOrders" msprop:Generator_UserParentTable="Shippers" />
-      <msdata:Relationship name="CategoriesProducts" msdata:parent="Categories" msdata:child="Products" msdata:parentkey="CategoryID" msdata:childkey="CategoryID" msprop:Generator_UserChildTable="Products" msprop:Generator_ChildPropName="GetProductsRows" msprop:Generator_UserRelationName="CategoriesProducts" msprop:Generator_RelationVarName="relationCategoriesProducts" msprop:Generator_UserParentTable="Categories" msprop:Generator_ParentPropName="CategoriesRow" />
-      <msdata:Relationship name="SuppliersProducts" msdata:parent="Suppliers" msdata:child="Products" msdata:parentkey="SupplierID" msdata:childkey="SupplierID" msprop:Generator_UserChildTable="Products" msprop:Generator_ChildPropName="GetProductsRows" msprop:Generator_UserRelationName="SuppliersProducts" msprop:Generator_ParentPropName="SuppliersRow" msprop:Generator_RelationVarName="relationSuppliersProducts" msprop:Generator_UserParentTable="Suppliers" />
+      <msdata:Relationship name="OrdersOrder_x0020_Details" msdata:parent="Orders" msdata:child="Order_x0020_Details" msdata:parentkey="OrderID" msdata:childkey="OrderID" msprop:Generator_UserChildTable="Order Details" msprop:Generator_ChildPropName="GetOrder_DetailsRows" msprop:Generator_UserRelationName="OrdersOrder Details" msprop:Generator_RelationVarName="relationOrdersOrder_Details" msprop:Generator_UserParentTable="Orders" msprop:Generator_ParentPropName="OrdersRow" />
+      <msdata:Relationship name="ProductsOrder_x0020_Details" msdata:parent="Products" msdata:child="Order_x0020_Details" msdata:parentkey="ProductID" msdata:childkey="ProductID" msprop:Generator_UserChildTable="Order Details" msprop:Generator_ChildPropName="GetOrder_DetailsRows" msprop:Generator_UserRelationName="ProductsOrder Details" msprop:Generator_RelationVarName="relationProductsOrder_Details" msprop:Generator_UserParentTable="Products" msprop:Generator_ParentPropName="ProductsRow" />
+      <msdata:Relationship name="CustomersOrders" msdata:parent="Customers" msdata:child="Orders" msdata:parentkey="CustomerID" msdata:childkey="CustomerID" msprop:Generator_UserChildTable="Orders" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="CustomersOrders" msprop:Generator_ParentPropName="CustomersRow" msprop:Generator_RelationVarName="relationCustomersOrders" msprop:Generator_UserParentTable="Customers" />
+      <msdata:Relationship name="EmployeesOrders" msdata:parent="Employees" msdata:child="Orders" msdata:parentkey="EmployeeID" msdata:childkey="EmployeeID" msprop:Generator_UserChildTable="Orders" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="EmployeesOrders" msprop:Generator_ParentPropName="EmployeesRow" msprop:Generator_RelationVarName="relationEmployeesOrders" msprop:Generator_UserParentTable="Employees" />
+      <msdata:Relationship name="ShippersOrders" msdata:parent="Shippers" msdata:child="Orders" msdata:parentkey="ShipperID" msdata:childkey="ShipVia" msprop:Generator_UserChildTable="Orders" msprop:Generator_ChildPropName="GetOrdersRows" msprop:Generator_UserRelationName="ShippersOrders" msprop:Generator_RelationVarName="relationShippersOrders" msprop:Generator_UserParentTable="Shippers" msprop:Generator_ParentPropName="ShippersRow" />
+      <msdata:Relationship name="CategoriesProducts" msdata:parent="Categories" msdata:child="Products" msdata:parentkey="CategoryID" msdata:childkey="CategoryID" msprop:Generator_UserChildTable="Products" msprop:Generator_ChildPropName="GetProductsRows" msprop:Generator_UserRelationName="CategoriesProducts" msprop:Generator_ParentPropName="CategoriesRow" msprop:Generator_RelationVarName="relationCategoriesProducts" msprop:Generator_UserParentTable="Categories" />
+      <msdata:Relationship name="SuppliersProducts" msdata:parent="Suppliers" msdata:child="Products" msdata:parentkey="SupplierID" msdata:childkey="SupplierID" msprop:Generator_UserChildTable="Products" msprop:Generator_ChildPropName="GetProductsRows" msprop:Generator_UserRelationName="SuppliersProducts" msprop:Generator_RelationVarName="relationSuppliersProducts" msprop:Generator_UserParentTable="Suppliers" msprop:Generator_ParentPropName="SuppliersRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

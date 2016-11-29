@@ -109,9 +109,11 @@ Public Class MasterUpdate
                     CustomersTableAdapter.Update(Ds.Customers)
 
                     '== Reassign Orders to the customer
-                    Dim orders() = Ds.Orders.Select("CustomerID = '" + previousCustomer.ID + "'")
-                    For Each order In orders
-                        order("CustomerID") = previousCustomer.ID
+                    For Each value In previousCustomer.orderIds
+                        Dim orders() = Ds.Orders.Select("OrderID = '" + value + "'")
+                        For Each order In orders
+                            order("CustomerID") = previousCustomer.ID
+                        Next
                     Next
                     OrdersTableAdapter.Update(Ds.Orders)
 
@@ -261,9 +263,14 @@ Public Class MasterUpdate
             '== Delete the customer
             Try
                 Dim orders() = Ds.Orders.Select("CustomerID = '" + CustomerIDTextBox.Text + "'")
+                Dim ids(OrdersBindingSource.Count - 1) As String
+                Dim i = 0
                 For Each order In orders
+                    ids(i) = order("OrderID")
                     order("CustomerID") = "_DEL"
+                    i += 1
                 Next
+                previousCustomer.orderIds = ids
 
                 Ds.Customers.Rows(CustomersBindingSource.Position).Delete()
 

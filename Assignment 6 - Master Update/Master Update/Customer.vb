@@ -18,6 +18,8 @@ Public Class Customer
     Public Phone = ""
     Public Fax = ""
 
+    Public orderIds() As String
+
     Public ChangeType As CustomerChangeType
 
     Public Sub New()

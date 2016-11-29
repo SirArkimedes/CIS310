@@ -28,7 +28,11 @@ Public Class MasterUpdate
             CustomersBindingSource.CancelEdit()
             wantsNewCustomer = False
         Else
-            CustomersBindingSource.RemoveCurrent()
+            If MessageBox.Show("Are you sure you want to delete " + CustomerIDTextBox.Text + "?", "Deleting " + CustomerIDTextBox.Text,
+                               MessageBoxButtons.YesNo, MessageBoxIcon.Error) = DialogResult.Yes Then
+                DeleteCustomer()
+                PullData()
+            End If
         End If
     End Sub
 
@@ -143,6 +147,52 @@ Public Class MasterUpdate
                 End Try
             End If
         End If
+
+        Return success
+
+    End Function
+
+    Private Sub DeleteCustomer()
+
+        '== Check for already created removed customer
+        If Ds.Customers.Select("CustomerID = '_DEL'").Count = 0 Then
+            '== Delete dummy customer
+            Try
+                Dim newCustomer = Ds.Customers.NewCustomersRow()
+                newCustomer.CustomerID = "_DEL"
+                newCustomer.CompanyName = "Removed"
+                Ds.Customers.Rows.Add(newCustomer)
+
+                CustomersTableAdapter.Update(Ds.Customers)
+            Catch ex As Exception
+                ThrowError("Error deleting customer", ex.Message)
+            End Try
+        End If
+
+        '== Are we selected on the deleted customer?
+        If CustomerIDTextBox.Text = "_DEL" Then
+            ThrowError("Error", "Cannot delete a deleted customer.")
+        Else
+            '== Delete the customer
+            Try
+                Dim orders() = Ds.Orders.Select("CustomerID = '" + CustomerIDTextBox.Text + "'")
+                For Each order In orders
+                    order("CustomerID") = "_DEL"
+                Next
+
+                Ds.Customers.Rows(CustomersBindingSource.Position).Delete()
+
+                OrdersTableAdapter.Update(Ds.Orders)
+                CustomersTableAdapter.Update(Ds.Customers)
+            Catch ex As Exception
+                ThrowError("Error deleting customer", ex.Message)
+            End Try
+        End If
+
+    End Sub
+
+    Private Function SuccessfullyUpdatedCustomer() As Boolean
+        Dim success = False
 
         Return success
     End Function

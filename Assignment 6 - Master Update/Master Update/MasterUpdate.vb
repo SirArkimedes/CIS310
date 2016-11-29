@@ -171,7 +171,6 @@ Public Class MasterUpdate
         If e.Exception IsNot Nothing Then
             ThrowError("Error while editing cell", e.Exception.Message)
         End If
-
     End Sub
 
     '== Binding Source Changes
@@ -442,9 +441,4 @@ Public Class MasterUpdate
         MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Sub
 
-    'Private Sub OrdersDataGridView_CellParsing(sender As Object, e As DataGridViewCellParsingEventArgs) Handles OrdersDataGridView.CellParsing
-    '    OrdersBindingSource.EndEdit()
-    '    Ds.AcceptChanges()
-    '    OrdersTableAdapter.Update(Ds.Orders)
-    'End Sub
 End Class

@@ -508,6 +508,7 @@ Partial Class MasterUpdate
         '
         'OrdersBindingSource
         '
+        Me.OrdersBindingSource.AllowNew = True
         Me.OrdersBindingSource.DataMember = "CustomersOrders"
         Me.OrdersBindingSource.DataSource = Me.CustomersBindingSource
         '
@@ -561,7 +562,6 @@ Partial Class MasterUpdate
         Me.DataGridViewTextBoxColumn3.DataPropertyName = "EmployeeID"
         Me.DataGridViewTextBoxColumn3.DataSource = Me.EmployeesBindingSource
         Me.DataGridViewTextBoxColumn3.DisplayMember = "FullName"
-        Me.DataGridViewTextBoxColumn3.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.DataGridViewTextBoxColumn3.HeaderText = "Employee Name"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         Me.DataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]

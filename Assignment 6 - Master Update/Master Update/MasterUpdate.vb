@@ -5,6 +5,7 @@
 Public Class MasterUpdate
 
     Private wantsNewCustomer = False
+    Private savedPosition = 0
 
     '== Load
     Private Sub SynchedGrid_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -16,6 +17,7 @@ Public Class MasterUpdate
 
     '== Button Press Actions
     Private Sub addCustomerButton_Click(sender As Object, e As EventArgs) Handles addCustomerButton.Click
+        savedPosition = CustomersBindingSource.Position
         SetReadOnlyCustomerInformation(True)
         wantsNewCustomer = True
         undoCustomerButton.Enabled = False
@@ -26,6 +28,7 @@ Public Class MasterUpdate
         If wantsNewCustomer Then
             SetReadOnlyCustomerInformation(False)
             CustomersBindingSource.CancelEdit()
+            CustomersBindingSource.Position = savedPosition
             wantsNewCustomer = False
         Else
             If MessageBox.Show("Are you sure you want to delete " + CustomerIDTextBox.Text + "?", "Deleting " + CustomerIDTextBox.Text,
@@ -97,6 +100,7 @@ Public Class MasterUpdate
 
         Dim newCustomer = Ds.Customers.NewCustomersRow()
 
+        '== Verify that these are not empty because these cannot be stored in the new customer.
         If Not ContactNameTextBox.Text = "" Then
             newCustomer.ContactName = ContactNameTextBox.Text
         End If
@@ -125,6 +129,7 @@ Public Class MasterUpdate
             newCustomer.Fax = FaxTextBox.Text
         End If
 
+        '== Verify that these are not empty.
         If CustomerIDTextBox.Text = "" Then
             ThrowError("Empty field", "Must provide a value for CustomerID")
         Else
@@ -139,7 +144,7 @@ Public Class MasterUpdate
                     CustomersTableAdapter.Update(Ds.Customers)
 
                     PullData()
-                    CustomersBindingSource.Position = CustomersBindingSource.Count - 1
+                    CustomersBindingSource.Position = savedPosition
 
                     success = True
                 Catch ex As Exception

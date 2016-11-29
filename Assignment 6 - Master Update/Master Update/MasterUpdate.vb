@@ -165,6 +165,15 @@ Public Class MasterUpdate
         End If
     End Sub
 
+    '== DataGridView Actions
+    Private Sub dataGridView1_DataError(ByVal sender As Object, ByVal e As DataGridViewDataErrorEventArgs) Handles OrdersDataGridView.DataError
+        '== Catch the errors to not make them look so ugly.
+        If e.Exception IsNot Nothing Then
+            ThrowError("Error while editing cell", e.Exception.Message)
+        End If
+
+    End Sub
+
     '== Binding Source Changes
     Private Sub OrdersBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles OrdersBindingSource.CurrentChanged
 
@@ -433,4 +442,9 @@ Public Class MasterUpdate
         MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error)
     End Sub
 
+    'Private Sub OrdersDataGridView_CellParsing(sender As Object, e As DataGridViewCellParsingEventArgs) Handles OrdersDataGridView.CellParsing
+    '    OrdersBindingSource.EndEdit()
+    '    Ds.AcceptChanges()
+    '    OrdersTableAdapter.Update(Ds.Orders)
+    'End Sub
 End Class

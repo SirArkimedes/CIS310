@@ -36,10 +36,15 @@ Public Class MasterUpdate
             CustomersBindingSource.Position = savedPosition
             wantsNewCustomer = False
         Else
-            If MessageBox.Show("Are you sure you want to delete " + CustomerIDTextBox.Text + "?", "Deleting " + CustomerIDTextBox.Text,
+            '== Are we selected on the deleted customer?
+            If CustomerIDTextBox.Text = "_DEL" Then
+                ThrowError("Error", "Cannot delete a deleted customer.")
+            Else
+                If MessageBox.Show("Are you sure you want to delete " + CustomerIDTextBox.Text + "?", "Deleting " + CustomerIDTextBox.Text,
                                MessageBoxButtons.YesNo, MessageBoxIcon.Error) = DialogResult.Yes Then
-                GrabPreviousCustomer(CustomerChangeType.Deleted)
-                DeleteCustomer()
+                    GrabPreviousCustomer(CustomerChangeType.Deleted)
+                    DeleteCustomer()
+                End If
             End If
         End If
     End Sub
@@ -426,30 +431,26 @@ Public Class MasterUpdate
             ThrowError("Error deleting customer", ex.Message)
         End Try
 
-        '== Are we selected on the deleted customer?
-        If CustomerIDTextBox.Text = "_DEL" Then
-            ThrowError("Error", "Cannot delete a deleted customer.")
-        Else
-            '== Delete the customer
-            Try
-                Dim orders() = Ds.Orders.Select("CustomerID = '" + CustomerIDTextBox.Text + "'")
-                Dim ids(OrdersBindingSource.Count - 1) As String
-                Dim i = 0
-                For Each order In orders
-                    ids(i) = order("OrderID")
-                    order("CustomerID") = "_DEL"
-                    i += 1
-                Next
-                previousCustomer.orderIds = ids
 
-                Ds.Customers.Rows(CustomersBindingSource.Position).Delete()
+        '== Delete the customer
+        Try
+            Dim orders() = Ds.Orders.Select("CustomerID = '" + CustomerIDTextBox.Text + "'")
+            Dim ids(OrdersBindingSource.Count - 1) As String
+            Dim i = 0
+            For Each order In orders
+                ids(i) = order("OrderID")
+                order("CustomerID") = "_DEL"
+                i += 1
+            Next
+            previousCustomer.orderIds = ids
 
-                OrdersTableAdapter.Update(Ds.Orders)
-                CustomersTableAdapter.Update(Ds.Customers)
-            Catch ex As Exception
-                ThrowError("Error deleting customer", ex.Message)
-            End Try
-        End If
+            Ds.Customers.Rows(CustomersBindingSource.Position).Delete()
+
+            OrdersTableAdapter.Update(Ds.Orders)
+            CustomersTableAdapter.Update(Ds.Customers)
+        Catch ex As Exception
+            ThrowError("Error deleting customer", ex.Message)
+        End Try
 
     End Sub
 

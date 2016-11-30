@@ -212,7 +212,8 @@ Public Class MasterUpdate
         Dim Row = Order_DetailsDataGridView.Rows(Order_DetailsDataGridView.CurrentCell.RowIndex)
 
         '== Add newly created Order Detail to the table
-        If Not IsDBNull(Row.Cells(0).Value) Then
+        '== Create a 'dummy' Order Detail before it gets updated in another event.
+        If Not IsDBNull(Row.Cells(0).Value) AndAlso Order_DetailsDataGridView.CurrentCell.ColumnIndex = 1 Then
             Dim updateCmd As New OleDb.OleDbCommand
             updateCmd.CommandType = CommandType.Text
             updateCmd.Connection = Order_DetailsTableAdapter.Connection
@@ -223,6 +224,57 @@ Public Class MasterUpdate
             Try
                 updateCmd.ExecuteNonQuery()
                 Order_DetailsTableAdapter.Connection.Close()
+                previousProductID = 1
+            Catch ex As Exception
+                Order_DetailsTableAdapter.Connection.Close()
+                ThrowError("Error when updating Order Details", ex.Message)
+            End Try
+        Else
+            previousProductID = -1
+        End If
+    End Sub
+
+    Private Sub Orders_DetailsDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Order_DetailsDataGridView.CellEndEdit
+        '== Verify that previousID is not empty or reset. Will not allow update if so.
+        If Not previousProductID.ToString().Length = 0 AndAlso Not previousProductID = -1 Then
+            '== Update this table in the database to reflect changes made from DataGridView
+            Dim Row = Order_DetailsDataGridView.Rows(e.RowIndex)
+
+            '== Assuming the customer purchased some quantity
+            Dim quantity = 1
+            If Not Row.Cells(3).Value.ToString().Length = 0 Then
+                quantity = Row.Cells(3).Value
+            End If
+
+            Dim discount = 0
+            If Not Row.Cells(4).Value.ToString().Length = 0 Then
+                discount = Row.Cells(4).Value
+            End If
+
+            Dim updateCmd As New OleDb.OleDbCommand
+            updateCmd.CommandType = CommandType.Text
+            updateCmd.Connection = Order_DetailsTableAdapter.Connection
+            updateCmd.CommandText = "UPDATE [Order Details] "
+            updateCmd.CommandText += "SET ProductID=" + Row.Cells(1).Value.ToString()
+            updateCmd.CommandText += ", Quantity=" + quantity.ToString()
+            updateCmd.CommandText += ", Discount=" + discount.ToString()
+            updateCmd.CommandText += " WHERE ProductID = " + previousProductID.ToString()
+            updateCmd.CommandText += " AND OrderID = " + Row.Cells(0).Value.ToString()
+
+            Dim priceGrab As New OleDb.OleDbCommand
+            priceGrab.CommandType = CommandType.Text
+            priceGrab.Connection = Order_DetailsTableAdapter.Connection
+            priceGrab.CommandText = "UPDATE [Order Details]"
+            priceGrab.CommandText += " INNER JOIN Products ON [Order Details].ProductID = Products.ProductID"
+            priceGrab.CommandText += " SET [Order Details].UnitPrice = Products.UnitPrice"
+            priceGrab.CommandText += " WHERE [Order Details].OrderID = " + Row.Cells(0).Value.ToString()
+            priceGrab.CommandText += " AND [Order Details].ProductID = " + Row.Cells(1).Value.ToString()
+
+            Order_DetailsTableAdapter.Connection.Open()
+            Try
+                updateCmd.ExecuteNonQuery()
+                priceGrab.ExecuteNonQuery()
+                Order_DetailsTableAdapter.Connection.Close()
 
                 Order_DetailsTableAdapter.Fill(Ds.Order_Details)
             Catch ex As Exception
@@ -230,42 +282,6 @@ Public Class MasterUpdate
                 ThrowError("Error when updating Order Details", ex.Message)
             End Try
         End If
-    End Sub
-
-    Private Sub Orders_DetailsDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Order_DetailsDataGridView.CellEndEdit
-        '== Update this table in the database to reflect changes made from DataGridView
-        Dim Row = Order_DetailsDataGridView.Rows(e.RowIndex)
-
-        Dim updateCmd As New OleDb.OleDbCommand
-        updateCmd.CommandType = CommandType.Text
-        updateCmd.Connection = Order_DetailsTableAdapter.Connection
-        updateCmd.CommandText = "UPDATE [Order Details] "
-        updateCmd.CommandText += "SET ProductID=" + Row.Cells(1).Value.ToString()
-        updateCmd.CommandText += ", Quantity=" + Row.Cells(3).Value.ToString()
-        updateCmd.CommandText += ", Discount=" + Row.Cells(4).Value.ToString()
-        updateCmd.CommandText += " WHERE ProductID = " + previousProductID.ToString()
-        updateCmd.CommandText += " AND OrderID = " + Row.Cells(0).Value.ToString()
-
-        Dim priceGrab As New OleDb.OleDbCommand
-        priceGrab.CommandType = CommandType.Text
-        priceGrab.Connection = Order_DetailsTableAdapter.Connection
-        priceGrab.CommandText = "UPDATE [Order Details]"
-        priceGrab.CommandText += " INNER JOIN Products ON [Order Details].ProductID = Products.ProductID"
-        priceGrab.CommandText += " SET [Order Details].UnitPrice = Products.UnitPrice"
-        priceGrab.CommandText += " WHERE [Order Details].OrderID = " + Row.Cells(0).Value.ToString()
-        priceGrab.CommandText += " AND [Order Details].ProductID = " + Row.Cells(1).Value.ToString()
-
-        Order_DetailsTableAdapter.Connection.Open()
-        Try
-            updateCmd.ExecuteNonQuery()
-            priceGrab.ExecuteNonQuery()
-            Order_DetailsTableAdapter.Connection.Close()
-
-            Order_DetailsTableAdapter.Fill(Ds.Order_Details)
-        Catch ex As Exception
-            Order_DetailsTableAdapter.Connection.Close()
-            ThrowError("Error when updating Order Details", ex.Message)
-        End Try
     End Sub
 
     Private Sub Order_DetailsDataGridView_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles Order_DetailsDataGridView.RowsRemoved

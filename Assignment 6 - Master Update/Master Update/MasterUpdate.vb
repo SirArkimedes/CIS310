@@ -209,6 +209,27 @@ Public Class MasterUpdate
 
     Private Sub Order_DetailsDataGridView_UserAddedRow(sender As Object, e As DataGridViewRowEventArgs) Handles Order_DetailsDataGridView.UserAddedRow
 
+        Dim Row = Order_DetailsDataGridView.Rows(Order_DetailsDataGridView.CurrentCell.RowIndex)
+
+        '== Add newly created Order Detail to the table
+        If Not IsDBNull(Row.Cells(0).Value) Then
+            Dim updateCmd As New OleDb.OleDbCommand
+            updateCmd.CommandType = CommandType.Text
+            updateCmd.Connection = Order_DetailsTableAdapter.Connection
+            updateCmd.CommandText = "INSERT INTO [Order Details] (OrderID, ProductID) "
+            updateCmd.CommandText += "VALUES (" + Row.Cells(0).Value.ToString() + ", 1)"
+
+            Order_DetailsTableAdapter.Connection.Open()
+            Try
+                updateCmd.ExecuteNonQuery()
+                Order_DetailsTableAdapter.Connection.Close()
+
+                Order_DetailsTableAdapter.Fill(Ds.Order_Details)
+            Catch ex As Exception
+                Order_DetailsTableAdapter.Connection.Close()
+                ThrowError("Error when updating Order Details", ex.Message)
+            End Try
+        End If
     End Sub
 
     Private Sub Orders_DetailsDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Order_DetailsDataGridView.CellEndEdit

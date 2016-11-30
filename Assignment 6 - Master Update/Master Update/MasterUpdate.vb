@@ -186,7 +186,7 @@ Public Class MasterUpdate
     End Sub
 
     Private Sub Orders_DetailsDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Order_DetailsDataGridView.CellEndEdit
-        '== Update this table in the database to reflect changes made from table
+        '== Update this table in the database to reflect changes made from DataGridView
         Dim cmd As New OleDb.OleDbCommand
         cmd.CommandType = CommandType.Text
         cmd.Connection = Order_DetailsTableAdapter.Connection

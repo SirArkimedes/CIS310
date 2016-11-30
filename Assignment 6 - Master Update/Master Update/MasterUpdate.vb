@@ -8,7 +8,6 @@ Public Class MasterUpdate
     Private savedPosition = 0
     Private previousCustomer As Customer
     Private previousProductID = 0
-    Private hasLoaded = False
 
     '== Load
     Private Sub SynchedGrid_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -16,8 +15,6 @@ Public Class MasterUpdate
 
         saveCustomerButton.Enabled = False
         undoCustomerButton.Enabled = False
-
-        hasLoaded = True
     End Sub
 
     '== Button Press Actions
@@ -171,7 +168,8 @@ Public Class MasterUpdate
     End Sub
 
     '== DataGridView Actions
-    Private Sub dataGridView1_DataError(ByVal sender As Object, ByVal e As DataGridViewDataErrorEventArgs) Handles OrdersDataGridView.DataError
+    Private Sub OrdersDataGridView_DataError(ByVal sender As Object, ByVal e As DataGridViewDataErrorEventArgs) _
+        Handles OrdersDataGridView.DataError, Order_DetailsDataGridView.DataError
         '== Catch the errors to not make them look so ugly.
         If e.Exception IsNot Nothing Then
             ThrowError("Error while editing cell", e.Exception.Message)
@@ -179,14 +177,18 @@ Public Class MasterUpdate
     End Sub
 
     Private Sub OrdersDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles OrdersDataGridView.CellEndEdit
-        OrdersBindingSource.EndEdit()
-        OrdersTableAdapter.Update(Ds.Orders)
-        OrdersTableAdapter.Fill(Ds.Orders)
+        Try
+            OrdersBindingSource.EndEdit()
+            OrdersTableAdapter.Update(Ds.Orders)
+            OrdersTableAdapter.Fill(Ds.Orders)
+        Catch ex As Exception
+            ThrowError("Error in Orders end edit", ex.Message)
+        End Try
     End Sub
 
     Private Sub OrdersDataGridView_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles OrdersDataGridView.RowsRemoved
-        '== Delete specific entry
-        If hasLoaded Then
+        '== Delete specific entry - Check for user interaction
+        If OrdersDataGridView.SelectedRows.Count > 0 Then
             Try
                 '== Wasn't sure if needed that I reassign Order_Details.
                 '== Figured an entire order was deleted, so it did not make a difference.
@@ -202,7 +204,15 @@ Public Class MasterUpdate
     End Sub
 
     Private Sub Order_DetailsDataGridView_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles Order_DetailsDataGridView.CellBeginEdit
-        previousProductID = Ds.Order_Details.Rows(e.RowIndex)("ProductID")
+        Try
+            previousProductID = Ds.Order_Details.Rows(e.RowIndex)("ProductID")
+        Catch ex As Exception
+            ThrowError("Error in Order Details begin edit", "Cannot get ProductID")
+        End Try
+    End Sub
+
+    Private Sub Order_DetailsDataGridView_UserAddedRow(sender As Object, e As DataGridViewRowEventArgs) Handles Order_DetailsDataGridView.UserAddedRow
+
     End Sub
 
     Private Sub Orders_DetailsDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Order_DetailsDataGridView.CellEndEdit
@@ -228,21 +238,22 @@ Public Class MasterUpdate
         priceGrab.CommandText += " WHERE [Order Details].OrderID = " + Row.Cells(0).Value.ToString()
         priceGrab.CommandText += " AND [Order Details].ProductID = " + Row.Cells(1).Value.ToString()
 
+        Order_DetailsTableAdapter.Connection.Open()
         Try
-            Order_DetailsTableAdapter.Connection.Open()
             updateCmd.ExecuteNonQuery()
             priceGrab.ExecuteNonQuery()
             Order_DetailsTableAdapter.Connection.Close()
 
             Order_DetailsTableAdapter.Fill(Ds.Order_Details)
         Catch ex As Exception
+            Order_DetailsTableAdapter.Connection.Close()
             ThrowError("Error when updating Order Details", ex.Message)
         End Try
     End Sub
 
     Private Sub Order_DetailsDataGridView_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles Order_DetailsDataGridView.RowsRemoved
-        '== Delete specific entry
-        If hasLoaded Then
+        '== Delete specific entry - Check for user interaction
+        If Order_DetailsDataGridView.SelectedRows.Count > 0 Then
             Dim Row = Order_DetailsDataGridView.Rows(e.RowIndex)
 
             Dim cmd As New OleDb.OleDbCommand
@@ -252,13 +263,14 @@ Public Class MasterUpdate
             cmd.CommandText += " WHERE ProductID = " + Row.Cells(1).Value.ToString()
             cmd.CommandText += "AND OrderID = " + Row.Cells(0).Value.ToString()
 
+            Order_DetailsTableAdapter.Connection.Open()
             Try
-                Order_DetailsTableAdapter.Connection.Open()
                 cmd.ExecuteNonQuery()
                 Order_DetailsTableAdapter.Connection.Close()
 
                 Order_DetailsTableAdapter.Fill(Ds.Order_Details)
             Catch ex As Exception
+                Order_DetailsTableAdapter.Connection.Close()
                 ThrowError("Error when updating Order Details", ex.Message)
             End Try
         End If

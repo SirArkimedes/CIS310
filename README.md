@@ -1,5 +1,9 @@
 # Assignments for CIS310
-Database Management System I - CIS 310 Wednesday 6:00 - 8:15
+Database Management System I
+CIS 310 Wednesday 6:00 - 8:15
+Fall 2016 Semester 
+
+Includes all assignments that were given out over the course of the class.
 
 ## Grades for assignments
 Grades for assignments included in this repository are:
@@ -38,7 +42,8 @@ After asking about this one, he had mentioned that I should have changed the bac
 >
 >Finally, if you're going to put the error message down in the status strip, you need to highlight it in some way -- flash it in red, maybe -- else most users won't notice it.
 
-Coming from ```Swift```, ```Objective-C```, and ```C#``` I was really used to type conversions. Ended up forgetting about them mostly. I threw the errors on purpose. I wanted whoever that was going to use my class improperly to experience the crash. I did not think that I should be the one displaying the dialog box to a user that just say *error.*
+Coming from ```Swift```, ```Objective-C```, and ```C#``` I was really used to type conversions. Ended up forgetting about them mostly. I threw the errors on purpose. I wanted whoever that was going to use my class improperly to experience the crash. I did not think that I should be the one displaying the dialog box to a user that just says *error.*
+
 Also, did not end up making the correction from Assignment 1 so he mentioned it again.
 
 #### Assignment 3

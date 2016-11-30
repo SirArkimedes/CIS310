@@ -1,7 +1,7 @@
 # Assignments for CIS310
-Database Management System I
-CIS 310 Wednesday 6:00 - 8:15
-Fall 2016 Semester 
+* Database Management System I
+* CIS 310 Wednesday 6:00 - 8:15
+* Fall 2016 Semester
 
 Includes all assignments that were given out over the course of the class.
 
@@ -16,6 +16,7 @@ Grades for assignments included in this repository are:
 | 4             | *No grade available* |
 | 5             | *No grade available* |
 | 6             | *No grade available* |
+| Total         | 28/30                |
 
 ## Why that grade was given
 #### Assignment 1

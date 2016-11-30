@@ -8,6 +8,7 @@ Public Class MasterUpdate
     Private savedPosition = 0
     Private previousCustomer As Customer
     Private previousProductID = 0
+    Private hasLoaded = False
 
     '== Load
     Private Sub SynchedGrid_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -15,6 +16,8 @@ Public Class MasterUpdate
 
         saveCustomerButton.Enabled = False
         undoCustomerButton.Enabled = False
+
+        hasLoaded = True
     End Sub
 
     '== Button Press Actions
@@ -181,21 +184,40 @@ Public Class MasterUpdate
         OrdersTableAdapter.Fill(Ds.Orders)
     End Sub
 
+    Private Sub OrdersDataGridView_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles OrdersDataGridView.RowsRemoved
+        '== Delete specific entry
+        If hasLoaded Then
+            Try
+                '== Wasn't sure if needed that I reassign Order_Details.
+                '== Figured an entire order was deleted, so it did not make a difference.
+                Ds.Orders.Rows(e.RowIndex).Delete()
+
+                OrdersBindingSource.EndEdit()
+                OrdersTableAdapter.Update(Ds.Orders)
+                OrdersTableAdapter.Fill(Ds.Orders)
+            Catch ex As Exception
+                ThrowError("Error when updating Order Details", ex.Message)
+            End Try
+        End If
+    End Sub
+
     Private Sub Order_DetailsDataGridView_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles Order_DetailsDataGridView.CellBeginEdit
         previousProductID = Ds.Order_Details.Rows(e.RowIndex)("ProductID")
     End Sub
 
     Private Sub Orders_DetailsDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Order_DetailsDataGridView.CellEndEdit
         '== Update this table in the database to reflect changes made from DataGridView
+        Dim Row = Order_DetailsDataGridView.Rows(e.RowIndex)
+
         Dim updateCmd As New OleDb.OleDbCommand
         updateCmd.CommandType = CommandType.Text
         updateCmd.Connection = Order_DetailsTableAdapter.Connection
         updateCmd.CommandText = "UPDATE [Order Details] "
-        updateCmd.CommandText += "SET ProductID=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(1).Value.ToString()
-        updateCmd.CommandText += ", Quantity=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(3).Value.ToString()
-        updateCmd.CommandText += ", Discount=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(4).Value.ToString()
+        updateCmd.CommandText += "SET ProductID=" + Row.Cells(1).Value.ToString()
+        updateCmd.CommandText += ", Quantity=" + Row.Cells(3).Value.ToString()
+        updateCmd.CommandText += ", Discount=" + Row.Cells(4).Value.ToString()
         updateCmd.CommandText += " WHERE ProductID = " + previousProductID.ToString()
-        updateCmd.CommandText += "AND OrderID = " + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(0).Value.ToString()
+        updateCmd.CommandText += "AND OrderID = " + Row.Cells(0).Value.ToString()
 
         Dim priceGrab As New OleDb.OleDbCommand
         priceGrab.CommandType = CommandType.Text
@@ -203,8 +225,8 @@ Public Class MasterUpdate
         priceGrab.CommandText = "UPDATE [Order Details]"
         priceGrab.CommandText += " INNER JOIN Products ON [Order Details].ProductID = Products.ProductID"
         priceGrab.CommandText += " SET [Order Details].UnitPrice = Products.UnitPrice"
-        priceGrab.CommandText += " WHERE [Order Details].OrderID = " + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(0).Value.ToString()
-        priceGrab.CommandText += " AND [Order Details].ProductID = " + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(1).Value.ToString()
+        priceGrab.CommandText += " WHERE [Order Details].OrderID = " + Row.Cells(0).Value.ToString()
+        priceGrab.CommandText += " AND [Order Details].ProductID = " + Row.Cells(1).Value.ToString()
 
         Try
             Order_DetailsTableAdapter.Connection.Open()
@@ -216,6 +238,30 @@ Public Class MasterUpdate
         Catch ex As Exception
             ThrowError("Error when updating Order Details", ex.Message)
         End Try
+    End Sub
+
+    Private Sub Order_DetailsDataGridView_RowsRemoved(sender As Object, e As DataGridViewRowsRemovedEventArgs) Handles Order_DetailsDataGridView.RowsRemoved
+        '== Delete specific entry
+        If hasLoaded Then
+            Dim Row = Order_DetailsDataGridView.Rows(e.RowIndex)
+
+            Dim cmd As New OleDb.OleDbCommand
+            cmd.CommandType = CommandType.Text
+            cmd.Connection = Order_DetailsTableAdapter.Connection
+            cmd.CommandText = "DELETE FROM [Order Details] "
+            cmd.CommandText += " WHERE ProductID = " + Row.Cells(1).Value.ToString()
+            cmd.CommandText += "AND OrderID = " + Row.Cells(0).Value.ToString()
+
+            Try
+                Order_DetailsTableAdapter.Connection.Open()
+                cmd.ExecuteNonQuery()
+                Order_DetailsTableAdapter.Connection.Close()
+
+                Order_DetailsTableAdapter.Fill(Ds.Order_Details)
+            Catch ex As Exception
+                ThrowError("Error when updating Order Details", ex.Message)
+            End Try
+        End If
     End Sub
 
     '== Binding Source Changes

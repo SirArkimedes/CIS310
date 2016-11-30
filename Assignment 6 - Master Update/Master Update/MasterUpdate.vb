@@ -531,30 +531,48 @@ Public Class MasterUpdate
         '== Verify that these are not empty because these cannot be stored in the new customer.
         If Not previousCustomer.ContactName = "" Then
             customer.ContactName = previousCustomer.ContactName
+        Else
+            customer.ContactName = " "
         End If
         If Not previousCustomer.ContactTitle = "" Then
             customer.ContactTitle = previousCustomer.ContactTitle
+        Else
+            customer.ContactTitle = " "
         End If
         If Not previousCustomer.Address = "" Then
             customer.Address = previousCustomer.Address
+        Else
+            customer.Address = " "
         End If
         If Not previousCustomer.City = "" Then
             customer.City = previousCustomer.City
+        Else
+            customer.City = " "
         End If
         If Not previousCustomer.Region = "" Then
             customer._Region = previousCustomer.Region
+        Else
+            customer._Region = " "
         End If
         If Not previousCustomer.PostalCode = "" Then
             customer.PostalCode = previousCustomer.PostalCode
+        Else
+            customer.PostalCode = " "
         End If
         If Not previousCustomer.Country = "" Then
             customer.Country = previousCustomer.Country
+        Else
+            customer.Country = " "
         End If
         If Not previousCustomer.Phone = "" Then
             customer.Phone = previousCustomer.Phone
+        Else
+            customer.Phone = " "
         End If
         If Not previousCustomer.Fax = "" Then
             customer.Fax = previousCustomer.Fax
+        Else
+            customer.Fax = " "
         End If
     End Sub
 

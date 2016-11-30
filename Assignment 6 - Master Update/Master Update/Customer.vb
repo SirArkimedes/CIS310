@@ -1,4 +1,8 @@
-﻿Public Enum CustomerChangeType
+﻿'=========================================='
+'= CIS 310, Andrew Robinson, Assignment 6 ='
+'=========================================='
+
+Public Enum CustomerChangeType
     Deleted
     Edited
     Created

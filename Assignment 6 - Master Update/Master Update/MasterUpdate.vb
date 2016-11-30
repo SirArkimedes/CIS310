@@ -204,11 +204,7 @@ Public Class MasterUpdate
     End Sub
 
     Private Sub Order_DetailsDataGridView_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles Order_DetailsDataGridView.CellBeginEdit
-        Try
-            previousProductID = Ds.Order_Details.Rows(e.RowIndex)("ProductID")
-        Catch ex As Exception
-            ThrowError("Error in Order Details begin edit", "Cannot get ProductID")
-        End Try
+        previousProductID = Order_DetailsDataGridView.Rows(e.RowIndex).Cells(1).Value.ToString()
     End Sub
 
     Private Sub Order_DetailsDataGridView_UserAddedRow(sender As Object, e As DataGridViewRowEventArgs) Handles Order_DetailsDataGridView.UserAddedRow
@@ -227,7 +223,7 @@ Public Class MasterUpdate
         updateCmd.CommandText += ", Quantity=" + Row.Cells(3).Value.ToString()
         updateCmd.CommandText += ", Discount=" + Row.Cells(4).Value.ToString()
         updateCmd.CommandText += " WHERE ProductID = " + previousProductID.ToString()
-        updateCmd.CommandText += "AND OrderID = " + Row.Cells(0).Value.ToString()
+        updateCmd.CommandText += " AND OrderID = " + Row.Cells(0).Value.ToString()
 
         Dim priceGrab As New OleDb.OleDbCommand
         priceGrab.CommandType = CommandType.Text

@@ -187,19 +187,29 @@ Public Class MasterUpdate
 
     Private Sub Orders_DetailsDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Order_DetailsDataGridView.CellEndEdit
         '== Update this table in the database to reflect changes made from DataGridView
-        Dim cmd As New OleDb.OleDbCommand
-        cmd.CommandType = CommandType.Text
-        cmd.Connection = Order_DetailsTableAdapter.Connection
-        cmd.CommandText = "UPDATE [Order Details] "
-        cmd.CommandText += "SET ProductID=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(1).Value.ToString()
-        cmd.CommandText += ", Quantity=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(3).Value.ToString()
-        cmd.CommandText += ", Discount=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(4).Value.ToString()
-        cmd.CommandText += " WHERE ProductID = " + previousProductID.ToString()
-        cmd.CommandText += "AND OrderID = " + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(0).Value.ToString()
+        Dim updateCmd As New OleDb.OleDbCommand
+        updateCmd.CommandType = CommandType.Text
+        updateCmd.Connection = Order_DetailsTableAdapter.Connection
+        updateCmd.CommandText = "UPDATE [Order Details] "
+        updateCmd.CommandText += "SET ProductID=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(1).Value.ToString()
+        updateCmd.CommandText += ", Quantity=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(3).Value.ToString()
+        updateCmd.CommandText += ", Discount=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(4).Value.ToString()
+        updateCmd.CommandText += " WHERE ProductID = " + previousProductID.ToString()
+        updateCmd.CommandText += "AND OrderID = " + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(0).Value.ToString()
+
+        Dim priceGrab As New OleDb.OleDbCommand
+        priceGrab.CommandType = CommandType.Text
+        priceGrab.Connection = Order_DetailsTableAdapter.Connection
+        priceGrab.CommandText = "UPDATE [Order Details]"
+        priceGrab.CommandText += " INNER JOIN Products ON [Order Details].ProductID = Products.ProductID"
+        priceGrab.CommandText += " SET [Order Details].UnitPrice = Products.UnitPrice"
+        priceGrab.CommandText += " WHERE [Order Details].OrderID = " + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(0).Value.ToString()
+        priceGrab.CommandText += " AND [Order Details].ProductID = " + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(1).Value.ToString()
 
         Try
             Order_DetailsTableAdapter.Connection.Open()
-            cmd.ExecuteNonQuery()
+            updateCmd.ExecuteNonQuery()
+            priceGrab.ExecuteNonQuery()
             Order_DetailsTableAdapter.Connection.Close()
 
             Order_DetailsTableAdapter.Fill(Ds.Order_Details)

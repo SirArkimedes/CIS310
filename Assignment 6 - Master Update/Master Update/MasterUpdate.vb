@@ -174,6 +174,12 @@ Public Class MasterUpdate
         End If
     End Sub
 
+    Private Sub OrdersDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles OrdersDataGridView.CellEndEdit
+        OrdersBindingSource.EndEdit()
+        OrdersTableAdapter.Update(Ds.Orders)
+        OrdersTableAdapter.Fill(Ds.Orders)
+    End Sub
+
     '== Binding Source Changes
     Private Sub OrdersBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles OrdersBindingSource.CurrentChanged
 

@@ -219,7 +219,8 @@ Public Class MasterUpdate
     End Sub
 
     '== Binding Source Changes
-    Private Sub OrdersBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles OrdersBindingSource.CurrentChanged
+    Private Sub OrdersBindingSource_CurrentChanged(sender As Object, e As EventArgs) _
+        Handles OrdersBindingSource.CurrentChanged, Order_DetailsBindingSource.CurrentItemChanged
 
         Dim currentRow = OrdersBindingSource.Current
 

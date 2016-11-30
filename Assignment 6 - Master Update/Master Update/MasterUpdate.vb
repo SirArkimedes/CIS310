@@ -7,6 +7,7 @@ Public Class MasterUpdate
     Private wantsNewCustomer = False
     Private savedPosition = 0
     Private previousCustomer As Customer
+    Private previousProductID = 0
 
     '== Load
     Private Sub SynchedGrid_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -180,6 +181,33 @@ Public Class MasterUpdate
         OrdersTableAdapter.Fill(Ds.Orders)
     End Sub
 
+    Private Sub Order_DetailsDataGridView_CellBeginEdit(sender As Object, e As DataGridViewCellCancelEventArgs) Handles Order_DetailsDataGridView.CellBeginEdit
+        previousProductID = Ds.Order_Details.Rows(e.RowIndex)("ProductID")
+    End Sub
+
+    Private Sub Orders_DetailsDataGridView_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles Order_DetailsDataGridView.CellEndEdit
+        '== Update this table in the database to reflect changes made from table
+        Dim cmd As New OleDb.OleDbCommand
+        cmd.CommandType = CommandType.Text
+        cmd.Connection = Order_DetailsTableAdapter.Connection
+        cmd.CommandText = "UPDATE [Order Details] "
+        cmd.CommandText += "SET ProductID=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(1).Value.ToString()
+        cmd.CommandText += ", Quantity=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(3).Value.ToString()
+        cmd.CommandText += ", Discount=" + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(4).Value.ToString()
+        cmd.CommandText += " WHERE ProductID = " + previousProductID.ToString()
+        cmd.CommandText += "AND OrderID = " + Order_DetailsDataGridView.Rows(e.RowIndex).Cells(0).Value.ToString()
+
+        Try
+            Order_DetailsTableAdapter.Connection.Open()
+            cmd.ExecuteNonQuery()
+            Order_DetailsTableAdapter.Connection.Close()
+
+            Order_DetailsTableAdapter.Fill(Ds.Order_Details)
+        Catch ex As Exception
+            ThrowError("Error when updating Order Details", ex.Message)
+        End Try
+    End Sub
+
     '== Binding Source Changes
     Private Sub OrdersBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles OrdersBindingSource.CurrentChanged
 
@@ -216,7 +244,7 @@ Public Class MasterUpdate
     '== Database calls
     Private Function SuccessfullyCreatedNewCustomer() As Boolean
         Dim success = False
-        
+
         Dim newCustomer = Ds.Customers.NewCustomersRow()
 
         '== Verify that these are not empty because these cannot be stored in the new customer.
@@ -250,10 +278,10 @@ Public Class MasterUpdate
 
         '== Verify that these are not empty.
         If CustomerIDTextBox.Text = "" Then
-            ThrowError("Empty field", "Must provide a value for CustomerID")
+            ThrowError("Empty field", "Must provide a value For CustomerID")
         Else
             If CompanyNameTextBox.Text = "" Then
-                ThrowError("Empty field", "Must provide a value for CompanyName")
+                ThrowError("Empty field", "Must provide a value For CompanyName")
             Else
                 newCustomer.CustomerID = CustomerIDTextBox.Text
                 newCustomer.CompanyName = CompanyNameTextBox.Text
@@ -267,7 +295,7 @@ Public Class MasterUpdate
 
                     success = True
                 Catch ex As Exception
-                    ThrowError("Error creating new customer", ex.Message)
+                    ThrowError("Error creating New customer", ex.Message)
                 End Try
             End If
         End If

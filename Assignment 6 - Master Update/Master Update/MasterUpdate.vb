@@ -186,7 +186,7 @@ Public Class MasterUpdate
         Dim currentRow = OrdersBindingSource.Current
 
         '== Do we have a selected row?
-        If TypeOf currentRow Is Object Then
+        If Not IsDBNull(currentRow.Item("Freight")) Then
             '== Grab total item price
             Dim fltr() = Nothing
             Try

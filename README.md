@@ -16,7 +16,7 @@ Grades for assignments included in this repository are:
 | 4             | 9/10                 |
 | 5             | 15/15                |
 | 6             | *No grade available* |
-| Total         | 28/30                |
+| Total         | 52/55                |
 
 ## Why that grade was given
 #### Assignment 1
@@ -59,7 +59,7 @@ To the entire class, he mentioned how well I did on this assignment. Did not go 
 ###### 9/10
 > Very nice look, but no way to reorder stock.
 
-I'm not really sure what he means by no way to reorder stock? I was worried about this one being graded poorly, so I am happy with this one.
+I'm not really sure what he means by no way to reorder stock? I was worried about this one being graded poorly, so I am happy with this grade.
 
 #### Assignment 5
 ###### 15/15

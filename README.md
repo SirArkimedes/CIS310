@@ -13,8 +13,8 @@ Grades for assignments included in this repository are:
 | 1             | 10/10                |
 | 2             | 7/10                 |
 | 3             | 11/10                |
-| 4             | *No grade available* |
-| 5             | *No grade available* |
+| 4             | 9/10                 |
+| 5             | 15/15                |
 | 6             | *No grade available* |
 | Total         | 28/30                |
 
@@ -54,3 +54,15 @@ Also, did not end up making the correction from Assignment 1 so he mentioned it 
 > You don't need to configure the forms in Form Load, if you simply "PerformClick" on each of the menu items.
 
 To the entire class, he mentioned how well I did on this assignment. Did not go into much detail about why it got the grade it did.
+
+#### Assignment 4
+###### 9/10
+> Very nice look, but no way to reorder stock.
+
+I'm not really sure what he means by no way to reorder stock? I was worried about this one being graded poorly, so I am happy with this one.
+
+#### Assignment 5
+###### 15/15
+> Very Nice!
+
+No comments on this one. Felt I did well on the assignment.

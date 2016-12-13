@@ -72,6 +72,7 @@ No comments on this one. Felt I did well on the assignment.
 >-1 When I add a new Customer, he has no orders, but there's a Detail row in the grid. ???
 >
 >-1 After I "Save" a Customer, the Undo button remains lit.
+>
 >-1 ... and you don't reload the tables, so new guy is at the bottom
 >
 >-1 I can't seem to SAVE an added order.

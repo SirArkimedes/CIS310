@@ -6,7 +6,7 @@
 Includes all assignments that were given out over the course of the class.
 
 ## Grades for assignments
-Grades for assignments included in this repository are:
+Grades for assignments included in this repository are (Does not include final and participation grade):
 
 | Assignment    | Grade Received       |
 | ------------- |:--------------------:|
@@ -15,8 +15,8 @@ Grades for assignments included in this repository are:
 | 3             | 11/10                |
 | 4             | 9/10                 |
 | 5             | 15/15                |
-| 6             | *No grade available* |
-| Total         | 52/55                |
+| 6             | 13.3/15              |
+| Total         | 65.3/70              |
 
 ## Why that grade was given
 #### Assignment 1
@@ -66,3 +66,16 @@ I'm not really sure what he means by no way to reorder stock? I was worried abou
 > Very Nice!
 
 No comments on this one. Felt I did well on the assignment.
+
+#### Assignment 6
+###### 13.3/20
+>-1 When I add a new Customer, he has no orders, but there's a Detail row in the grid. ???
+>
+>-1 After I "Save" a Customer, the Undo button remains lit.
+>-1 ... and you don't reload the tables, so new guy is at the bottom
+>
+>-1 I can't seem to SAVE an added order.
+>
+>-1 I can't reassign an order to another customer.
+
+**First one**: That was a bug that had happened last minute that was I was not sure where to begin debugging. **Second**: This must have been a misunderstanding of the requirements. I thought we were supposed to allow an undo after a save, at least that is what made sense to me. **Third**: This also was not a requirement, did not know about this until now. **Fourth**: I had forgotten to add this functionality to that table. **Fifth**: Error occurs here. Must have come up when I was doing my last minute changes for the Order Details table that messed a lot of previous things up.

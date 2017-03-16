@@ -15,7 +15,7 @@ Grades for assignments included in this repository are (Does not include final a
 | 3             | 11/10                |
 | 4             | 9/10                 |
 | 5             | 15/15                |
-| 6             | 13.3/15              |
+| 6             | 13.3/20              |
 | Total         | 65.3/70              |
 
 ## Why that grade was given
